@@ -1,5 +1,6 @@
 .home-page {
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* Hero Section */
@@ -377,6 +378,10 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 40px;
+}
+
+.carousel-container {
+  padding: 0 40px;
 }
 
 .products-grid {
@@ -801,6 +806,10 @@
   
   .carousel-btn {
     display: none; /* Rely on native touch scroll */
+  }
+
+  .carousel-container {
+    padding: 0 15px;
   }
 
   .client-logos {

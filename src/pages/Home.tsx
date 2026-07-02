@@ -116,7 +116,7 @@ const Home = () => {
           </div>
         </div>
           
-        <div className="carousel-container" style={{ position: 'relative', padding: '0 40px', boxSizing: 'border-box', width: '100%' }}>
+        <div className="carousel-container" style={{ position: 'relative', boxSizing: 'border-box', width: '100%' }}>
           <button className="carousel-btn left" onClick={scrollLeft} aria-label="Previous Products">
             <ArrowLeft size={20} />
           </button>
