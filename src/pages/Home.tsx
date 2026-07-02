@@ -255,7 +255,7 @@ const Home = () => {
       </section>
 
       {/* 6. Why Choose Us */}
-      <section className="why-choose-section section bg-surface-1">
+      <section className="why-choose-section section dark-premium-bg">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
             <h4 className="section-subtitle">WHY CHOOSE DBPACK?</h4>
