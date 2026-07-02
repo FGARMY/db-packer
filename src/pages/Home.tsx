@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ShieldCheck, Sliders, Truck, Users, Leaf, Target, Eye, BadgeCheck, Cpu, Briefcase, Tag, Globe2, ArrowLeft, ArrowRight, Quote } from 'lucide-react';
+import { ChevronRight, Target, Eye, BadgeCheck, Cpu, Briefcase, Tag, Globe2, ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { products } from '../data/products';
 import './Home.css';
 
@@ -61,9 +61,7 @@ const Home = () => {
     { icon: <Globe2 size={32} />, title: "Wide Industry Reach", desc: "Serving a diverse range of industries across the country." }
   ];
 
-  const clientLogos = [
-    "TechCorp", "GlobalShipping", "RetailPlus", "EcoGoods", "FreshFoods", "BuildRight"
-  ]; // {/* TODO: replace with real logos */}
+
 
   const processSteps = [
     { num: 1, title: "Request a Quote", desc: "Tell us your requirements and volume." },
