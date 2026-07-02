@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Target, Eye, BadgeCheck, Cpu, Briefcase, Tag, Globe2, ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { products } from '../data/products';
+import SubHeader from '../components/SubHeader';
 import './Home.css';
 
 const Home = () => {
@@ -103,6 +104,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <SubHeader />
 
       {/* 2. Featured Products */}
       <section className="products-section section">
