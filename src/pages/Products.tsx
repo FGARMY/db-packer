@@ -15,11 +15,11 @@ const Products = () => {
 
       <section className="section">
         <div className="container">
-          <div className="products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '30px' }}>
+          <div className="products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '20px' }}>
             {products.map((p, i) => (
               <Link to={`/product/${p.id}`} key={i} className="product-card" style={{ background: 'white', borderRadius: 'var(--radius)', border: '1px solid var(--border-color)', overflow: 'hidden', transition: 'var(--transition)', textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ height: '200px', backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                  <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div style={{ height: '260px', backgroundColor: 'var(--white)', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderBottom: '1px solid var(--border-color)' }}>
+                  <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                 </div>
                 <div style={{ padding: '25px', textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: '0.8rem', color: 'var(--secondary-color)', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '10px', display: 'block' }}>{p.category}</span>

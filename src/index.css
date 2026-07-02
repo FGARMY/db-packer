@@ -2,6 +2,8 @@
   --primary-color: #0f3d81; /* DBPack deep blue */
   --secondary-color: #2b70d4; /* Lighter blue for hover/accents */
   --bg-color: #f8fafc;
+  --surface-1: #f1f5f9; /* Light gray for alternating sections */
+  --surface-2: #e0e7ff; /* Light brand-tinted blue */
   --text-color: #1e293b;
   --text-light: #64748b;
   --white: #ffffff;
@@ -116,6 +118,11 @@ p {
   margin: 10px auto 0;
   border-radius: 2px;
 }
+
+/* Background Utilities */
+.bg-white { background-color: var(--white); }
+.bg-surface-1 { background-color: var(--surface-1); }
+.bg-surface-2 { background-color: var(--surface-2); }
 
 /* Layout Utilities */
 .grid {
