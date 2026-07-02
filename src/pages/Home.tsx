@@ -14,6 +14,25 @@ const Home = () => {
   ];
 
   const carouselRef = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (processRef.current) {
+        const rect = processRef.current.getBoundingClientRect();
+        const start = window.innerHeight * 0.85;
+        const end = window.innerHeight * 0.35;
+        let progress = (start - rect.top) / (start - end);
+        progress = Math.max(0, Math.min(1, progress));
+        setScrollProgress(progress);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,14 +107,14 @@ const Home = () => {
       </section>
 
       {/* 2. Featured Products */}
-      <section className="products-section section" style={{ overflow: 'hidden' }}>
+      <section className="products-section section">
         <div className="container">
-          <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
+          <div className="section-header products-section-header">
             <div>
               <h4 className="section-subtitle">OUR PRODUCTS</h4>
               <h2>Packaging Solutions Built for Every Need</h2>
             </div>
-            <Link to="/products" className="btn btn-primary" style={{ display: 'inline-block' }}>VIEW ALL PRODUCTS</Link>
+            <Link to="/products" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>VIEW ALL PRODUCTS</Link>
           </div>
         </div>
           
@@ -213,19 +232,23 @@ const Home = () => {
       </section>
 
       {/* 5. Process / How it works */}
-      <section className="process-section section bg-surface-2">
+      <section className="process-section section bg-surface-2" ref={processRef}>
         <div className="container">
           <h4 className="section-subtitle">HOW IT WORKS</h4>
           <h2>Simple & Seamless Process</h2>
           
-          <div className="process-grid">
-            {processSteps.map((step, i) => (
-              <div key={i} className="process-step">
-                <div className="process-number">{step.num}</div>
-                <h4>{step.title}</h4>
-                <p>{step.desc}</p>
-              </div>
-            ))}
+          <div className="process-grid" style={{ '--progress': scrollProgress } as React.CSSProperties}>
+            {processSteps.map((step, i) => {
+              const stepThreshold = i * 0.25;
+              const isActive = scrollProgress > stepThreshold;
+              return (
+                <div key={i} className={`process-step ${isActive ? 'active' : ''}`}>
+                  <div className="process-number">{step.num}</div>
+                  <h4>{step.title}</h4>
+                  <p>{step.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
