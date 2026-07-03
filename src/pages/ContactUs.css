@@ -220,12 +220,21 @@ select.form-control:not(:invalid) {
 }
 
 @media (max-width: 768px) {
+  .contact-page-header {
+    margin: 20px auto 25px;
+  }
+
   .form-row {
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
+    margin-bottom: 12px;
   }
   
   .contact-page-header h1 {
     font-size: 3rem;
+  }
+
+  .form-submit-wrapper {
+    margin-top: 20px;
   }
 }
