@@ -1255,4 +1255,22 @@
   .testimonials-section {
     padding-top: 30px !important;
   }
+
+  /* Compact CTA Patch (Schedule A Call Back) */
+  .cta-patch {
+    padding: 20px 0 !important;
+  }
+  
+  .cta-patch-container {
+    gap: 12px !important;
+  }
+  
+  .cta-patch-text {
+    font-size: 1.1rem !important;
+  }
+  
+  .cta-patch-btn {
+    font-size: 0.8rem !important;
+    padding: 8px 16px !important;
+  }
 }
