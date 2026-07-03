@@ -504,6 +504,7 @@
 /* Process Timeline */
 .process-section {
   text-align: center;
+  padding-top: 40px !important;
 }
 
 .process-grid {
@@ -823,7 +824,7 @@
 .capabilities-section.dark-theme {
   background: var(--text-color); /* Dark grey/blue background */
   color: var(--white);
-  padding: 60px 0;
+  padding: 60px 0 20px 0;
 }
 
 .capabilities-grid {
