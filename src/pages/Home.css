@@ -407,16 +407,15 @@
   scroll-snap-align: start;
   background-color: var(--white);
   border-radius: var(--radius);
-  border: 1px solid rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--border-color);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
 
 .product-card:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-8px) scale(1.02);
-  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  border-color: var(--secondary-color);
 }
 
 .product-img-mock {
@@ -729,20 +728,14 @@
 
 .testimonial-card {
   background-color: var(--white);
-  border: 1px solid rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: var(--radius);
   text-align: left;
   position: relative;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   flex: 1;
   min-width: 250px;
-  transition: var(--transition);
-}
-
-.testimonial-card:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-4px);
 }
 
 .quote-icon {
@@ -788,17 +781,10 @@
 
 .industry-card {
   position: relative;
-  border-radius: var(--radius);
+  border-radius: 4px;
   overflow: hidden;
   height: 200px;
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.industry-card:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-4px);
 }
 
 .industry-img {
@@ -849,17 +835,7 @@
 }
 
 .capability-card {
-  padding: 30px 20px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: var(--transition);
-}
-
-.capability-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-premium);
+  padding: 20px;
 }
 
 .cap-icon {

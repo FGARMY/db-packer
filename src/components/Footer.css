@@ -1,8 +1,6 @@
 .footer-container {
-  background: var(--text-color);
-  background-image: radial-gradient(circle at 100% 0%, rgba(45, 45, 191, 0.25), transparent 50%),
-                    radial-gradient(circle at 0% 100%, rgba(26, 26, 158, 0.25), transparent 50%);
-  color: var(--white);
+  background-color: #0c2b5c; /* Darker than primary for contrast */
+  color: #ffffff;
   padding-top: 60px;
 }
 
