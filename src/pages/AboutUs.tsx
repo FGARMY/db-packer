@@ -35,34 +35,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--bg-color)' }}>
-        <div className="container">
-          <h2 className="section-title">Our Core Values</h2>
-          <div className="grid grid-4">
-            <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-              <ShieldCheck size={40} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
-              <h4>Quality</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Uncompromising standards in materials and manufacturing.</p>
-            </div>
-            <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-              <Target size={40} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
-              <h4>Innovation</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Continuously exploring better, smarter packaging methods.</p>
-            </div>
-            <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-              <Users size={40} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
-              <h4>Customer First</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Building lasting relationships based on trust and service.</p>
-            </div>
-            <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-              <Eye size={40} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
-              <h4>Sustainability</h4>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Committed to eco-friendly practices for a greener future.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Leadership Profile */}
       <section className="section">
         <div className="container">
@@ -72,13 +44,13 @@ const AboutUs = () => {
             </div>
             <div>
               <h4 className="section-subtitle">LEADERSHIP</h4>
-              <h2 style={{ marginBottom: '10px' }}>David Bradley</h2>
+              <h2 style={{ marginBottom: '10px' }}>Kundan Tiwary</h2>
               <h5 style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', marginBottom: '20px', letterSpacing: '1px' }}>Founder & CEO</h5>
               <p style={{ fontStyle: 'italic', color: 'var(--text-light)', borderLeft: '4px solid var(--primary-color)', paddingLeft: '15px', marginBottom: '20px' }}>
                 "Trust isn't built in a day; it's built in every single box we ship. Our commitment to quality is what separates us from the rest."
               </p>
               <p>
-                With over 25 years of experience in industrial packaging and supply chain logistics, David founded DBPack with a singular vision: to provide uncompromising quality that businesses can rely on. Under his leadership, DBPack has expanded from a local supplier to a nationwide manufacturing powerhouse, always maintaining its core focus on customer trust and sustainable innovation.
+                With over 25 years of experience in industrial packaging and supply chain logistics, Kundan founded DBPack with a singular vision: to provide uncompromising quality that businesses can rely on. Under his leadership, DBPack has expanded from a local supplier to a nationwide manufacturing powerhouse, always maintaining its core focus on customer trust and sustainable innovation.
               </p>
             </div>
           </div>
