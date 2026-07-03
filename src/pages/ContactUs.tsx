@@ -13,33 +13,78 @@ const ContactUs = () => {
         </div>
       </div>
 
-      <section className="section contact-form-section">
+      <section className="section contact-main-section">
         <div className="container">
-          {/* Form & Map Section (Pulled up into header) */}
-          <div className="grid grid-2 form-map-grid" style={{ gap: '50px', alignItems: 'center', marginBottom: '80px' }}>
-            <div className="contact-form-container">
-              <h4 className="section-subtitle" style={{ marginBottom: '10px' }}>GET IN TOUCH</h4>
-              <h2 style={{ marginBottom: '30px', fontSize: '2rem' }}>Send us a message</h2>
-              <form>
-                <div className="grid grid-2" style={{ gap: '20px', marginBottom: '20px' }}>
-                  <div className="form-group" style={{ marginBottom: '0' }}>
-                    <input type="text" className="form-control" placeholder="Your Name" required />
+          <div className="contact-layout-grid">
+            
+            {/* Left Column: Form */}
+            <div className="contact-form-wrapper">
+              <div className="contact-form-container">
+                <h4 className="section-subtitle" style={{ marginBottom: '10px', textAlign: 'left' }}>GET IN TOUCH</h4>
+                <h2 style={{ marginBottom: '30px', fontSize: '2rem' }}>Send us a message</h2>
+                <form>
+                  <div className="grid grid-2" style={{ gap: '20px', marginBottom: '20px' }}>
+                    <div className="form-group" style={{ marginBottom: '0' }}>
+                      <input type="text" className="form-control" placeholder="Your Name" required />
+                    </div>
+                    <div className="form-group" style={{ marginBottom: '0' }}>
+                      <input type="email" className="form-control" placeholder="Your Email" required />
+                    </div>
                   </div>
-                  <div className="form-group" style={{ marginBottom: '0' }}>
-                    <input type="email" className="form-control" placeholder="Your Email" required />
+                  <div className="form-group" style={{ marginBottom: '20px' }}>
+                    <input type="text" className="form-control" placeholder="Subject" required />
                   </div>
-                </div>
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <input type="text" className="form-control" placeholder="Subject" required />
-                </div>
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <textarea className="form-control" rows={6} placeholder="How can we help you?" required></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">SEND MESSAGE</button>
-              </form>
+                  <div className="form-group" style={{ marginBottom: '20px' }}>
+                    <textarea className="form-control" rows={6} placeholder="How can we help you?" required></textarea>
+                  </div>
+                  <button type="submit" className="btn btn-primary">SEND MESSAGE</button>
+                </form>
+              </div>
             </div>
 
-            {/* Premium Map Placeholder */}
+            {/* Right Column: Contact Info Stack */}
+            <div className="contact-info-wrapper">
+              <div className="contact-info-stack">
+                <div className="contact-card stacked">
+                  <div className="contact-icon-wrapper small">
+                    <MapPin size={22} />
+                  </div>
+                  <div className="contact-card-content">
+                    <h4>Visit Us</h4>
+                    <p>
+                      {SITE_CONFIG.contact.address.map((line, i) => (
+                        <span key={i}>{line}<br /></span>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="contact-card stacked">
+                  <div className="contact-icon-wrapper small">
+                    <Phone size={22} />
+                  </div>
+                  <div className="contact-card-content">
+                    <h4>Call Us</h4>
+                    <p>{SITE_CONFIG.contact.phone}</p>
+                  </div>
+                </div>
+                
+                <div className="contact-card stacked">
+                  <div className="contact-icon-wrapper small">
+                    <Mail size={22} />
+                  </div>
+                  <div className="contact-card-content">
+                    <h4>Email Us</h4>
+                    <p>{SITE_CONFIG.contact.email}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom: Premium Map Placeholder */}
+          <div className="map-section">
             <div className="map-container">
               <div className="map-content">
                 <Navigation size={48} className="map-icon" />
@@ -48,41 +93,7 @@ const ContactUs = () => {
               </div>
             </div>
           </div>
-
-          {/* Contact Cards Grid */}
-          <div className="grid grid-3 contact-cards-grid">
-            <div className="contact-card">
-              <div className="contact-icon-wrapper">
-                <MapPin size={28} />
-              </div>
-              <h4>Visit Us</h4>
-              <p>
-                {SITE_CONFIG.contact.address.map((line, i) => (
-                  <span key={i}>{line}<br /></span>
-                ))}
-              </p>
-            </div>
-            
-            <div className="contact-card">
-              <div className="contact-icon-wrapper">
-                <Phone size={28} />
-              </div>
-              <h4>Call Us</h4>
-              <p>
-                {SITE_CONFIG.contact.phone}
-              </p>
-            </div>
-            
-            <div className="contact-card">
-              <div className="contact-icon-wrapper">
-                <Mail size={28} />
-              </div>
-              <h4>Email Us</h4>
-              <p>
-                {SITE_CONFIG.contact.email}
-              </p>
-            </div>
-          </div>
+          
         </div>
       </section>
     </div>
