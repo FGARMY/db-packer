@@ -1139,7 +1139,7 @@
     transform: none;
     width: 2px;
     min-width: 0;
-    bottom: 0;
+    bottom: 50px; /* Keep it away from the absolute bottom */
     height: auto;
     right: auto;
   }
@@ -1151,7 +1151,7 @@
     transform: none;
     width: 2px;
     min-width: 0;
-    height: calc(100% * var(--progress, 0));
+    height: calc((100% - 105px) * var(--progress, 0));
     transition: height 0.1s ease-out;
   }
 
