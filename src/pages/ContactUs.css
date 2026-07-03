@@ -40,10 +40,15 @@
   margin: 0 auto;
 }
 
+/* Form & Map Pulled Up */
+.form-map-grid {
+  margin-top: -80px;
+  position: relative;
+  z-index: 10;
+}
+
 /* Contact Info Cards */
 .contact-cards-grid {
-  margin-top: -80px; /* Pull up into the header */
-  margin-bottom: 80px;
   position: relative;
   z-index: 10;
 }
@@ -205,8 +210,11 @@
     font-size: 2.2rem;
   }
   
-  .contact-cards-grid {
+  .form-map-grid {
     margin-top: -60px;
+  }
+  
+  .contact-cards-grid {
     margin-bottom: 40px;
   }
 
