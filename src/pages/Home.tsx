@@ -117,8 +117,8 @@ const Home = () => {
         <div className="container">
           <div className="section-header products-section-header">
             <div>
-              <h4 className="section-subtitle">OUR PRODUCTS</h4>
-              <h2>Packaging Solutions Built for Every Need</h2>
+              <h2>OUR PRODUCTS</h2>
+
             </div>
             <Link to="/products" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>VIEW ALL PRODUCTS</Link>
           </div>
