@@ -93,6 +93,10 @@
     text-align: center;
   }
   .call-text {
-    font-size: 1.3rem;
+    font-size: 1rem;
+  }
+  .call-btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
   }
 }
