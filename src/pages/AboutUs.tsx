@@ -1,5 +1,5 @@
 
-import { Target, Eye, ShieldCheck, Users, Award, Leaf, CheckCircle } from 'lucide-react';
+import { Award, Leaf, CheckCircle } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
 
