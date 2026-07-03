@@ -47,8 +47,8 @@
 
 .cert-text {
   color: var(--primary-color);
-  font-size: 1.6rem;
-  font-weight: 300;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
 
@@ -89,7 +89,7 @@
     display: none;
   }
   .cert-text {
-    font-size: 1.2rem;
+    font-size: 0.75rem;
     text-align: center;
   }
   .call-text {
