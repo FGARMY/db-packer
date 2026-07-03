@@ -83,7 +83,7 @@
   .subheader-left, .subheader-right {
     width: auto;
     margin: 0 -20px;
-    padding: 15px 20px;
+    padding: 8px 20px;
   }
   .subheader-left::before, .subheader-right::before {
     display: none;
