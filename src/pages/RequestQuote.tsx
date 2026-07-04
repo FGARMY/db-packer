@@ -1,98 +1,137 @@
-
-
+import './RequestQuote.css';
 import { Link } from 'react-router-dom';
 
 const RequestQuote = () => {
   return (
-    <div className="page-container">
-      <div className="page-breadcrumb">
-        <Link to="/">DB Packer</Link> &bull; Request A Quote
+    <div className="quote-page-wrapper">
+      
+      {/* Sidebar Graphics Section */}
+      <div className="quote-sidebar">
+        <div className="quote-sidebar-overlay"></div>
+        <div className="quote-sidebar-content">
+          <h2>Let's Build Something Great Together</h2>
+          <p>
+            Whether you need sturdy corrugated boxes for shipping, or premium luxury packaging for retail, 
+            our team is ready to design the perfect solution for your business.
+          </p>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Custom Dimensions & Materials
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> High-Quality Branding & Printing
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Wholesale Bulk Discounts
+            </li>
+            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Reliable Fast Turnaround
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div className="minimal-page-header">
-        <h1>Request A Quote</h1>
-        <p>Get a custom packaging solution tailored to your business needs</p>
-      </div>
+      {/* Form Section */}
+      <div className="quote-form-area">
+        <div className="page-breadcrumb" style={{ marginBottom: '40px' }}>
+          <Link to="/" style={{ color: '#6b7280', textDecoration: 'none' }}>DB Packer</Link> <span style={{ margin: '0 8px', color: '#9ca3af' }}>&bull;</span> <span style={{ color: '#111827', fontWeight: '500' }}>Request A Quote</span>
+        </div>
+        
+        <div style={{ marginBottom: '30px' }}>
+          <h1 style={{ fontSize: '2.5rem', marginBottom: '10px', color: '#111827' }}>Request a Detailed Quote</h1>
+          <p style={{ color: '#6b7280', fontSize: '1.1rem' }}>Please fill in the details below to help us understand your packaging needs accurately.</p>
+        </div>
 
-      <section className="section">
-        <div className="container">
-          <div className="grid grid-2" style={{ gap: '60px' }}>
-            <div>
-              <h4 className="section-subtitle">CUSTOM REQUIREMENTS</h4>
-              <h2>Let's discuss your packaging needs</h2>
-              <p>
-                Fill out the form with your specific requirements, and our packaging experts will get back to you with a customized quote within 24 hours.
-              </p>
-              
-              <div style={{ marginTop: '40px' }}>
-                <div style={{ display: 'flex', gap: '15px', marginBottom: '20px', alignItems: 'flex-start' }}>
-                  <div style={{ background: '#f1f5f9', padding: '15px', borderRadius: '50%', color: 'var(--primary-color)' }}>
-                     📋
-                  </div>
-                  <div>
-                    <h5>Detailed Specifications</h5>
-                    <p style={{ color: 'var(--text-light)', fontSize: '0.9rem' }}>The more details you provide about dimensions, materials, and quantity, the more accurate our quote will be.</p>
-                  </div>
-                </div>
-                <div style={{ display: 'flex', gap: '15px', marginBottom: '20px', alignItems: 'flex-start' }}>
-                  <div style={{ background: '#f1f5f9', padding: '15px', borderRadius: '50%', color: 'var(--primary-color)' }}>
-                     📞
-                  </div>
-                  <div>
-                    <h5>Consultation Available</h5>
-                    <p style={{ color: 'var(--text-light)', fontSize: '0.9rem' }}>Not sure what you need? Request a callback and our team will guide you to the best solution.</p>
-                  </div>
-                </div>
-              </div>
+        <form className="detailed-quote-form">
+          <h3 className="form-section-title">1. Your Information</h3>
+          <div className="dq-row">
+            <div className="dq-group">
+              <label>First Name *</label>
+              <input type="text" className="dq-input" required />
             </div>
-
-            <div style={{ background: 'white', padding: '40px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-lg)' }}>
-              <form>
-                <div className="grid grid-2" style={{ gap: '20px' }}>
-                  <div className="form-group">
-                    <label className="form-label">First Name</label>
-                    <input type="text" className="form-control" placeholder="John" />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Last Name</label>
-                    <input type="text" className="form-control" placeholder="Doe" />
-                  </div>
-                </div>
-                
-                <div className="form-group">
-                  <label className="form-label">Email Address</label>
-                  <input type="email" className="form-control" placeholder="john@company.com" />
-                </div>
-                
-                <div className="form-group">
-                  <label className="form-label">Product of Interest</label>
-                  <select className="form-control">
-                    <option>Corrugated Boxes</option>
-                    <option>Stretch Film Rolls</option>
-                    <option>Bubble Wrap Rolls</option>
-                    <option>Packing Tape</option>
-                    <option>Other / Custom</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Estimated Quantity</label>
-                  <input type="text" className="form-control" placeholder="e.g. 10,000 units" />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Additional Specifications</label>
-                  <textarea className="form-control" rows={4} placeholder="Please provide dimensions, print requirements, or any other details..."></textarea>
-                </div>
-
-                <button type="button" className="btn btn-primary" style={{ width: '100%', padding: '15px', fontSize: '1.1rem' }}>
-                  SUBMIT REQUEST
-                </button>
-              </form>
+            <div className="dq-group">
+              <label>Last Name *</label>
+              <input type="text" className="dq-input" required />
             </div>
           </div>
-        </div>
-      </section>
+          <div className="dq-row">
+            <div className="dq-group">
+              <label>Company Name *</label>
+              <input type="text" className="dq-input" required />
+            </div>
+            <div className="dq-group">
+              <label>Industry</label>
+              <select className="dq-select">
+                <option>E-Commerce / Retail</option>
+                <option>Food & Beverage</option>
+                <option>Manufacturing / Industrial</option>
+                <option>Healthcare / Pharma</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div className="dq-row">
+            <div className="dq-group">
+              <label>Email Address *</label>
+              <input type="email" className="dq-input" required />
+            </div>
+            <div className="dq-group">
+              <label>Phone Number *</label>
+              <input type="tel" className="dq-input" required />
+            </div>
+          </div>
+
+          <h3 className="form-section-title">2. Project Details</h3>
+          <div className="dq-row">
+            <div className="dq-group">
+              <label>Primary Product of Interest *</label>
+              <select className="dq-select" required defaultValue="">
+                <option value="" disabled>Select a product...</option>
+                <option>Corrugated Boxes</option>
+                <option>Mono Cartons</option>
+                <option>Rigid Boxes</option>
+                <option>Self Adhesive Labels</option>
+                <option>Blister Packaging</option>
+                <option>Pouches</option>
+                <option>Tapes & Films</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div className="dq-group">
+              <label>Estimated Quantity *</label>
+              <select className="dq-select" required defaultValue="">
+                <option value="" disabled>Select quantity...</option>
+                <option>Under 1,000 units</option>
+                <option>1,000 - 5,000 units</option>
+                <option>5,000 - 20,000 units</option>
+                <option>20,000+ units</option>
+              </select>
+            </div>
+          </div>
+          <div className="dq-row">
+            <div className="dq-group">
+              <label>Approximate Dimensions (L x W x H)</label>
+              <input type="text" className="dq-input" placeholder="e.g. 10x10x10 inches" />
+            </div>
+            <div className="dq-group">
+              <label>Do you need custom printing?</label>
+              <select className="dq-select">
+                <option>Yes, custom logo/design</option>
+                <option>No, plain packaging</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="dq-group">
+            <label>Additional Information & Requirements</label>
+            <textarea className="dq-textarea" rows={5} placeholder="Tell us about the weight of your product, specific material requests, timeline, or any other details..."></textarea>
+          </div>
+
+          <button type="submit" className="dq-submit">Submit Request For Quote</button>
+        </form>
+      </div>
+
     </div>
   );
 };
