@@ -44,7 +44,7 @@ const AboutUs = () => {
             </div>
             <div>
               <h4 className="section-subtitle">LEADERSHIP</h4>
-              <h2 style={{ marginBottom: '10px' }}>Kundan Tiwary</h2>
+              <h2 style={{ marginBottom: '10px' }}>Latika Upadhyay</h2>
               <h5 style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', marginBottom: '20px', letterSpacing: '1px' }}>Founder & CEO</h5>
               <p style={{ fontStyle: 'italic', color: 'var(--text-light)', borderLeft: '4px solid var(--primary-color)', paddingLeft: '15px', marginBottom: '20px' }}>
                 "Trust isn't built in a day; it's built in every single box we ship. Our commitment to quality is what separates us from the rest."
