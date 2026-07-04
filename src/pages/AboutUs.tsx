@@ -1,5 +1,5 @@
 
-import { Award, Leaf, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
 
@@ -47,10 +47,10 @@ const AboutUs = () => {
               <h2 style={{ marginBottom: '10px' }}>Latika Upadhyay</h2>
               <h5 style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', marginBottom: '20px', letterSpacing: '1px' }}>Founder & CEO</h5>
               <p style={{ fontStyle: 'italic', color: 'var(--text-light)', borderLeft: '4px solid var(--primary-color)', paddingLeft: '15px', marginBottom: '20px' }}>
-                "Trust isn't built in a day; it's built in every single box we ship. Our commitment to quality is what separates us from the rest."
+                "True leadership isn't measured by the products you sell, but by the trust you earn. Every partnership we build and every box we deliver reflects our promise of quality, integrity, and excellence."."
               </p>
               <p>
-                With over 25 years of experience in industrial packaging and supply chain logistics, Kundan founded DBPack with a singular vision: to provide uncompromising quality that businesses can rely on. Under his leadership, DBPack has expanded from a local supplier to a nationwide manufacturing powerhouse, always maintaining its core focus on customer trust and sustainable innovation.
+                Driven by a passion for excellence and innovation, Latika Upadhyay has helped establish DBPack as a trusted packaging partner for businesses across industries. With a strong focus on quality, reliability, and sustainable solutions, she continues to lead the company with a customer-first approach, building lasting relationships and delivering packaging that brands can depend on.
               </p>
             </div>
           </div>
@@ -66,14 +66,14 @@ const AboutUs = () => {
           </p>
           <div className="grid grid-3" style={{ gap: '30px' }}>
             <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-sm)' }}>
-              <Award size={48} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
+              <img src="/Certification/ISO_9001.png" alt="ISO 9001:2015" style={{ height: '100px', marginBottom: '15px', objectFit: 'contain' }} />
               <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>ISO 9001:2015</h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', margin: 0 }}>Certified Quality Management System ensuring consistent high-quality manufacturing.</p>
             </div>
             <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-sm)' }}>
-              <Leaf size={48} color="var(--primary-color)" style={{ marginBottom: '15px' }} />
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>FSC® Certified</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', margin: 0 }}>Sourcing materials from responsibly managed forests that provide environmental benefits.</p>
+              <img src="/Certification/gem-logo.png" alt="GeM Registered" style={{ height: '100px', marginBottom: '15px', objectFit: 'contain' }} />
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>GeM Registered</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', margin: 0 }}>Registered seller on Government e Marketplace, committed to transparent and efficient public procurement.</p>
             </div>
             <div style={{ background: 'white', padding: '30px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-sm)' }}>
               <CheckCircle size={48} color="var(--primary-color)" style={{ marginBottom: '15px' }} />

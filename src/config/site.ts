@@ -3,11 +3,10 @@ export const SITE_CONFIG = {
   tagline: "Excellence in Packaging Solutions",
   contact: {
     address: [
-      "123 Packaging Street",
-      "Industrial Area",
-      "Your City - 123456"
+      "Trilokpuri,",
+      "New Delhi."
     ],
-    phone: "+91 98765 43210",
+    phone: "+91 7982194994, +91 8882567498",
     email: "info@dbpack.com",
     hours: "Mon - Sat: 9:00 AM - 6:00 PM"
   },

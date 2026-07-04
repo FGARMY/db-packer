@@ -8,10 +8,10 @@ import './Home.css';
 const Home = () => {
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
   const heroImages = [
-    "/assets/clean-warehouse.png",
-    "/assets/boxes.png",
-    "/assets/stretch-film.png",
-    "/assets/bubble-wrap.png"
+    "/assets/hero-mono-cartons.png",
+    "/assets/hero-corrugated-boxes.png",
+    "/assets/hero-rigid-boxes.png",
+    "/assets/hero-pouches.png"
   ];
 
   const carouselRef = useRef<HTMLDivElement>(null);

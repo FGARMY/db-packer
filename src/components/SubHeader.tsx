@@ -1,5 +1,6 @@
 import { Phone } from 'lucide-react';
 import './SubHeader.css';
+import { SITE_CONFIG } from '../config/site';
 
 const SubHeader = () => {
   return (
@@ -12,7 +13,7 @@ const SubHeader = () => {
         
         <div className="subheader-right">
           <span className="call-text">Call Us!</span>
-          <a href="tel:+1234567890" className="call-btn">
+          <a href={`tel:${SITE_CONFIG.contact.phone.split(',')[0].trim()}`} className="call-btn">
             <Phone size={16} style={{ marginRight: '8px' }} />
             CALL NOW
           </a>
