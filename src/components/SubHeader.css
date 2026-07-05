@@ -3,7 +3,7 @@
   width: 100%;
   overflow: hidden;
   border-bottom: 1px solid var(--border-color);
-  background-color: var(--white);
+  background-color: var(--bg-color);
 }
 
 .subheader-container {
@@ -17,14 +17,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--white);
+  background-color: var(--bg-color);
 }
 .subheader-left::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0; right: 100%;
   width: 50vw;
-  background-color: var(--white);
+  background-color: var(--bg-color);
 }
 
 .subheader-right {
@@ -35,14 +35,14 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background-color: var(--text-color);
+  background-color: var(--surface-2);
 }
 .subheader-right::before {
   content: '';
   position: absolute;
   top: 0; bottom: 0; left: 100%;
   width: 50vw;
-  background-color: var(--text-color);
+  background-color: var(--surface-2);
 }
 
 .page-title-minimal h1 {
@@ -53,7 +53,7 @@
 }
 
 .cert-text {
-  color: #000000;
+  color: var(--text-color);
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -68,8 +68,8 @@
 .call-btn {
   display: inline-flex;
   align-items: center;
-  background-color: var(--white);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--bg-color);
   padding: 10px 24px;
   border-radius: 4px;
   font-weight: 500;
@@ -81,6 +81,8 @@
 .call-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background-color: var(--white);
+  color: var(--primary-color);
 }
 
 @media (max-width: 900px) {
