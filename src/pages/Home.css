@@ -1531,4 +1531,33 @@
     font-size: 0.8rem !important;
     padding: 8px 16px !important;
   }
+
+  /* Capabilities Mobile Optimization */
+  .capabilities-stats-grid {
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  .cap-stat-divider {
+    width: 100px;
+    height: 1px;
+    background-color: #e2e8f0;
+  }
+  
+  /* FAQ Section Mobile Optimization */
+  .faq-list {
+    padding: 10px 15px;
+  }
+  
+  .faq-cta-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 15px;
+    gap: 15px;
+  }
+  
+  .faq-question h5 {
+    font-size: 0.95rem;
+    padding-right: 10px;
+  }
 }
