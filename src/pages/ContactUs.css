@@ -55,8 +55,8 @@
 
 .form-control:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(202, 160, 60, 0.15);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 select.form-control {
@@ -81,8 +81,8 @@ select.form-control:not(:invalid) {
 }
 
 .phone-input-group:focus-within {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(202, 160, 60, 0.15);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .country-code-select {
@@ -108,7 +108,7 @@ select.form-control:not(:invalid) {
 }
 
 .btn-submit-pill {
-  background-color: var(--primary-color);
+  background-color: #0052ff;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 500;
@@ -120,7 +120,7 @@ select.form-control:not(:invalid) {
 }
 
 .btn-submit-pill:hover {
-  background-color: var(--secondary-color);
+  background-color: #0043d1;
   transform: translateY(-2px);
 }
 

@@ -60,8 +60,7 @@
 .hero-btn {
   padding: 14px 35px;
   font-size: 1.1rem;
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--secondary-color);
   border: none;
 }
 
@@ -301,7 +300,7 @@
 
 /* CTA Patch */
 .cta-patch {
-  background-color: var(--surface-2);
+  background-color: var(--primary-color);
   padding: 40px 0;
   width: 100%;
 }
@@ -409,7 +408,7 @@
   width: 240px;
   flex: 0 0 auto;
   scroll-snap-align: start;
-  background-color: var(--surface-1);
+  background-color: var(--white);
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
   overflow: hidden;
@@ -563,7 +562,7 @@
 .process-number {
   width: 70px;
   height: 70px;
-  background-color: var(--surface-1);
+  background-color: var(--white);
   border: 2px solid var(--surface-2);
   border-radius: 50%;
   display: flex;
@@ -581,7 +580,7 @@
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   border-color: transparent;
   color: var(--white);
-  box-shadow: 0 8px 20px rgba(202, 160, 60, 0.25);
+  box-shadow: 0 8px 20px rgba(15, 61, 129, 0.25);
   transform: scale(1.05);
 }
 
@@ -594,7 +593,7 @@
 }
 
 .process-step.active h4 {
-  color: var(--text-color);
+  color: var(--primary-color);
 }
 
 .process-step p {
@@ -604,12 +603,12 @@
 
 /* CTA Section */
 .cta-section {
-  background-color: var(--text-color);
+  background-color: var(--primary-color);
   color: var(--white);
   padding: 60px 0;
   border-radius: 12px;
   margin: 40px 20px;
-  background-image: radial-gradient(circle at top right, var(--secondary-color), var(--text-color));
+  background-image: radial-gradient(circle at top right, #1d4e9e, #0f3d81);
 }
 
 .cta-content {
@@ -629,9 +628,7 @@
 }
 
 .cta-btn {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: var(--white);
+  border-color: var(--white);
 }
 
 .cta-btn:hover {
@@ -670,7 +667,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: var(--surface-1);
+  background-color: var(--white);
   padding: 30px;
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -687,7 +684,7 @@
 .wc-icon {
   color: var(--primary-color);
   flex-shrink: 0;
-  background-color: rgba(202, 160, 60, 0.1);
+  background-color: rgba(15, 61, 129, 0.1);
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -733,7 +730,7 @@
 }
 
 .testimonial-card {
-  background-color: var(--surface-1);
+  background-color: var(--white);
   border: 1px solid var(--border-color);
   padding: 20px;
   border-radius: var(--radius);
@@ -748,7 +745,7 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  color: rgba(202, 160, 60, 0.15); /* Faint gold color */
+  color: rgba(43, 112, 212, 0.1); /* Faint secondary color */
 }
 
 .stars {
@@ -768,10 +765,9 @@
 }
 
 .client-info h6 {
-  font-weight: 700;
   font-size: 1rem;
   margin-bottom: 2px;
-  color: var(--text-color);
+  color: var(--primary-color);
 }
 
 .client-info span {
@@ -824,7 +820,7 @@
 }
 
 .industry-card:hover .industry-overlay {
-  background: rgba(202, 160, 60, 0.85); /* Gold hover overlay */
+  background: rgba(45, 45, 191, 0.8); /* Shiprocket primary color */
 }
 
 /* Capabilities Section */

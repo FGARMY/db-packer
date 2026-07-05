@@ -322,7 +322,7 @@ const Home = () => {
       </section>
 
       {/* 7. Testimonials */}
-      <section className="testimonials-section section bg-surface-2">
+      <section className="testimonials-section section bg-white">
         <div className="container">
           <h4 className="section-subtitle">CLIENT FEEDBACK</h4>
           <h2>What Our Partners Say</h2>

@@ -16,16 +16,16 @@ const RequestQuote = () => {
           </p>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '15px' }}>
             <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#D4AF37', fontSize: '1.2rem' }}>✓</span> Custom Dimensions & Materials
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Custom Dimensions & Materials
             </li>
             <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#D4AF37', fontSize: '1.2rem' }}>✓</span> High-Quality Branding & Printing
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> High-Quality Branding & Printing
             </li>
             <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#D4AF37', fontSize: '1.2rem' }}>✓</span> Wholesale Bulk Discounts
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Wholesale Bulk Discounts
             </li>
             <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#D4AF37', fontSize: '1.2rem' }}>✓</span> Reliable Fast Turnaround
+              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Reliable Fast Turnaround
             </li>
           </ul>
         </div>

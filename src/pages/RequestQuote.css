@@ -100,8 +100,8 @@
 
 .dq-input:focus, .dq-select:focus, .dq-textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(202, 160, 60, 0.15);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
   background-color: #ffffff;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .dq-submit {
-  background-color: var(--primary-color);
+  background-color: #0052ff;
   color: white;
   padding: 16px 40px;
   font-size: 1.1rem;
@@ -127,7 +127,7 @@
   transition: all 0.2s ease;
 }
 .dq-submit:hover {
-  background-color: var(--secondary-color);
+  background-color: #0043d1;
   transform: translateY(-2px);
 }
 

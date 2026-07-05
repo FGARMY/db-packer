@@ -54,7 +54,7 @@
 }
 
 .premium-product-card {
-  background: var(--surface-1);
+  background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
@@ -102,7 +102,7 @@
 
 .premium-product-cat {
   font-size: 0.85rem;
-  color: var(--primary-color);
+  color: #2563eb;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -135,13 +135,13 @@
 }
 
 .premium-product-card:hover .premium-product-btn {
-  background-color: var(--primary-color);
+  background-color: #2563eb;
   color: white;
 }
 
 /* CTA Section */
 .products-cta-section {
-  background-color: #111827;
+  background-color: #0c2b5c;
   color: white;
   padding: 80px 0;
   text-align: center;
@@ -154,7 +154,7 @@
 
 .products-cta-content p {
   font-size: 1.15rem;
-  color: #a1a1aa;
+  color: #b0c4de;
   margin-bottom: 40px;
   max-width: 600px;
   margin-left: auto;
