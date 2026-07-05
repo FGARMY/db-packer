@@ -204,7 +204,7 @@ const Home = () => {
               DBPack delivers high-quality, cost-effective, and sustainable packaging solutions to businesses of all sizes.
             </p>
             <Link to="/about" className="btn btn-primary aic-btn">
-              Learn More About Us <ArrowRight size={18} />
+              Learn More<ArrowRight size={18} />
             </Link>
           </div>
 
