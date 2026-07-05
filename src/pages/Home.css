@@ -1256,6 +1256,20 @@
   .stats-grid {
     grid-template-columns: 1fr;
   }
+
+  .about-industries-combined {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .products-section {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .products-grid {
+    padding-bottom: 15px !important;
+  }
 }
 
 @media (max-width: 768px) {

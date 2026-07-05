@@ -142,7 +142,7 @@ const Home = () => {
       </div>
 
       {/* 2. Featured Products */}
-      <section className="products-section section" style={{ position: 'relative' }}>
+      <section className="products-section section" id="products" style={{ position: 'relative', paddingBottom: 0, marginBottom: 0 }}>
         {/* Large faint watermark to fill empty space */}
         <div style={{ position: 'absolute', top: '10px', left: '5%', fontSize: '7rem', fontWeight: 900, color: 'rgba(45,45,191,0.04)', pointerEvents: 'none', zIndex: 0, letterSpacing: '4px', lineHeight: 1, userSelect: 'none' }}>
           CATALOG
@@ -191,7 +191,7 @@ const Home = () => {
       </section>
 
       {/* 3. About & Industries Combined */}
-      <section className="about-industries-combined section bg-surface-1">
+      <section className="about-industries-combined section bg-surface-1" style={{ paddingTop: 0, marginTop: 0 }}>
         <div className="aic-container">
 
           {/* Left: About Us */}
