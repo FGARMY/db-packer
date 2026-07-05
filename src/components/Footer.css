@@ -1,5 +1,5 @@
 .footer-container {
-  background-color: #0c2b5c; /* Darker than primary for contrast */
+  background-color: #111827; /* Charcoal black for contrast */
   color: #ffffff;
   padding-top: 60px;
 }
@@ -109,7 +109,7 @@
 }
 
 .contact-icon {
-  color: #60a5fa;
+  color: var(--primary-color);
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -117,7 +117,7 @@
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 20px 0;
-  background-color: #081e42;
+  background-color: #09090b;
 }
 
 .footer-bottom-content {

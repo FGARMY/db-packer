@@ -1,10 +1,10 @@
 :root {
-  --primary-color: #2d2dbf; /* Shiprocket blue/purple */
-  --secondary-color: #1a1a9e; /* Slightly darker for hover/accents */
+  --primary-color: #caa03c; /* Premium warm metallic gold */
+  --secondary-color: #ab832a; /* Slightly darker gold for hover/accents */
   --bg-color: #fdfdfd;
-  --surface-1: #f1f5f9; 
-  --surface-2: #e0e7ff; 
-  --text-color: #161625;
+  --surface-1: #f8fafc; 
+  --surface-2: #fefbeb; /* Soft amber/gold tint */
+  --text-color: #111827; /* Dark slate text */
   --text-light: #64748b;
   --white: #ffffff;
   --border-color: #e2e8f0;
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 
 h1 { font-size: 3rem; }
@@ -169,7 +169,7 @@ p {
 .form-control:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(15, 61, 129, 0.1);
+  box-shadow: 0 0 0 3px rgba(202, 160, 60, 0.15);
 }
 
 /* Minimal Page Header (Shared) */

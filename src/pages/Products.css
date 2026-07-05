@@ -102,7 +102,7 @@
 
 .premium-product-cat {
   font-size: 0.85rem;
-  color: #2563eb;
+  color: var(--primary-color);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -135,13 +135,13 @@
 }
 
 .premium-product-card:hover .premium-product-btn {
-  background-color: #2563eb;
+  background-color: var(--primary-color);
   color: white;
 }
 
 /* CTA Section */
 .products-cta-section {
-  background-color: #0c2b5c;
+  background-color: #111827;
   color: white;
   padding: 80px 0;
   text-align: center;
@@ -154,7 +154,7 @@
 
 .products-cta-content p {
   font-size: 1.15rem;
-  color: #b0c4de;
+  color: #a1a1aa;
   margin-bottom: 40px;
   max-width: 600px;
   margin-left: auto;

@@ -82,7 +82,7 @@
 
 .thumbnail.active, .thumbnail:hover {
   border-color: var(--secondary-color);
-  box-shadow: 0 0 5px rgba(43, 112, 212, 0.3);
+  box-shadow: 0 0 5px rgba(202, 160, 60, 0.3);
 }
 
 .thumbnail img {
@@ -101,7 +101,7 @@
 
 .product-category {
   display: inline-block;
-  background-color: rgba(15, 61, 129, 0.1);
+  background-color: rgba(202, 160, 60, 0.15);
   color: var(--primary-color);
   padding: 4px 12px;
   border-radius: 20px;
@@ -186,6 +186,12 @@
 .product-bottom-section {
   border-top: 1px solid var(--border-color);
   padding-top: 40px;
+}
+
+.related-product-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--text-color);
 }
 
 .product-bottom-section h2 {
