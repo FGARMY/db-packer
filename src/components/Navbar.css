@@ -238,12 +238,28 @@
   }
   
   .top-strip {
-    padding: 8px 0;
+    padding: 5px 10px;
+    font-size: 0.65rem;
   }
   
   .top-strip-content {
-    gap: 8px;
-    flex-direction: column;
+    gap: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .top-strip-right {
+    gap: 5px;
+  }
+  
+  .top-strip-right span {
+    display: none; /* Hiding 'Call Us!' ensures it fits cleanly on small phones */
+  }
+  
+  .top-strip-btn {
+    font-size: 0.6rem;
+    padding: 3px 8px;
   }
   
   .nav-btn {
