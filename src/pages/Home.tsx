@@ -81,10 +81,10 @@ const Home = () => {
   ];
 
   const industries = [
-    { name: "E-commerce\n& Retail", icon: ShoppingCart },
-    { name: "Food &\nBeverage", icon: Coffee },
-    { name: "Industrial\nManufacturing", icon: Factory },
-    { name: "Logistics &\nHealthcare", icon: HeartPulse }
+    { name: "E-commerce\n& Retail", icon: ShoppingCart, img: "/assets/ind-ecommerce.png" },
+    { name: "Food &\nBeverage", icon: Coffee, img: "/assets/ind-food.png" },
+    { name: "Industrial\nManufacturing", icon: Factory, img: "/assets/ind-manufacturing.png" },
+    { name: "Logistics &\nHealthcare", icon: HeartPulse, img: "/assets/ind-logistics.png" }
   ];
 
   const faqs = [
@@ -227,7 +227,7 @@ const Home = () => {
               {industries.map((ind, i) => (
                 <div key={i} className="aic-icon-item">
                   <div className="aic-icon-box">
-                    <ind.icon size={30} strokeWidth={1.5} />
+                    <img src={ind.img} alt={ind.name} className="ind-img" />
                   </div>
                   <span className="aic-icon-text">
                     {ind.name.split('\n').map((part, idx) => (
