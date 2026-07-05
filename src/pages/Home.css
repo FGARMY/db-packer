@@ -1230,7 +1230,7 @@
 @media (max-width: 768px) {
   .hero-section {
     min-height: 400px;
-    padding: 60px 0;
+    padding: 100px 0 60px 0;
   }
   
   .hero-text h1 {
