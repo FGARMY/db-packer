@@ -1260,7 +1260,11 @@
 
 @media (max-width: 768px) {
   .about-industries-combined {
-    padding: 30px 0; /* Reduced space above the section */
+    padding: 0 0 30px 0; /* Remove top padding entirely */
+  }
+
+  .products-section {
+    padding-bottom: 0; /* Remove bottom padding */
   }
 
   .aic-container {
