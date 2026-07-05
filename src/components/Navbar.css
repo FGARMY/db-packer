@@ -228,6 +228,19 @@
     display: none;
   }
   
+  .nav-links {
+    display: none;
+  }
+  
+  .top-strip {
+    padding: 8px 0;
+  }
+  
+  .top-strip-content {
+    gap: 8px;
+    flex-direction: column;
+  }
+  
   .nav-btn {
     display: none;
   }
