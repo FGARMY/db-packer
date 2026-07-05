@@ -985,6 +985,8 @@
   .aic-slanted-wrapper {
     transform: skewX(0);
     border-radius: 12px;
+    height: 250px;
+    overflow: hidden;
   }
 
   .aic-slanted-wrapper::before,
