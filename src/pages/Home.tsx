@@ -147,7 +147,7 @@ const Home = () => {
         <div style={{ position: 'absolute', top: '10px', left: '5%', fontSize: '7rem', fontWeight: 900, color: 'rgba(45,45,191,0.04)', pointerEvents: 'none', zIndex: 0, letterSpacing: '4px', lineHeight: 1, userSelect: 'none' }}>
           CATALOG
         </div>
-        
+
         <div className="products-section-header" style={{ position: 'relative', zIndex: 1, alignItems: 'center' }}>
           <div>
             <h2>OUR PRODUCTS</h2>
@@ -193,7 +193,7 @@ const Home = () => {
       {/* 3. About & Industries Combined */}
       <section className="about-industries-combined section bg-surface-1">
         <div className="aic-container">
-          
+
           {/* Left: About Us */}
           <div className="aic-about-col">
             <h4 className="section-subtitle">ABOUT US</h4>
@@ -221,7 +221,7 @@ const Home = () => {
           <div className="aic-industries-col">
             <h4 className="section-subtitle" style={{ textAlign: 'left' }}>INDUSTRIES WE SERVE</h4>
             <h2 className="aic-title-small" style={{ textAlign: 'left' }}>Packaging for Every Sector</h2>
-            
+
             <div className="aic-icons-row">
               {industries.map((ind, i) => (
                 <div key={i} className="aic-icon-item">
@@ -230,7 +230,7 @@ const Home = () => {
                   </div>
                   <span className="aic-icon-text">
                     {ind.name.split('\n').map((part, idx) => (
-                      <span key={idx}>{part}<br/></span>
+                      <span key={idx}>{part}<br /></span>
                     ))}
                   </span>
                 </div>
@@ -247,7 +247,7 @@ const Home = () => {
           <img src="/assets/clean-warehouse.png" alt="Warehouse Background" />
           <div className="cta-banner-overlay"></div>
         </div>
-        
+
         <div className="cta-banner-content">
           <h2>Schedule A Call Back Now!</h2>
           <p>Let's find the right packaging solution for your business.</p>
@@ -288,38 +288,38 @@ const Home = () => {
             <h4 className="section-subtitle" style={{ color: 'var(--primary-color)' }}>OUR CAPABILITIES</h4>
             <h2 style={{ color: 'var(--text-color)' }}>Scale & Quality You Can Trust</h2>
           </div>
-          
+
           <div className="capabilities-stats-grid">
             <div className="cap-stat-item">
               <div className="cap-stat-icon-wrap">
                 <Factory size={36} strokeWidth={1.5} />
               </div>
               <h3 className="cap-stat-number">50,000+</h3>
-              <p className="cap-stat-label">Sq.Ft Manufacturing<br/>Facility</p>
+              <p className="cap-stat-label">Sq.Ft Manufacturing<br />Facility</p>
             </div>
-            
+
             <div className="cap-stat-divider"></div>
-            
+
             <div className="cap-stat-item">
               <div className="cap-stat-icon-wrap">
                 <ShieldCheck size={36} strokeWidth={1.5} />
               </div>
               <h3 className="cap-stat-number">ISO 9001</h3>
-              <p className="cap-stat-label">Certified for Quality<br/>Management</p>
+              <p className="cap-stat-label">Certified for Quality<br />Management</p>
             </div>
-            
+
             <div className="cap-stat-divider"></div>
-            
+
             <div className="cap-stat-item">
               <div className="cap-stat-icon-wrap">
                 <Trophy size={36} strokeWidth={1.5} />
               </div>
               <h3 className="cap-stat-number">10M+</h3>
-              <p className="cap-stat-label">Units Produced<br/>Monthly</p>
+              <p className="cap-stat-label">Units Produced<br />Monthly</p>
             </div>
-            
+
             <div className="cap-stat-divider"></div>
-            
+
             <div className="cap-stat-item">
               <div className="cap-stat-icon-wrap">
                 <CheckCircle size={36} strokeWidth={1.5} />
@@ -388,7 +388,7 @@ const Home = () => {
             <h2 style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Common Questions</h2>
             <div className="faq-title-underline"></div>
           </div>
-          
+
           <div className="faq-container">
             <div className="faq-list">
               {faqs.map((faq, i) => (
