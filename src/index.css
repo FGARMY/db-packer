@@ -79,12 +79,13 @@ p {
 .btn-primary {
   background-color: var(--primary-color);
   color: var(--white);
+  box-shadow: 0 4px 6px rgba(45, 45, 191, 0.2);
 }
 
 .btn-primary:hover {
   background-color: var(--secondary-color);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(45, 45, 191, 0.4);
 }
 
 .btn-secondary {
@@ -143,6 +144,14 @@ p {
 
 .animate-fade-in {
   animation: fadeIn 0.8s ease forwards;
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Form Styles */

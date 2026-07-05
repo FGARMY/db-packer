@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Package, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
+import logoImg from '../assets/Adobe Express - file.png';
 import './Footer.css';
 
 const FacebookIcon = ({ size = 20, color = "currentColor" }) => (
@@ -33,8 +34,7 @@ const Footer = () => {
         {/* About DBPack Column */}
         <div className="footer-col">
           <div className="footer-logo">
-            <Package size={28} color="#ffffff" />
-            <span className="footer-logo-title">DBPack</span>
+            <img src={logoImg} alt="ADB Pack Logo" style={{ height: '50px', objectFit: 'contain' }} />
           </div>
           <p className="footer-desc">
             DBPack provides high-quality, reliable, and sustainable packaging solutions tailored to businesses of all sizes. We are committed to protecting what matters most—your products.

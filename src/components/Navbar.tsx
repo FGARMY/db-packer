@@ -1,12 +1,26 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import logoImg from '../assets/adb-bg.png';
-import { useState } from 'react';
+import logoImg from '../assets/Adobe Express - file.png';
+import { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,14 +33,17 @@ const Navbar = () => {
     { path: '/contact', label: 'Contact Us' },
   ];
 
+  const isHomePage = location.pathname === '/';
+  const shouldBeSolid = isScrolled || !isHomePage;
+
   return (
-    <header className="navbar-container">
-      <div className="container navbar-content">
+    <header className={`navbar-container ${shouldBeSolid ? 'scrolled' : ''}`}>
+      <div className="navbar-content">
         <Link to="/" className="navbar-logo">
           <img src={logoImg} alt="DBPack Logo" style={{ height: '65px', objectFit: 'contain' }} />
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav Links (Centered) */}
         <nav className="desktop-nav">
           <ul className="nav-links">
             {navLinks.map((link) => (
@@ -40,10 +57,14 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+        </nav>
+
+        {/* Desktop Right Action */}
+        <div className="nav-right">
           <Link to="/quote" className="btn btn-primary nav-btn">
             REQUEST A QUOTE
           </Link>
-        </nav>
+        </div>
 
         {/* Mobile Nav Toggle */}
         <button className="mobile-toggle" onClick={toggleMenu}>

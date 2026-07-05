@@ -8,6 +8,7 @@ import RequestQuote from './pages/RequestQuote';
 import ContactUs from './pages/ContactUs';
 import ProductDetails from './pages/ProductDetails';
 import ScrollToTop from './components/ScrollToTop';
+import FloatingWidgets from './components/FloatingWidgets';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </main>
+      <FloatingWidgets />
       <Footer />
     </Router>
   );

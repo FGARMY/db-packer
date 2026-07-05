@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Target, Eye, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { products } from '../data/products';
-import SubHeader from '../components/SubHeader';
+import { SITE_CONFIG } from '../config/site';
 import './Home.css';
 
 const Home = () => {
@@ -49,7 +50,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
-    }, 3000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
@@ -109,18 +110,36 @@ const Home = () => {
         ))}
         <div className="hero-overlay"></div>
 
-        <div className="container hero-content">
-          <div className="hero-text animate-fade-in">
+        <div className="hero-content">
+          <motion.div 
+            className="hero-text"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <h1>SMART PACKAGING<br />STRONGER FUTURE</h1>
             <p>High quality packaging solutions for every industry.<br />Reliable. Sustainable. Customizable.</p>
             <Link to="/quote" className="btn btn-primary hero-btn">
               REQUEST A QUOTE <ChevronRight size={18} style={{marginLeft: '5px'}}/>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <SubHeader />
+      {/* Trust Strip / Top Strip (replacing the old SubHeader) */}
+      <div className="top-strip">
+        <div className="container top-strip-content">
+          <div className="top-strip-left">
+            An ISO 9001:2015 Certified Company
+          </div>
+          <div className="top-strip-right">
+            <span>Call Us!</span>
+            <a href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} className="top-strip-btn">
+              CALL NOW
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* 2. Featured Products */}
       <section className="products-section section">
@@ -140,16 +159,24 @@ const Home = () => {
           </button>
           <div className="products-grid" ref={carouselRef} style={{ padding: '10px 0' }}>
             {products.map((p, i) => (
-                <Link to={`/product/${p.id}`} key={i} className="product-card" style={{ display: 'block', textDecoration: 'none' }}>
-                  <div className="product-img-mock" style={{ overflow: 'hidden', padding: '20px', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--border-color)' }}>
-                    <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  </div>
-                  <div className="product-info">
-                    <h4>{p.title}</h4>
-                    <p>{p.desc}</p>
-                    <span className="view-details" style={{ display: 'inline-block', marginTop: '15px', color: 'var(--secondary-color)', fontWeight: '600', fontSize: '0.9rem' }}>View details →</span>
-                  </div>
-                </Link>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <Link to={`/product/${p.id}`} className="product-card" style={{ display: 'block', textDecoration: 'none' }}>
+                    <div className="product-img-mock" style={{ overflow: 'hidden', padding: '20px', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--border-color)' }}>
+                      <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    </div>
+                    <div className="product-info">
+                      <h4>{p.title}</h4>
+                      <p>{p.desc}</p>
+                      <span className="view-details" style={{ display: 'inline-block', marginTop: '15px', color: 'var(--secondary-color)', fontWeight: '600', fontSize: '0.9rem' }}>View details →</span>
+                    </div>
+                  </Link>
+                </motion.div>
             ))}
           </div>
           <button className="carousel-btn right" onClick={scrollRight} aria-label="Next Products">
@@ -167,12 +194,19 @@ const Home = () => {
           </div>
           <div className="industries-grid">
             {industries.map((ind, i) => (
-              <div key={i} className="industry-card">
+              <motion.div 
+                key={i} 
+                className="industry-card"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+              >
                 <img src={ind.img} alt={ind.name} className="industry-img" />
                 <div className="industry-overlay">
                   <h4>{ind.name}</h4>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -275,11 +309,17 @@ const Home = () => {
             <h2 style={{ color: 'var(--white)' }}>Scale & Quality You Can Trust</h2>
           </div>
           <div className="capabilities-grid">
-            <div className="capability-card">
+            <motion.div 
+              className="capability-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
               <Factory size={40} className="cap-icon" />
               <h3>50,000+</h3>
               <p>Sq.Ft Manufacturing Facility</p>
-            </div>
+            </motion.div>
             <div className="capability-card">
               <ShieldCheck size={40} className="cap-icon" />
               <h3>ISO 9001</h3>
