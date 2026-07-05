@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #caa03c; /* Premium warm metallic gold */
-  --secondary-color: #ab832a; /* Slightly darker gold for hover/accents */
+  --primary-color: #b59a68; /* Muted, less yellow antique gold */
+  --secondary-color: #967e51; /* Darker muted gold for hover/accents */
   --bg-color: #fdfdfd;
   --surface-1: #f8fafc; 
-  --surface-2: #fefbeb; /* Soft amber/gold tint */
+  --surface-2: #f9f8f4; /* Subtle warm tint */
   --text-color: #111827; /* Dark slate text */
   --text-light: #64748b;
   --white: #ffffff;
