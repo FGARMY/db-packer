@@ -82,7 +82,7 @@ const Footer = () => {
           <h4 className="footer-heading">CONTACT US</h4>
           <ul className="footer-contact">
             <li>
-              <MapPin size={18} color="#b59a68" className="contact-icon" />
+              <MapPin size={18} color="#a08c69" className="contact-icon" />
               <span>
                 {SITE_CONFIG.contact.address.map((line, i) => (
                   <span key={i}>{line}<br/></span>
@@ -90,15 +90,15 @@ const Footer = () => {
               </span>
             </li>
             <li>
-              <Phone size={18} color="#b59a68" className="contact-icon" />
+              <Phone size={18} color="#a08c69" className="contact-icon" />
               <span>{SITE_CONFIG.contact.phone}</span>
             </li>
             <li>
-              <Mail size={18} color="#b59a68" className="contact-icon" />
+              <Mail size={18} color="#a08c69" className="contact-icon" />
               <span>{SITE_CONFIG.contact.email}</span>
             </li>
             <li>
-              <Clock size={18} color="#b59a68" className="contact-icon" />
+              <Clock size={18} color="#a08c69" className="contact-icon" />
               <span>{SITE_CONFIG.contact.hours}</span>
             </li>
           </ul>
