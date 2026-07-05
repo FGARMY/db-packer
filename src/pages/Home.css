@@ -945,10 +945,17 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 15px;
+  padding: 0 5%;
 }
 
 .products-section-header h2 {
   margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.products-section-header .btn {
+  padding: 8px 20px;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 900px) {

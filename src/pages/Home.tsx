@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Target, Eye, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy } from 'lucide-react';
+import { ChevronRight, Target, Eye, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, Package } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
@@ -142,15 +142,20 @@ const Home = () => {
       </div>
 
       {/* 2. Featured Products */}
-      <section className="products-section section">
-        <div className="container">
-          <div className="section-header products-section-header">
-            <div>
-              <h2>OUR PRODUCTS</h2>
-
-            </div>
-            <Link to="/products" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>VIEW ALL PRODUCTS</Link>
+      <section className="products-section section" style={{ position: 'relative' }}>
+        {/* Large faint watermark to fill empty space */}
+        <div style={{ position: 'absolute', top: '10px', left: '5%', fontSize: '7rem', fontWeight: 900, color: 'rgba(45,45,191,0.04)', pointerEvents: 'none', zIndex: 0, letterSpacing: '4px', lineHeight: 1, userSelect: 'none' }}>
+          CATALOG
+        </div>
+        
+        <div className="products-section-header" style={{ position: 'relative', zIndex: 1, alignItems: 'center' }}>
+          <div>
+            <h2>OUR PRODUCTS</h2>
+            <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--secondary-color)', marginTop: '8px', borderRadius: '2px' }}></div>
           </div>
+          <Link to="/products" className="btn btn-primary" style={{ alignSelf: 'center', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            VIEW ALL PRODUCTS <ChevronRight size={16} />
+          </Link>
         </div>
 
         <div className="carousel-container" style={{ position: 'relative', boxSizing: 'border-box', width: '100%' }}>
