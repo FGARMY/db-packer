@@ -1354,6 +1354,16 @@
     height: auto !important;
   }
 
+  .product-card-wrapper {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .product-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important; /* Keep a static shadow instead of hover */
+  }
+
   .product-img-mock {
     width: 100% !important;
     height: 140px !important;
