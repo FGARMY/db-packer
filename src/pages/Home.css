@@ -60,7 +60,7 @@
 .hero-btn {
   padding: 14px 35px;
   font-size: 1.1rem;
-  background-color: var(--text-color);
+  background-color: var(--primary-color);
   color: var(--white);
   border: none;
 }
