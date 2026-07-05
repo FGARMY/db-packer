@@ -1266,6 +1266,44 @@
 }
 
 @media (max-width: 768px) {
+  .aic-container {
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-areas: 
+      "about image"
+      "industries industries";
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .aic-about-col {
+    grid-area: about;
+    text-align: left;
+    padding-right: 10px;
+  }
+
+  .aic-image-col {
+    grid-area: image;
+  }
+
+  .aic-industries-col {
+    grid-area: industries;
+    margin-top: 20px;
+  }
+
+  .aic-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .aic-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .aic-slanted-wrapper {
+    height: 140px;
+  }
+
   .hero-section {
     min-height: auto;
     aspect-ratio: 16/9;
