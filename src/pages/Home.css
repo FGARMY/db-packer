@@ -331,12 +331,16 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  gap: 20px;
-  padding: 10px 5px 30px 5px;
+  gap: 0px; /* moved gap to wrapper padding */
+  padding: 10px 0px 20px 0px;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+.product-card-wrapper {
+  padding: 30px 15px; /* Adds internal space so hover transform doesn't hit the grid's hidden overflow */
 }
 
 .products-grid::-webkit-scrollbar {
