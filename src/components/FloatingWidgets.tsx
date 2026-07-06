@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowUp, Phone, Mail, MessageCircle, X } from 'lucide-react';
+import { ArrowUp, Phone, Mail, MessageCircle } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import './FloatingWidgets.css';
 
@@ -12,7 +12,7 @@ const WhatsAppIcon = ({ size = 24, color = "currentColor" }) => (
 const FloatingWidgets = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
