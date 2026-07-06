@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowUp, Phone, Mail } from 'lucide-react';
+import { ArrowUp, Phone, Mail, MessageCircle, X } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import './FloatingWidgets.css';
 
@@ -11,6 +11,8 @@ const WhatsAppIcon = ({ size = 24, color = "currentColor" }) => (
 
 const FloatingWidgets = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +21,25 @@ const FloatingWidgets = () => {
       } else {
         setShowScrollTop(false);
       }
+
+      if (window.scrollY > 100) {
+        setIsScrolling(true);
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+        scrollTimeout.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 600); // Reveal buttons 600ms after scrolling stops
+      } else {
+        setIsScrolling(false);
+      }
     };
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -31,7 +48,7 @@ const FloatingWidgets = () => {
 
   return (
     <div className="floating-widgets-container">
-      {/* Scroll to Top */}
+      {/* 3. Scroll to Top (Now first in DOM for column-reverse so it's at the bottom) */}
       <button 
         className={`floating-btn scroll-top-btn ${showScrollTop ? 'visible' : ''}`}
         onClick={scrollToTop}
@@ -40,34 +57,47 @@ const FloatingWidgets = () => {
         <ArrowUp size={24} color="#ffffff" />
       </button>
 
-      {/* WhatsApp */}
-      <a 
-        href={`https://wa.me/${SITE_CONFIG.contact.phone.replace(/[^0-9]/g, '')}`} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className={`floating-btn whatsapp-btn ${showScrollTop ? 'hidden' : ''}`} 
-        aria-label="WhatsApp"
-      >
-        <WhatsAppIcon size={22} color="#ffffff" />
-      </a>
-      
-      {/* Email */}
-      <a 
-        href={`mailto:${SITE_CONFIG.contact.email}`} 
-        className={`floating-btn email-btn ${showScrollTop ? 'hidden' : ''}`} 
-        aria-label="Email"
-      >
-        <Mail size={22} color="#ffffff" />
-      </a>
+      <div className="contact-slot">
+        {/* 1. Main FAB Inquiry Button (Only visible while scrolling) */}
+        <div 
+          className={`floating-btn fab-btn ${isScrolling ? 'visible' : ''}`}
+          aria-label="Inquiry"
+        >
+          <MessageCircle size={24} color="#ffffff" />
+        </div>
 
-      {/* Call */}
-      <a 
-        href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} 
-        className={`floating-btn phone-btn ${showScrollTop ? 'hidden' : ''}`} 
-        aria-label="Call Us"
-      >
-        <Phone size={22} color="#ffffff" />
-      </a>
+        {/* 2. Contact Buttons Group */}
+        <div className={`contact-widgets-group ${isScrolling ? 'collapsed' : ''}`}>
+          {/* Phone */}
+          <a 
+            href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} 
+            className="floating-btn phone-btn" 
+            aria-label="Call Us"
+          >
+            <Phone size={22} color="#ffffff" />
+          </a>
+
+          {/* Email */}
+          <a 
+            href={`mailto:${SITE_CONFIG.contact.email}`} 
+            className="floating-btn email-btn" 
+            aria-label="Email"
+          >
+            <Mail size={22} color="#ffffff" />
+          </a>
+          
+          {/* WhatsApp */}
+          <a 
+            href={`https://wa.me/${SITE_CONFIG.contact.phone.replace(/[^0-9]/g, '')}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="floating-btn whatsapp-btn" 
+            aria-label="WhatsApp"
+          >
+            <WhatsAppIcon size={22} color="#ffffff" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

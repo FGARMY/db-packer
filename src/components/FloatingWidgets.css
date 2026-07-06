@@ -3,7 +3,8 @@
   bottom: 25px;
   right: 25px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; /* Bottom to top */
+  align-items: center;
   gap: 15px;
   z-index: 9999;
 }
@@ -26,10 +27,43 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-.floating-btn.hidden {
+.contact-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fab-btn {
+  background-color: var(--secondary-color);
+  position: absolute;
+  bottom: 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
+  transform: scale(0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.fab-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.contact-widgets-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom center;
+}
+
+.contact-widgets-group.collapsed {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px) scale(0.5); /* merge downwards */
   pointer-events: none;
 }
 
