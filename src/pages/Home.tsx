@@ -211,24 +211,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trusted By Ticker */}
-      <section className="trusted-ticker-section">
-        <p className="ticker-label">Trusted by businesses across industries</p>
-        <div className="ticker-container">
-          <div className="ticker-track">
-            {[...Array(4)].map((_, i) => (
-              <Fragment key={i}>
-                <span className="ticker-item">TechCorp</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">GlobalShipping</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">RetailPlus</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">EcoGoods</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">FreshFoods</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">BuildRight</span><span className="ticker-dot">•</span>
-              </Fragment>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <div className="mobile-only-home">
         {/* Mobile About Section */}
