@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowUp, Phone, Mail, MessageCircle, X } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import './FloatingWidgets.css';
