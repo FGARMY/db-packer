@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset, Shield, Package, Leaf } from 'lucide-react';
+import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset, Shield, Package, Leaf, Map } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
@@ -16,26 +16,24 @@ const Home = () => {
   ];
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  const processRef = useRef<HTMLDivElement>(null);
+  const processRefMobile = useRef<HTMLDivElement>(null);
+  const processRefDesktop = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (processRef.current) {
-        const rect = processRef.current.getBoundingClientRect();
+      const isMobile = window.innerWidth <= 768;
+      const ref = isMobile ? processRefMobile.current : processRefDesktop.current;
+      
+      if (ref) {
+        const rect = ref.getBoundingClientRect();
         let progress = 0;
 
-        if (window.innerWidth <= 768) {
-          // Mobile: line fills vertically as user scrolls through the section
-          const triggerPoint = window.innerHeight * 0.6;
-          progress = (triggerPoint - rect.top) / (rect.height * 0.85);
-        } else {
-          // Desktop: line fills horizontally quickly as section enters viewport
-          const start = window.innerHeight * 0.85;
-          const end = window.innerHeight * 0.35;
-          progress = (start - rect.top) / (start - end);
-        }
+        // Both desktop and mobile now use a vertical layout for the process section
+        // Progress fills vertically as the user scrolls through the section height
+        const triggerPoint = window.innerHeight * 0.65;
+        progress = (triggerPoint - rect.top) / (rect.height * 0.85);
 
         progress = Math.max(0, Math.min(1, progress));
         setScrollProgress(progress);
@@ -67,10 +65,10 @@ const Home = () => {
   };
 
   const processSteps = [
-    { num: 1, title: "Tell Us", desc: "Your Need", icon: MessageSquare },
-    { num: 2, title: "Get Solution", desc: "& Quote", icon: PackageCheck },
-    { num: 3, title: "We Manufacture", desc: "& Deliver", icon: Truck },
-    { num: 4, title: "You Grow", desc: "We Support", icon: TrendingUp }
+    { num: 1, title: "Tell Us", desc: "Your Need", details: "We listen to your needs and understand your goals.", icon: MessageSquare },
+    { num: 2, title: "Get Solution", desc: "& Quote", details: "We provide the right solution and a transparent quote.", icon: PackageCheck },
+    { num: 3, title: "We Manufacture", desc: "& Deliver", details: "We manufacture with precision and deliver on time.", icon: Truck },
+    { num: 4, title: "You Grow", desc: "We Support", details: "We're with you for long-term growth and success.", icon: TrendingUp }
   ];
 
   const testimonials = [
@@ -261,6 +259,91 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Mobile Capabilities Section */}
+        <section className="mobile-capabilities-section">
+          <div className="m-cap-header">
+            <h3 className="m-cap-title">OUR CAPABILITIES</h3>
+            <div className="m-cap-divider"></div>
+          </div>
+          <div className="m-cap-grid">
+            <div className="m-cap-item">
+              <Map size={24} className="m-cap-icon" strokeWidth={1.5} />
+              <span className="m-cap-num">50K+</span>
+              <span className="m-cap-text">Sq.Ft Facility</span>
+            </div>
+            <div className="m-cap-separator"></div>
+            <div className="m-cap-item">
+              <ShieldCheck size={24} className="m-cap-icon" strokeWidth={1.5} />
+              <span className="m-cap-num">ISO 9001</span>
+              <span className="m-cap-text">Certified</span>
+            </div>
+            <div className="m-cap-separator"></div>
+            <div className="m-cap-item">
+              <Trophy size={24} className="m-cap-icon" strokeWidth={1.5} />
+              <span className="m-cap-num">10M+</span>
+              <span className="m-cap-text">Units Monthly</span>
+            </div>
+            <div className="m-cap-separator"></div>
+            <div className="m-cap-item">
+              <CheckCircle size={24} className="m-cap-icon" strokeWidth={1.5} />
+              <span className="m-cap-num">100%</span>
+              <span className="m-cap-text">Quality<br/>Assured</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Mobile Process / How it works */}
+        <section className="mobile-process-section section" ref={processRefMobile}>
+          <div className="container">
+            <div className="dp-header" style={{ marginBottom: '40px', textAlign: 'center' }}>
+              <h4 className="dp-subtitle">HOW IT WORKS</h4>
+              <h2 className="dp-title" style={{ fontSize: '2.2rem' }}>Turning Ideas Into Impact</h2>
+              <p className="dp-desc" style={{ fontSize: '1rem' }}>Our proven process to deliver packaging that performs.</p>
+            </div>
+
+            <div className="process-grid m-process-grid" style={{ '--progress': scrollProgress } as React.CSSProperties}>
+              {processSteps.map((step, i) => {
+                const stepThreshold = i * 0.25;
+                const isActive = scrollProgress > stepThreshold;
+                const Icon = step.icon;
+                return (
+                  <div key={i} className={`process-step ${isActive ? 'active' : ''}`}>
+                    <div className="dp-icon-wrapper" style={{ width: '70px', height: '70px', marginBottom: '15px' }}>
+                      <Icon size={24} strokeWidth={2} />
+                    </div>
+                    <div className="dp-num" style={{ fontSize: '0.9rem', marginBottom: '5px' }}>0{step.num}</div>
+                    <h4 className="dp-step-title" style={{ fontSize: '1.1rem', marginBottom: '5px' }}>{step.title}<br/>{step.desc}</h4>
+                    <p className="dp-step-details" style={{ fontSize: '0.85rem' }}>{step.details}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        {/* Mobile Testimonials */}
+        <section className="testimonials-section section bg-white">
+          <div className="container">
+            <h4 className="section-subtitle">CLIENT FEEDBACK</h4>
+            <h2>What Our Partners Say</h2>
+
+            <div className="testimonials-grid">
+              {testimonials.map((t, i) => (
+                <div key={i} className="testimonial-card">
+                  <Quote size={24} className="quote-icon" />
+                  <div className="stars">
+                    {'★★★★★'.split('').map((star, idx) => <span key={idx}>{star}</span>)}
+                  </div>
+                  <p className="testimonial-text">"{t.quote}"</p>
+                  <div className="client-info">
+                    <h6>{t.name}</h6>
+                    <span>{t.company}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Mobile CTA */}
         <section className="mobile-cta-section">
           <div className="mobile-cta-card">
@@ -420,24 +503,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 6. Process / How it works */}
-      <section className="process-section section bg-surface-2" ref={processRef}>
+      {/* 6. Desktop Process / How it works (Matches Dark Theme Mockup) */}
+      <section className="desktop-process-section section" ref={processRefDesktop}>
         <div className="container">
-          <h4 className="section-subtitle" style={{ color: 'var(--primary-color)' }}>HOW IT WORKS</h4>
-          <h2 style={{ color: 'var(--text-color)' }}>Simple & Seamless Process</h2>
+          <div className="dp-header">
+            <h4 className="dp-subtitle">HOW IT WORKS</h4>
+            <h2 className="dp-title">Turning Ideas Into Impact</h2>
+            <p className="dp-desc">Our proven process to deliver packaging that performs.</p>
+          </div>
 
-          <div className="process-grid" style={{ '--progress': scrollProgress } as React.CSSProperties}>
+          <div className="desktop-process-grid">
             {processSteps.map((step, i) => {
-              const stepThreshold = i * 0.25;
-              const isActive = scrollProgress > stepThreshold;
               const Icon = step.icon;
               return (
-                <div key={i} className={`process-step ${isActive ? 'active' : ''}`}>
-                  <div className="process-number">
-                    <Icon size={28} />
+                <div key={i} className="desktop-process-step">
+                  <div className="dp-icon-wrapper">
+                    <Icon size={32} strokeWidth={2} />
                   </div>
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
+                  <div className="dp-num">0{step.num}</div>
+                  <h4 className="dp-step-title">
+                    {step.title}<br/>{step.desc}
+                  </h4>
+                  <p className="dp-step-details">{step.details}</p>
                 </div>
               );
             })}

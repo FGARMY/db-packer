@@ -535,50 +535,41 @@
 
 .process-grid {
   display: flex;
-  justify-content: space-between;
-  margin: 40px auto 0 auto;
+  flex-direction: column;
+  padding: 0 10px;
+  gap: 0;
   position: relative;
-  max-width: 1000px;
-  z-index: 1;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 40px auto 0 auto;
 }
 
-.process-grid::-webkit-scrollbar {
-  display: none;
-}
-
-.process-grid::before {
-  content: '';
-  position: absolute;
-  top: 35px;
-  left: 12%;
-  right: 12%;
-  height: 0;
-  border-top: 2px dashed #cbd5e1;
-  background-color: transparent;
-  z-index: -1;
-}
-
+/* Hide horizontal dashed line completely */
+.process-grid::before,
 .process-grid::after {
-  content: '';
-  position: absolute;
-  top: 35px;
-  left: 12%;
-  height: 0;
-  border-top: 2px dashed var(--primary-color);
-  background-color: transparent;
-  z-index: -1;
-  width: calc(76% * var(--progress, 0));
-  transition: width 0.1s ease-out;
+  display: none !important;
 }
 
 .process-step {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  min-width: 220px;
+  text-align: center;
+  width: 50%;
+  padding: 30px 0;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.process-step:nth-child(odd) {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.process-step:nth-child(even) {
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .process-number {
@@ -593,6 +584,8 @@
   color: var(--primary-color);
   margin-bottom: 20px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: relative;
 }
 
 .process-step.active .process-number {
@@ -617,6 +610,149 @@
   font-size: 0.95rem;
   color: var(--text-light);
   font-weight: 500;
+}
+
+/* Desktop S-Curve Connectors */
+.process-grid .process-step::after {
+  content: '';
+  position: absolute;
+  top: 65px; /* center of 70px icon (30px padding + 35px) */
+  width: 100%;
+  height: 100%;
+  border: 2.5px dashed #cbd5e1;
+  z-index: 1;
+  transition: border-color 0.4s ease;
+}
+
+.process-grid .process-step.active::after {
+  border-color: var(--primary-color);
+}
+
+.process-grid .process-step:last-child::after {
+  display: none;
+}
+
+/* Odd connects to Even (Curve Right) */
+.process-grid .process-step:nth-child(odd)::after {
+  left: 50%;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 60px;
+}
+
+/* Even connects to Odd (Curve Left) */
+.process-grid .process-step:nth-child(even)::after {
+  right: 50%;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 60px;
+}
+
+/* Desktop Process Section (Dark Theme) */
+.desktop-process-section {
+  background-color: #030b25; /* deep dark blue */
+  background-image: radial-gradient(circle at 10% 20%, rgba(20, 50, 150, 0.2) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(20, 50, 150, 0.2) 0%, transparent 40%);
+  padding: 80px 0;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dp-header {
+  margin-bottom: 60px;
+}
+
+.dp-subtitle {
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.dp-title {
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.dp-desc {
+  color: #a0aec0;
+  font-size: 1.1rem;
+}
+
+.desktop-process-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.desktop-process-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0 15px;
+}
+
+/* Connecting U-curve line */
+.desktop-process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 15px; /* so vertical center is at 45px */
+  left: calc(50% + 45px); /* starts right after the 90px icon */
+  width: calc(100% - 90px); /* spans to the next icon */
+  height: 60px; /* depth of the U curve */
+  border: 2px dotted transparent;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.dp-icon-wrapper {
+  width: 90px;
+  height: 90px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2b4cdd;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+  /* Glowing effect */
+  box-shadow: 0 0 30px rgba(50, 100, 255, 0.5), inset 0 0 0 4px rgba(255,255,255,0.2);
+}
+
+.dp-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.dp-step-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.dp-step-details {
+  font-size: 0.9rem;
+  color: #a0aec0;
+  line-height: 1.5;
+  max-width: 200px;
 }
 
 /* CTA Section */
@@ -1755,7 +1891,6 @@
   .mobile-only-home {
     display: block;
     background-color: #f8f9fc;
-    min-height: 100vh;
   }
   
   .mobile-hero {
@@ -1997,6 +2132,161 @@
     color: #0f172a;
     line-height: 1.25;
     word-break: break-word;
+  }
+
+  /* Mobile Capabilities Section */
+  .mobile-capabilities-section {
+    background: #ffffff;
+    border-radius: 12px;
+    margin: 10px 20px 30px 20px;
+    padding: 30px 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .m-cap-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .m-cap-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #040a1b;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .m-cap-divider {
+    width: 30px;
+    height: 2px;
+    background-color: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .m-cap-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .m-cap-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+    padding: 0 2px;
+  }
+
+  .m-cap-separator {
+    width: 1px;
+    background-color: #f1f5f9;
+    margin: 10px 0;
+  }
+
+  .m-cap-icon {
+    color: #2b4cdd;
+    margin-bottom: 12px;
+  }
+
+  .m-cap-num {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 4px;
+  }
+
+  .m-cap-text {
+    font-size: 0.6rem;
+    color: #475569;
+    line-height: 1.2;
+  }
+  /* Mobile Process S-Curve Roadmap (Dark Theme) */
+  .mobile-process-section {
+    padding: 60px 20px 40px 20px;
+    background-color: #030b25; 
+    background-image: radial-gradient(circle at 50% 20%, rgba(20, 50, 150, 0.3) 0%, transparent 60%);
+    color: white;
+  }
+
+  /* Override the default mobile grid */
+  .process-grid.m-process-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 10px !important;
+    gap: 0 !important;
+    position: relative;
+    overflow: hidden !important;
+  }
+
+  /* Hide the old vertical dashed line */
+  .process-grid.m-process-grid::before,
+  .process-grid.m-process-grid::after {
+    display: none !important;
+  }
+
+  .m-process-grid .process-step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 50% !important;
+    padding: 20px 0 !important;
+    margin: 0 !important;
+    position: relative;
+  }
+
+  .m-process-grid .process-step:nth-child(odd) {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .m-process-grid .process-step:nth-child(even) {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  /* S-Curve Connectors */
+  .m-process-grid .process-step::after {
+    content: '';
+    position: absolute;
+    top: 55px; /* center of 70px icon (20px padding + 35px) */
+    width: 100%;
+    height: 100%; 
+    border: 2.5px dotted rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    transition: border-color 0.4s ease;
+  }
+
+  .m-process-grid .process-step.active::after {
+    border-color: #3b82f6; /* bright blue */
+  }
+
+  .m-process-grid .process-step:last-child::after {
+    display: none;
+  }
+
+  /* Odd connects to Even (Curve Right) */
+  .m-process-grid .process-step:nth-child(odd)::after {
+    left: 50%;
+    border-left: none;
+    border-bottom: none;
+    border-top-right-radius: 40px;
+  }
+
+  /* Even connects to Odd (Curve Left) */
+  .m-process-grid .process-step:nth-child(even)::after {
+    right: 50%;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 40px;
   }
 
   .mobile-cta-section {
