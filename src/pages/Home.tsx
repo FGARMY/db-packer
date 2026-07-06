@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset } from 'lucide-react';
+import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset, Shield, Package, Leaf } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
@@ -96,6 +96,27 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      {/* --- MOBILE ONLY UI (Matches Mockup) --- */}
+      <div className="mobile-only-home">
+        {/* Mobile Hero */}
+        <section className="mobile-hero">
+          <div className="mobile-hero-bg">
+            <div className="mobile-hero-overlay"></div>
+          </div>
+          <div className="mobile-hero-content">
+            <div className="mobile-iso-badge">
+              <ShieldCheck size={14} style={{ marginRight: '6px' }} /> <span>ISO 9001:2015 Certified Company</span>
+            </div>
+            <h1>Reliable Packaging.<br/>Every Time.</h1>
+            <p>High-quality boxes and cartons<br/>for every business need.</p>
+            <Link to="/quote" className="btn btn-primary mobile-hero-btn">
+              Request a Quote <ArrowRight size={16} style={{ marginLeft: '8px' }} />
+            </Link>
+          </div>
+        </section>
+      </div>
+
+      <div className="desktop-only-home">
       {/* 1. Hero Section */}
       <section className="hero-section">
         {heroImages.map((img, idx) => (
@@ -139,6 +160,7 @@ const Home = () => {
             </a>
           </div>
         </div>
+      </div>
       </div>
 
       {/* 2. Featured Products */}
@@ -191,6 +213,72 @@ const Home = () => {
         </div>
       </section>
 
+      <div className="mobile-only-home">
+        {/* Mobile About Section */}
+        <section className="mobile-about-section">
+          <div className="mobile-about-content">
+            <h4 className="m-about-subtitle">ABOUT US</h4>
+            <h2 className="m-about-title">We <span className="text-blue">Pack.</span><br/>You Relax.</h2>
+            <p className="m-about-text">
+              Reliable packaging solutions<br/>
+              built to protect your products<br/>
+              and strengthen your brand.
+            </p>
+            <Link to="/about" className="btn btn-primary m-about-btn">
+              Learn More <ArrowRight size={16} style={{ marginLeft: '4px' }} />
+            </Link>
+          </div>
+          
+          <div className="mobile-about-visuals">
+             <div className="m-about-dots"></div>
+             <div className="m-about-image-wrapper">
+                <img src="/assets/clean-warehouse.png" alt="Warehouse" />
+                <div className="m-about-blue-curve"></div>
+             </div>
+             <div className="m-about-top-triangle"></div>
+          </div>
+        </section>
+
+        {/* Mobile Industries Section */}
+        <section className="mobile-industries-section">
+          <div className="mobile-section-header">
+            <h4 className="m-ind-subtitle">INDUSTRIES WE SERVE</h4>
+            <h2 className="m-ind-title">Packaging for Every<br/>Sector</h2>
+          </div>
+          <div className="m-ind-grid">
+            {industries.map((ind, i) => (
+              <div key={i} className="m-ind-card">
+                <div className="m-ind-img-wrap">
+                  <img src={ind.img} alt={ind.name} />
+                </div>
+                <span className="m-ind-name">
+                  {ind.name.split('\n').map((part, idx) => (
+                    <span key={idx}>{part}<br /></span>
+                  ))}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Mobile CTA */}
+        <section className="mobile-cta-section">
+          <div className="mobile-cta-card">
+             <div className="mcta-icon-wrap">
+               <PackageCheck size={28} color="#ffffff" strokeWidth={1.5} />
+             </div>
+             <div className="mcta-text">
+               <h3>Need Custom Packaging<br/>for Your Business?</h3>
+               <p>Our experts are ready to help.</p>
+               <Link to="/contact" className="btn btn-secondary mcta-btn">
+                 Contact Us <ArrowRight size={16} style={{ marginLeft: '8px' }} />
+               </Link>
+             </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="desktop-only-home">
       {/* 3. About & Industries Combined */}
       <section className="about-industries-combined section bg-surface-1">
         <div className="aic-container">
@@ -439,6 +527,7 @@ const Home = () => {
         </div>
       </section>
 
+      </div>
     </div>
   );
 };

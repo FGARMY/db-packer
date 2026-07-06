@@ -220,8 +220,8 @@
 
 @media (max-width: 900px) {
   .navbar-container {
-    background-color: var(--primary-color);
-    padding: 5px 0 !important;
+    background-color: #040a1b !important;
+    padding: 10px 0 !important;
   }
 
   .navbar-content {
@@ -238,16 +238,9 @@
   }
   
   .top-strip {
-    padding: 5px 10px;
-    font-size: 0.65rem;
+    display: none; /* Hide top strip on mobile to match mockup exactly */
   }
-  
-  .top-strip-content {
-    gap: 5px;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-  }
+
 
   .top-strip-right {
     gap: 5px;
