@@ -26,6 +26,13 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+.floating-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
 .whatsapp-btn {
   background-color: #25D366;
 }

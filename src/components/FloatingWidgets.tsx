@@ -45,7 +45,7 @@ const FloatingWidgets = () => {
         href={`https://wa.me/${SITE_CONFIG.contact.phone.replace(/[^0-9]/g, '')}`} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="floating-btn whatsapp-btn" 
+        className={`floating-btn whatsapp-btn ${showScrollTop ? 'hidden' : ''}`} 
         aria-label="WhatsApp"
       >
         <WhatsAppIcon size={22} color="#ffffff" />
@@ -54,7 +54,7 @@ const FloatingWidgets = () => {
       {/* Email */}
       <a 
         href={`mailto:${SITE_CONFIG.contact.email}`} 
-        className="floating-btn email-btn" 
+        className={`floating-btn email-btn ${showScrollTop ? 'hidden' : ''}`} 
         aria-label="Email"
       >
         <Mail size={22} color="#ffffff" />
@@ -63,8 +63,8 @@ const FloatingWidgets = () => {
       {/* Call */}
       <a 
         href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} 
-        className="floating-btn phone-btn" 
-        aria-label="Call"
+        className={`floating-btn phone-btn ${showScrollTop ? 'hidden' : ''}`} 
+        aria-label="Call Us"
       >
         <Phone size={22} color="#ffffff" />
       </a>
