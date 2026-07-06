@@ -98,9 +98,16 @@ const Home = () => {
       <div className="mobile-only-home">
         {/* Mobile Hero */}
         <section className="mobile-hero">
-          <div className="mobile-hero-bg">
-            <div className="mobile-hero-overlay"></div>
-          </div>
+          {heroImages.map((img, idx) => (
+            <div
+              key={idx}
+              className="hero-bg-slide"
+              style={{
+                backgroundImage: `url(${img})`,
+                opacity: currentHeroIdx === idx ? 1 : 0
+              }}
+            />
+          ))}
           <div className="mobile-hero-content">
             <div className="mobile-iso-badge">
               <ShieldCheck size={14} style={{ marginRight: '6px' }} /> <span>ISO 9001:2015 Certified Company</span>

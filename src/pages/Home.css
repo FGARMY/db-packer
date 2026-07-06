@@ -1819,9 +1819,9 @@
   .mobile-hero {
     position: relative;
     padding: 120px 20px 60px 20px;
-    background: url('/assets/clean-warehouse.png') center/cover no-repeat;
     margin-bottom: 0px;
     margin-top: -60px; /* pull up under nav if nav is transparent */
+    background-color: #040a1b; /* fallback */
   }
 
   .mobile-hero::before {
@@ -1829,6 +1829,7 @@
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(180deg, #040a1b 0%, rgba(4,10,27,0.85) 50%, rgba(4,10,27,0.7) 100%);
+    z-index: 1;
   }
 
   .mobile-hero-content {
