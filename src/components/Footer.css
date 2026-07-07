@@ -228,6 +228,14 @@
     gap: 30px;
   }
   
+  .footer-desc {
+    display: none;
+  }
+
+  .footer-newsletter-form {
+    margin-top: 8px;
+  }
+
   .footer-bottom-content {
     flex-direction: column;
     gap: 15px;

@@ -1721,12 +1721,17 @@
   }
 
   .hero-text p {
-    font-size: 0.95rem !important;
-    margin-bottom: 32px !important;
-    line-height: 1.6 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 24px !important;
+    line-height: 1.5 !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    max-width: 100% !important;
+    max-width: 85% !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 
   .hero-actions {
@@ -1865,14 +1870,14 @@
   }
 
   .product-info p {
-    font-size: 0.82rem !important;
+    font-size: 0.78rem !important;
     line-height: 1.4 !important;
     display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    line-clamp: 3 !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
   }
 
   .product-info .view-details {
@@ -1904,9 +1909,14 @@
   }
 
   .aic-desc {
-    font-size: 0.95rem !important;
+    font-size: 0.88rem !important;
     line-height: 1.5 !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 20px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 
   .aic-image-col {
@@ -1978,9 +1988,7 @@
   }
 
   .cta-banner-content p {
-    font-size: 0.9rem !important;
-    margin-bottom: 20px !important;
-    line-height: 1.4 !important;
+    display: none !important;
   }
 
   .cta-btn {
@@ -2061,7 +2069,7 @@
   }
 
   .dp-desc {
-    font-size: 0.9rem !important;
+    display: none !important;
   }
 
   .process-line-svg {
@@ -2123,8 +2131,7 @@
   }
 
   .dp-step-details {
-    font-size: 0.85rem !important;
-    line-height: 1.4 !important;
+    display: none !important;
   }
 
   /* 8. Testimonials Section */
@@ -2163,10 +2170,23 @@
   }
 
   .testimonial-text {
-    font-size: 1.05rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 24px !important;
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
     font-style: italic !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .quote-icon {
+    display: none !important;
+  }
+
+  .stars {
+    display: none !important;
   }
 
   .client-info-row h6 {
