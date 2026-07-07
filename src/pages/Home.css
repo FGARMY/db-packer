@@ -2345,7 +2345,7 @@
 }
 
 .ticker-logo-img {
-  height: 65px;
+  height: 90px;
   width: auto;
   object-fit: contain;
   margin: 0 45px;
@@ -2380,7 +2380,7 @@
 /* Make font slightly smaller on mobile */
 @media (max-width: 768px) {
   .ticker-logo-img {
-    height: 45px;
+    height: 60px;
     margin: 0 25px;
   }
 
