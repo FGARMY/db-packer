@@ -6,6 +6,26 @@ import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
 import './Home.css';
 
+import delbrukLogo from '../assets/client-logo/Delbruk.png';
+import farmacosLogo from '../assets/client-logo/farmacos.png';
+import fixLogo from '../assets/client-logo/fix.png';
+import healthcareLogo from '../assets/client-logo/healthcare.png';
+import pharamaceuticalLogo from '../assets/client-logo/pharamaceutical.png';
+import primusLogo from '../assets/client-logo/primus.png';
+import shreeLogo from '../assets/client-logo/shree.png';
+import since1Logo from '../assets/client-logo/since1.png';
+
+const clientLogos = [
+  { name: 'Delbruk', src: delbrukLogo },
+  { name: 'Farmacos', src: farmacosLogo },
+  { name: 'Fixderma', src: fixLogo },
+  { name: 'Healthcare', src: healthcareLogo },
+  { name: 'Pharmaceutical', src: pharamaceuticalLogo },
+  { name: 'Primus', src: primusLogo },
+  { name: 'Shree', src: shreeLogo },
+  { name: 'Since1', src: since1Logo }
+];
+
 // Counter component for animated stats
 const StatCounter = ({ value, label, children }: { value: string; label: string; children: React.ReactNode }) => {
   const ref = useRef(null);
@@ -238,20 +258,16 @@ const Home = () => {
         <p className="ticker-label">Trusted by leading enterprises pan-India</p>
         <div className="ticker-container">
           <div className="ticker-track">
-            {[...Array(5)].map((_, i) => (
+            {[...Array(2)].map((_, i) => (
               <span className="ticker-group" key={i} aria-hidden={i > 0}>
-                <span className="ticker-item">TechCorp B2B</span>
-                <span className="ticker-dot">•</span>
-                <span className="ticker-item">GlobalShipping</span>
-                <span className="ticker-dot">•</span>
-                <span className="ticker-item">RetailPlus</span>
-                <span className="ticker-dot">•</span>
-                <span className="ticker-item">EcoGoods India</span>
-                <span className="ticker-dot">•</span>
-                <span className="ticker-item">FreshFoods Group</span>
-                <span className="ticker-dot">•</span>
-                <span className="ticker-item">BuildRight Packaging</span>
-                <span className="ticker-dot">•</span>
+                {clientLogos.map((logo, idx) => (
+                  <img 
+                    key={idx} 
+                    src={logo.src} 
+                    alt={`${logo.name} logo`} 
+                    className="ticker-logo-img" 
+                  />
+                ))}
               </span>
             ))}
           </div>
@@ -287,7 +303,6 @@ const Home = () => {
           {/* Right Column: Industries We Serve */}
           <div className="aic-industries-col">
             <h4 className="section-subtitle">INDUSTRIES WE SERVE</h4>
-            <h2 className="aic-title-small">Custom Solutions per Sector</h2>
             <div className="aic-icons-row">
               {industries.map((ind, i) => (
                 <div key={i} className="aic-icon-item">
