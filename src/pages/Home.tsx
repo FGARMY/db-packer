@@ -190,7 +190,6 @@ const Home = () => {
         <div className="products-section-header">
           <div>
             <h4 className="section-subtitle">OUR PRODUCT LINE</h4>
-            <h2>Engineered for Excellence</h2>
             <div className="header-divider"></div>
           </div>
           <Link to="/products" className="btn btn-primary products-view-btn">
