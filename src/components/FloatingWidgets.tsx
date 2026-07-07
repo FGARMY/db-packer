@@ -68,7 +68,7 @@ const FloatingWidgets = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <ArrowUp size={24} color="#ffffff" />
+            <ArrowUp size={18} color="#ffffff" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -84,7 +84,7 @@ const FloatingWidgets = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
             >
-              <MessageCircle size={24} color="#ffffff" />
+              <MessageCircle size={18} color="#ffffff" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -97,7 +97,7 @@ const FloatingWidgets = () => {
             className="floating-btn phone-btn" 
             aria-label="Call Us"
           >
-            <Phone size={20} color="#ffffff" />
+            <Phone size={16} color="#ffffff" />
           </a>
 
           {/* Email Widget */}
@@ -106,7 +106,7 @@ const FloatingWidgets = () => {
             className="floating-btn email-btn" 
             aria-label="Email Us"
           >
-            <Mail size={20} color="#ffffff" />
+            <Mail size={16} color="#ffffff" />
           </a>
           
           {/* WhatsApp Chat Widget */}
@@ -117,7 +117,7 @@ const FloatingWidgets = () => {
             className="floating-btn whatsapp-btn" 
             aria-label="WhatsApp chat"
           >
-            <WhatsAppIcon size={20} />
+            <WhatsAppIcon size={16} />
           </a>
         </div>
       </div>
