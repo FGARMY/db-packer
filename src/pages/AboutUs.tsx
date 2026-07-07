@@ -5,7 +5,7 @@ import './AboutUs.css';
 
 const AboutUs = () => {
   const timelineMilestones = [
-    { year: "2018", title: "Company Founded", desc: "DBPack was established with a small production unit, serving local manufacturing businesses with corrugated solutions." },
+    { year: "2018", title: "Company Founded", desc: "ADBPack was established with a small production unit, serving local manufacturing businesses with corrugated solutions." },
     { year: "2020", title: "ISO 9001 Certification & Expansion", desc: "Obtained ISO 9001:2015 registration and expanded production facility to 20,000 sq.ft to support large retail clients." },
     { year: "2023", title: "State-of-the-Art facility", desc: "Inaugurated a fully-equipped 50,000 sq.ft manufacturing plant with modern offset printing and automated carton lines." },
     { year: "2026", title: "B2B E-Procurement", desc: "Registered on GeM (Government e Marketplace) and rolled out customized flexible pouches and adhesive label production lines." }
@@ -18,7 +18,7 @@ const AboutUs = () => {
       </div>
 
       <div className="minimal-page-header">
-        <h1>About DBPack</h1>
+        <h1>About ADBPack</h1>
         <p>Excellence, Quality, and Innovation in Packaging Solutions</p>
       </div>
 
@@ -35,7 +35,7 @@ const AboutUs = () => {
               <h4 className="section-subtitle">OUR STORY</h4>
               <h2>Committed to Protecting What Matters Most</h2>
               <p>
-                Founded on the principles of quality and reliability, DBPack has grown to become a leading provider of innovative packaging solutions. We understand that packaging is more than just a box or a wrap; it is the first impression of your product, the safeguard during transit, and a reflection of your brand's commitment to quality.
+                Founded on the principles of quality and reliability, ADBPack has grown to become a leading provider of innovative packaging solutions. We understand that packaging is more than just a box or a wrap; it is the first impression of your product, the safeguard during transit, and a reflection of your brand's commitment to quality.
               </p>
               <p>
                 Our team of experienced professionals works closely with clients across diverse industries to develop customized packaging strategies that not only protect their products but also optimize their supply chain efficiency and reduce environmental impact.
@@ -48,7 +48,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <img src="/facility.png" alt="State-of-the-art DBPack Facility" />
+              <img src="/facility.png" alt="State-of-the-art ADBPack Facility" />
             </motion.div>
           </div>
         </div>
@@ -75,7 +75,7 @@ const AboutUs = () => {
                 "True leadership isn't measured by the products you sell, but by the trust you earn. Every partnership we build and every box we deliver reflects our promise of quality, integrity, and excellence."
               </p>
               <p>
-                Driven by a passion for excellence and innovation, Latika Upadhyay has helped establish DBPack as a trusted packaging partner for businesses across industries. With a strong focus on quality, reliability, and sustainable solutions, she continues to lead the company with a customer-first approach, building lasting relationships and delivering packaging that brands can depend on.
+                Driven by a passion for excellence and innovation, Latika Upadhyay has helped establish ADBPack as a trusted packaging partner for businesses across industries. With a strong focus on quality, reliability, and sustainable solutions, she continues to lead the company with a customer-first approach, building lasting relationships and delivering packaging that brands can depend on.
               </p>
             </div>
           </motion.div>

@@ -105,7 +105,7 @@ const Home = () => {
   ];
 
   const testimonials = [
-    { quote: "DBPack completely transformed our B2B logistics. Their corrugated boxes are the strongest we've used.", name: "John Doe", company: "RetailPlus Ltd", initial: "JD" },
+    { quote: "ADBPack completely transformed our B2B logistics. Their corrugated boxes are the strongest we've used.", name: "John Doe", company: "RetailPlus Ltd", initial: "JD" },
     { quote: "Outstanding service and 98% on-time delivery. They truly act as a partner in our supply chain.", name: "Sarah Jenkins", company: "TechCorp Logistics", initial: "SJ" },
     { quote: "The custom stretch films they provide helped us reduce damage during transit by over 40%.", name: "Mike Alvarez", company: "GlobalShipping Co", initial: "MA" },
     { quote: "Reliable, high-quality, and cost-effective. We couldn't ask for a better packaging partner.", name: "David Chen", company: "FreshFoods Inc", initial: "DC" }
@@ -269,7 +269,7 @@ const Home = () => {
               We <span className="text-highlight">Pack.</span><br />You Relax.
             </h2>
             <p className="aic-desc">
-              DBPack delivers high-durability, cost-effective, and fully recyclable packaging solutions to support your supply chain and elevate brand presentation.
+              ADBPack delivers high-durability, cost-effective, and fully recyclable packaging solutions to support your supply chain and elevate brand presentation.
             </p>
             <Link to="/about" className="btn btn-secondary aic-btn">
               OUR JOURNEY <ArrowRight size={18} style={{ marginLeft: '6px' }} />
@@ -280,7 +280,7 @@ const Home = () => {
           <div className="aic-image-col">
             <div className="aic-slanted-wrapper">
               <div className="aic-image-inner">
-                <img src="/facility.png" alt="DBPack manufacturing facility" className="aic-image" loading="lazy" />
+                <img src="/facility.png" alt="ADBPack manufacturing facility" className="aic-image" loading="lazy" />
               </div>
             </div>
           </div>

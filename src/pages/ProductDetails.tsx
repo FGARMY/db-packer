@@ -43,11 +43,11 @@ const ProductDetails = () => {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.title,
-    "image": `https://dbpack.com${product.img}`,
+    "image": `https://adbpack.com${product.img}`,
     "description": product.fullDesc,
     "brand": {
       "@type": "Brand",
-      "name": "DBPack"
+      "name": "ADBPack"
     },
     "category": product.category,
     "offers": {
@@ -60,7 +60,7 @@ const ProductDetails = () => {
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "DBPack"
+        "name": "ADBPack"
       }
     }
   };

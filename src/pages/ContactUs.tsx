@@ -211,7 +211,7 @@ const ContactUs = () => {
                     <CheckCircle2 size={56} className="success-icon" style={{ color: 'var(--success-color)', marginBottom: '20px', display: 'inline-block' }} />
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--text-color)' }}>Message Sent Successfully!</h3>
                     <p style={{ color: 'var(--text-light)', marginBottom: '25px', lineHeight: '1.6' }}>
-                      Thank you for contacting DBPack. One of our packaging specialists will review your requirements and reach out to you within the next 2-4 business hours.
+                      Thank you for contacting ADBPack. One of our packaging specialists will review your requirements and reach out to you within the next 2-4 business hours.
                     </p>
                     <button className="btn btn-primary" onClick={() => setIsSubmitted(false)}>
                       Send Another Message
@@ -278,7 +278,7 @@ const ContactUs = () => {
           <h2 style={{ fontSize: '1.6rem', fontWeight: '800', marginBottom: '25px', textAlign: 'center' }}>Locate Our Plant</h2>
           <div className="maps-iframe-wrapper" style={{ width: '100%', height: '400px', borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.748530467554!2d77.16781297598852!3d28.517178075729737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1e34e5658e37%3s0x390d1e34e5658e37!2sDBPack%20Packaging!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.748530467554!2d77.16781297598852!3d28.517178075729737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1e34e5658e37%3s0x390d1e34e5658e37!2sADBPack%20Packaging!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 

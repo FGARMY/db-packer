@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "DBPack",
+  name: "ADBPack",
   tagline: "Excellence in Packaging Solutions",
   contact: {
     address: [
@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
       "New Delhi."
     ],
     phone: "+91 7982194994, +91 8882567498",
-    email: "info@dbpack.com",
+    email: "info@adbpack.com",
     hours: "Mon - Sat: 9:00 AM - 6:00 PM"
   },
   social: {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
-import logoImg from '../assets/dbpack-logo.png';
+import logoImg from '../assets/adbpack-logo.png';
 import './Footer.css';
 
 const Facebook = ({ size = 18 }) => (
@@ -43,13 +43,13 @@ const Footer = () => {
     <footer className="footer-container">
       <div className="container footer-content grid grid-4">
         
-        {/* About DBPack Column */}
+        {/* About ADBPack Column */}
         <div className="footer-col">
           <div className="footer-logo">
-            <img src={logoImg} alt="DBPack Logo" className="footer-logo-img" style={{ height: '55px', objectFit: 'contain' }} />
+            <img src={logoImg} alt="ADBPack Logo" className="footer-logo-img" style={{ height: '55px', objectFit: 'contain' }} />
           </div>
           <p className="footer-desc">
-            DBPack delivers premium packaging solutions engineered for industrial and retail sectors. We manufacture ISO 9001:2015 certified boxes, mono cartons, and flexible packaging direct-to-factory.
+            ADBPack delivers premium packaging solutions engineered for industrial and retail sectors. We manufacture ISO 9001:2015 certified boxes, mono cartons, and flexible packaging direct-to-factory.
           </p>
           <div className="social-links">
             <a href={SITE_CONFIG.social.facebook} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
@@ -119,7 +119,7 @@ const Footer = () => {
       {/* Footer Bottom Strip */}
       <div className="footer-bottom">
         <div className="container footer-bottom-content">
-          <p>&copy; {new Date().getFullYear()} DBPack. All Rights Reserved. ISO 9001:2015 Quality Assured.</p>
+          <p>&copy; {new Date().getFullYear()} ADBPack. All Rights Reserved. ISO 9001:2015 Quality Assured.</p>
           <div className="footer-legal">
             <a href="#privacy">Privacy Policy</a>
             <span className="separator">|</span>
