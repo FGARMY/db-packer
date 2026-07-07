@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import logoImg from '../assets/adbpack-logo.png';
+import { supabase } from '../utils/supabaseClient';
 import './Footer.css';
 
 const Facebook = ({ size = 18 }) => (
@@ -30,12 +31,35 @@ const Instagram = ({ size = 18 }) => (
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [toastMessage, setToastMessage] = useState('Subscribed!');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setSubscribed(true);
-    setEmail('');
+
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          setToastMessage('Already Subscribed!');
+        } else {
+          throw error;
+        }
+      } else {
+        setToastMessage('Subscribed!');
+      }
+      
+      setSubscribed(true);
+      setEmail('');
+    } catch (err: any) {
+      console.error('Newsletter error:', err);
+      setToastMessage('Try again later');
+      setSubscribed(true);
+    }
+    
     setTimeout(() => setSubscribed(false), 3000);
   };
 
@@ -110,7 +134,7 @@ const Footer = () => {
                 <ArrowRight size={18} />
               </button>
             </div>
-            {subscribed && <span className="newsletter-success-toast">Subscribed!</span>}
+            {subscribed && <span className="newsletter-success-toast">{toastMessage}</span>}
           </form>
         </div>
 

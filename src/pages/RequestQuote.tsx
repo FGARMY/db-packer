@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Factory, Calendar, Settings } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Factory, Calendar, Settings, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '../utils/supabaseClient';
 import './RequestQuote.css';
 
 const RequestQuote = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -65,7 +67,7 @@ const RequestQuote = () => {
     setStep(1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const step2Errors = validateStep2();
     if (Object.keys(step2Errors).length > 0) {
@@ -74,13 +76,37 @@ const RequestQuote = () => {
     }
     
     setErrors({});
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Simulate API quote post call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('quote_requests')
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            company: formData.company,
+            industry: formData.industry,
+            email: formData.email,
+            phone: formData.phone,
+            product: formData.product,
+            quantity: formData.quantity,
+            dimensions: formData.dimensions,
+            custom_printing: formData.customPrinting,
+            additional_info: formData.additionalInfo,
+          }
+        ]);
+
+      if (error) throw error;
+
       setIsSubmitted(true);
-    }, 1500);
+    } catch (err: any) {
+      console.error('Error submitting quote request:', err);
+      setSubmitError(err.message || 'Failed to submit quote request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -161,6 +187,12 @@ const RequestQuote = () => {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
+              {submitError && (
+                <div className="submit-error-banner" style={{ color: '#dc3545', backgroundColor: 'rgba(220, 53, 69, 0.1)', padding: '12px', borderRadius: 'var(--radius)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}>
+                  <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                  <span>{submitError}</span>
+                </div>
+              )}
               {step === 1 ? (
                 /* STEP 1: Personal / Company Contact Info */
                 <div className="form-step-section">

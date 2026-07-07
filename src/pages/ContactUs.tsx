@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SITE_CONFIG } from '../config/site';
+import { supabase } from '../utils/supabaseClient';
 import './ContactUs.css';
 
 const ContactUs = () => {
@@ -15,6 +16,7 @@ const ContactUs = () => {
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -36,7 +38,7 @@ const ContactUs = () => {
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
@@ -45,14 +47,32 @@ const ContactUs = () => {
     }
 
     setFormErrors({});
+    setSubmitError(null);
     setIsSubmitting(true);
 
-    // Simulate API submission call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('contact_inquiries')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            interest: formData.interest,
+            message: formData.message,
+          }
+        ]);
+
+      if (error) throw error;
+
       setIsSubmitted(true);
       setFormData({ name: '', email: '', phone: '', interest: '', message: '' });
-    }, 1200);
+    } catch (err: any) {
+      console.error('Error submitting contact form:', err);
+      setSubmitError(err.message || 'Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -97,6 +117,13 @@ const ContactUs = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
+                    {submitError && (
+                      <div className="submit-error-banner" style={{ color: '#dc3545', backgroundColor: 'rgba(220, 53, 69, 0.1)', padding: '12px', borderRadius: 'var(--radius)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem' }}>
+                        <AlertCircle size={16} />
+                        <span>{submitError}</span>
+                      </div>
+                    )}
+                    
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="contact-name" className="visually-hidden">Your Name</label>

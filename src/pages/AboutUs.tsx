@@ -41,7 +41,7 @@ const AboutUs = () => {
                 Our team of experienced professionals works closely with clients across diverse industries to develop customized packaging strategies that not only protect their products but also optimize their supply chain efficiency and reduce environmental impact.
               </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="about-img-wrap"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -57,7 +57,7 @@ const AboutUs = () => {
       {/* Leadership Profile */}
       <section className="section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="grid grid-2 leadership-profile-card"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ const AboutUs = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="founder-img-wrap">
-              <img src="/founder.png" alt="Latika Upadhyay, Founder &amp; CEO" />
+              <img src="src\assets\latika1.jpeg" alt="Latika Upadhyay, Founder &amp; CEO" />
             </div>
             <div>
               <h4 className="section-subtitle">LEADERSHIP</h4>
@@ -92,7 +92,7 @@ const AboutUs = () => {
           </div>
           <div className="timeline-wrap">
             {timelineMilestones.map((item, idx) => (
-              <motion.div 
+              <motion.div
                 className="timeline-item"
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ const AboutUs = () => {
             We adhere to the strictest quality and environmental standards to guarantee the safety and reliability of our packaging solutions.
           </p>
           <div className="grid grid-3" style={{ gap: '30px' }}>
-            <motion.div 
+            <motion.div
               className="cert-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -131,8 +131,8 @@ const AboutUs = () => {
               <h3>ISO 9001:2015</h3>
               <p>Certified Quality Management System ensuring consistent high-quality manufacturing.</p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="cert-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -143,8 +143,8 @@ const AboutUs = () => {
               <h3>GeM Registered</h3>
               <p>Registered seller on Government e Marketplace, committed to transparent and efficient public procurement.</p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="cert-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
