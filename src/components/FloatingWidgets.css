@@ -1,3 +1,4 @@
+/* Floating Contact Widgets Custom Styles */
 .floating-widgets-container {
   position: fixed;
   bottom: 25px;
@@ -10,21 +11,21 @@
 }
 
 .floating-btn {
-  width: 55px;
-  height: 55px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   border: none;
   cursor: pointer;
 }
 
 .floating-btn:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--shadow-lg);
 }
 
 .contact-slot {
@@ -36,34 +37,21 @@
 
 .fab-btn {
   background-color: var(--secondary-color);
-  position: absolute;
-  bottom: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.5);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-}
-
-.fab-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  pointer-events: auto;
+  z-index: 10;
 }
 
 .contact-widgets-group {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 12px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: bottom center;
 }
 
 .contact-widgets-group.collapsed {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(40px) scale(0.5); /* merge downwards */
+  transform: translateY(40px) scale(0.6);
   pointer-events: none;
 }
 
@@ -71,40 +59,43 @@
   background-color: #25D366;
 }
 
+.whatsapp-btn:hover {
+  background-color: #20ba5a;
+}
+
 .email-btn {
-  background-color: #EA4335;
+  background-color: #ea4335;
+}
+
+.email-btn:hover {
+  background-color: #d63022;
 }
 
 .phone-btn {
   background-color: #34B7F1;
 }
 
+.phone-btn:hover {
+  background-color: #23a6df;
+}
+
 .scroll-top-btn {
   background-color: var(--primary-color);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
 }
 
-.scroll-top-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.scroll-top-btn.visible:hover {
-  transform: translateY(-5px) scale(1.05);
+[data-theme="dark"] .scroll-top-btn {
+  background-color: var(--accent-color);
 }
 
 @media (max-width: 768px) {
   .floating-widgets-container {
     bottom: 20px;
     right: 20px;
-    gap: 12px;
+    gap: 10px;
   }
   
   .floating-btn {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
   }
 }

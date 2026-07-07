@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import logoImg from '../assets/Adobe Express - file.png';
+import logoImg from '../assets/dbpack-logo.png';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -53,18 +54,19 @@ const Navbar = () => {
   return (
     <header className={`navbar-container ${shouldBeSolid ? 'scrolled' : ''}`}>
       <div className="navbar-content">
-        <Link to="/" className="navbar-logo">
-          <img src={logoImg} alt="DBPack Logo" style={{ height: '65px', objectFit: 'contain' }} />
+        <Link to="/" className="navbar-logo" aria-label="DBPack Home">
+          <img src={logoImg} alt="DBPack Logo" className="navbar-logo-img" />
         </Link>
 
         {/* Desktop Nav Links (Centered) */}
-        <nav className="desktop-nav">
+        <nav className="desktop-nav" aria-label="Main Navigation">
           <ul className="nav-links">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link 
                   to={link.path} 
                   className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
                 >
                   {link.label}
                 </Link>
@@ -78,7 +80,8 @@ const Navbar = () => {
           <button 
             onClick={toggleTheme} 
             className={`theme-toggle-btn ${shouldBeSolid ? 'scrolled' : ''}`}
-            aria-label="Toggle theme"
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -88,42 +91,57 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Nav Toggle */}
-        <button className="mobile-toggle" onClick={toggleMenu}>
+        <button 
+          className="mobile-toggle" 
+          onClick={toggleMenu}
+          aria-expanded={isMenuOpen}
+          aria-label="Toggle menu"
+        >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Nav Menu */}
-      {isMenuOpen && (
-        <div className="mobile-nav">
-          <ul className="mobile-nav-links">
-            {navLinks.map((link) => (
-              <li key={link.path}>
-                <Link 
-                  to={link.path} 
-                  className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                  onClick={() => setIsMenuOpen(false)}
+      {/* Mobile Nav Menu with slideDown animation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="mobile-nav"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          >
+            <ul className="mobile-nav-links">
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <Link 
+                    to={link.path} 
+                    className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                    onClick={() => setIsMenuOpen(false)}
+                    aria-current={location.pathname === link.path ? 'page' : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="mobile-theme-toggle">
+                <button 
+                  onClick={() => { toggleTheme(); setIsMenuOpen(false); }} 
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: '10px 0', fontSize: '1rem', fontWeight: 500 }}
+                  aria-label="Toggle theme"
                 >
-                  {link.label}
+                  {theme === 'dark' ? <><Sun size={20} /> Light Mode</> : <><Moon size={20} /> Dark Mode</>}
+                </button>
+              </li>
+              <li>
+                <Link to="/quote" className="btn btn-primary" style={{ width: '100%' }} onClick={() => setIsMenuOpen(false)}>
+                  REQUEST A QUOTE
                 </Link>
               </li>
-            ))}
-            <li className="mobile-theme-toggle">
-              <button 
-                onClick={toggleTheme} 
-                style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: '10px 0', fontSize: '1rem', fontWeight: 500 }}
-              >
-                {theme === 'dark' ? <><Sun size={20} /> Light Mode</> : <><Moon size={20} /> Dark Mode</>}
-              </button>
-            </li>
-            <li>
-              <Link to="/quote" className="btn btn-primary" onClick={() => setIsMenuOpen(false)}>
-                REQUEST A QUOTE
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

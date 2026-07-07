@@ -1,10 +1,52 @@
-import { useState, useEffect, useRef, Fragment } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset, Map } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, Factory, ShieldCheck, Trophy, ShoppingCart, Coffee, HeartPulse, MousePointerClick, MessageSquare, PackageCheck, Truck, TrendingUp, Headset } from 'lucide-react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
 import './Home.css';
+
+// Counter component for animated stats
+const StatCounter = ({ value, label, children }: { value: string; label: string; children: React.ReactNode }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const numericVal = parseInt(value.replace(/[^0-9]/g, ''));
+    if (isNaN(numericVal)) return;
+
+    let start = 0;
+    const end = numericVal;
+    const duration = 1500;
+    const stepTime = Math.max(Math.floor(duration / end), 15);
+    
+    const timer = setInterval(() => {
+      start += Math.ceil(end / 100);
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isInView, value]);
+
+  return (
+    <div className="cap-stat-item" ref={ref}>
+      <div className="cap-stat-icon-wrap">
+        {children}
+      </div>
+      <h3 className="cap-stat-number">
+        {count.toLocaleString()}{value.includes('+') ? '+' : ''}
+      </h3>
+      <p className="cap-stat-label">{label}</p>
+    </div>
+  );
+};
 
 const Home = () => {
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
@@ -16,31 +58,22 @@ const Home = () => {
   ];
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  const processRefMobile = useRef<HTMLDivElement>(null);
-  const processRefDesktop = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isMobile = window.innerWidth <= 768;
-      const ref = isMobile ? processRefMobile.current : processRefDesktop.current;
-      
-      if (ref) {
-        const rect = ref.getBoundingClientRect();
-        let progress = 0;
-
-        // Both desktop and mobile now use a vertical layout for the process section
-        // Progress fills vertically as the user scrolls through the section height
+      if (processRef.current) {
+        const rect = processRef.current.getBoundingClientRect();
         const triggerPoint = window.innerHeight * 0.65;
-        progress = (triggerPoint - rect.top) / (rect.height * 0.85);
-
+        let progress = (triggerPoint - rect.top) / (rect.height * 0.85);
         progress = Math.max(0, Math.min(1, progress));
         setScrollProgress(progress);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,9 +81,9 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHeroIdx((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    }, 4500);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroImages.length]);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -65,17 +98,17 @@ const Home = () => {
   };
 
   const processSteps = [
-    { num: 1, title: "Tell Us", desc: "Your Need", details: "We listen to your needs and understand your goals.", icon: MessageSquare },
-    { num: 2, title: "Get Solution", desc: "& Quote", details: "We provide the right solution and a transparent quote.", icon: PackageCheck },
-    { num: 3, title: "We Manufacture", desc: "& Deliver", details: "We manufacture with precision and deliver on time.", icon: Truck },
-    { num: 4, title: "You Grow", desc: "We Support", details: "We're with you for long-term growth and success.", icon: TrendingUp }
+    { num: 1, title: "Tell Us", desc: "Your Need", details: "We listen to your specific needs and B2B requirements.", icon: MessageSquare },
+    { num: 2, title: "Get Solution", desc: "& Quote", details: "We propose custom designs and a transparent bulk quote.", icon: PackageCheck },
+    { num: 3, title: "We Manufacture", desc: "& Deliver", details: "Precision production at our ISO facility with fast delivery.", icon: Truck },
+    { num: 4, title: "You Grow", desc: "We Support", details: "We provide dedicated post-delivery support for long-term growth.", icon: TrendingUp }
   ];
 
   const testimonials = [
-    { quote: "DBPack completely transformed our logistics. Their corrugated boxes are the strongest we've used.", name: "John Doe", company: "RetailPlus" },
-    { quote: "Outstanding service and 98% on-time delivery. They truly act as a partner in our supply chain.", name: "Sarah Jenkins", company: "TechCorp Logistics" },
-    { quote: "The custom stretch films they provide helped us reduce damage during transit by over 40%.", name: "Mike Alvarez", company: "GlobalShipping Co." },
-    { quote: "Reliable, high-quality, and cost-effective. We couldn't ask for a better packaging partner.", name: "David Chen", company: "FreshFoods Inc." }
+    { quote: "DBPack completely transformed our B2B logistics. Their corrugated boxes are the strongest we've used.", name: "John Doe", company: "RetailPlus Ltd", initial: "JD" },
+    { quote: "Outstanding service and 98% on-time delivery. They truly act as a partner in our supply chain.", name: "Sarah Jenkins", company: "TechCorp Logistics", initial: "SJ" },
+    { quote: "The custom stretch films they provide helped us reduce damage during transit by over 40%.", name: "Mike Alvarez", company: "GlobalShipping Co", initial: "MA" },
+    { quote: "Reliable, high-quality, and cost-effective. We couldn't ask for a better packaging partner.", name: "David Chen", company: "FreshFoods Inc", initial: "DC" }
   ];
 
   const industries = [
@@ -86,345 +119,181 @@ const Home = () => {
   ];
 
   const faqs = [
-    { q: "What is your minimum order quantity (MOQ)?", a: "Our MOQ depends on the specific product category, but we generally cater to both mid-sized and enterprise volumes. Contact us for a precise quote based on your needs." },
-    { q: "Do you offer custom branding and printing?", a: "Yes! We provide full customization services, including custom dimensions, high-quality printing, and branding for all our corrugated boxes and tapes." },
-    { q: "How fast is your typical delivery time?", a: "Standard products are typically dispatched within 24-48 hours. Custom printed orders generally take 7-10 business days." },
-    { q: "Are your packaging materials eco-friendly?", a: "We prioritize sustainability. Many of our corrugated solutions are made from recycled materials and are 100% recyclable." }
+    { q: "What is your minimum order quantity (MOQ)?", a: "Our MOQ depends on the specific product category (typically starting from 1,000 units for custom cartons). We cater to mid-sized and enterprise volumes. Contact us for a precise quote based on your requirements." },
+    { q: "Do you offer custom branding and printing?", a: "Yes, we provide full customization services, including custom sizes, multi-color high-quality flexographic and offset printing, and branding for all boxes, tapes, and cartons." },
+    { q: "How fast is your typical delivery time?", a: "Standard inventory products are dispatched within 24-48 hours. Custom printed or die-cut packaging orders typically take 7-10 business days depending on design approval." },
+    { q: "Are your packaging materials eco-friendly?", a: "We prioritize sustainability. Many of our corrugated boxes are made from recycled kraft paper and are 100% recyclable and biodegradable." },
+    { q: "Do you supply samples before production?", a: "Yes, we can provide digital mockups and physical pre-production samples upon request to ensure dimensions and printing align perfectly with your standards." }
   ];
 
   return (
     <div className="home-page">
-      {/* --- MOBILE ONLY UI (Matches Mockup) --- */}
-      <div className="mobile-only-home">
-        {/* Mobile Hero */}
-        <section className="mobile-hero">
+      {/* 1. Unified Hero Section */}
+      <section className="hero-section" aria-label="Welcome Banner">
+        <div className="hero-slides-container">
           {heroImages.map((img, idx) => (
             <div
               key={idx}
-              className="hero-bg-slide"
-              style={{
-                backgroundImage: `url(${img})`,
-                opacity: currentHeroIdx === idx ? 1 : 0
-              }}
+              className={`hero-bg-slide ${currentHeroIdx === idx ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${img})` }}
             />
           ))}
-          <div className="mobile-hero-content">
-            <div className="mobile-iso-badge">
-              <ShieldCheck size={14} style={{ marginRight: '6px' }} /> <span>ISO 9001:2015 Certified Company</span>
-            </div>
-            <h1>Reliable Packaging.<br/>Every Time.</h1>
-            <p>High-quality boxes and cartons<br/>for every business need.</p>
-            <Link to="/quote" className="btn btn-primary mobile-hero-btn">
-              Request a Quote <ArrowRight size={16} style={{ marginLeft: '8px' }} />
-            </Link>
-          </div>
-        </section>
-      </div>
-
-      <div className="desktop-only-home">
-      {/* 1. Hero Section */}
-      <section className="hero-section">
-        {heroImages.map((img, idx) => (
-          <div
-            key={idx}
-            className="hero-bg-slide"
-            style={{
-              backgroundImage: `url(${img})`,
-              opacity: currentHeroIdx === idx ? 1 : 0
-            }}
-          />
-        ))}
+        </div>
         <div className="hero-overlay"></div>
 
-        <div className="hero-content">
+        <div className="container hero-content">
           <motion.div
             className="hero-text"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
           >
-            <h1>SMART PACKAGING<br />STRONGER FUTURE</h1>
-            <p>High quality packaging solutions for every industry.<br />Reliable. Sustainable. Customizable.</p>
-            <Link to="/quote" className="btn btn-primary hero-btn">
-              REQUEST A QUOTE <ChevronRight size={18} style={{ marginLeft: '5px' }} />
-            </Link>
+            <div className="hero-iso-badge" role="status">
+              <ShieldCheck size={16} className="badge-icon" /> 
+              <span>ISO 9001:2015 Certified Company</span>
+            </div>
+            <h1>SMART PACKAGING.<br />STRONGER FUTURE.</h1>
+            <p>Reliable. Sustainable. Custom packaging solutions engineered for every industry.</p>
+            <div className="hero-actions">
+              <Link to="/quote" className="btn btn-primary hero-btn">
+                REQUEST A QUOTE <ChevronRight size={18} style={{ marginLeft: '4px' }} />
+              </Link>
+              <Link to="/products" className="btn btn-secondary hero-btn-secondary">
+                EXPLORE CATALOG
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Trust Strip / Top Strip (replacing the old SubHeader) */}
-      <div className="top-strip">
-        <div className="container top-strip-content">
+      {/* 2. Trust Strip */}
+      <div className="top-strip" role="note">
+        <div className="top-strip-content">
           <div className="top-strip-left">
-            An ISO 9001:2015 Certified Company
+            <span className="bullet-glow">•</span> An ISO 9001:2015 Quality Assured Manufacturer
           </div>
           <div className="top-strip-right">
-            <span>Call Us!</span>
-            <a href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} className="top-strip-btn">
+            <span>Call Our Experts:</span>
+            <a href={`tel:${SITE_CONFIG.contact.phone.split(',')[0].trim()}`} className="top-strip-btn">
               CALL NOW
             </a>
           </div>
         </div>
       </div>
-      </div>
 
-      {/* 2. Featured Products */}
+      {/* 3. Featured Products */}
       <section className="products-section section" style={{ position: 'relative' }}>
-        {/* Large faint watermark to fill empty space */}
-        <div style={{ position: 'absolute', top: '10px', left: '5%', fontSize: '7rem', fontWeight: 900, color: 'rgba(45,45,191,0.04)', pointerEvents: 'none', zIndex: 0, letterSpacing: '4px', lineHeight: 1, userSelect: 'none' }}>
+        <div className="products-bg-watermark" aria-hidden="true">
           CATALOG
         </div>
 
-        <div className="products-section-header" style={{ position: 'relative', zIndex: 1, alignItems: 'center' }}>
+        <div className="products-section-header">
           <div>
-            <h2>OUR PRODUCTS</h2>
-            <div style={{ width: '40px', height: '4px', backgroundColor: 'var(--secondary-color)', marginTop: '8px', borderRadius: '2px' }}></div>
+            <h4 className="section-subtitle">OUR PRODUCT LINE</h4>
+            <h2>Engineered for Excellence</h2>
+            <div className="header-divider"></div>
           </div>
-          <Link to="/products" className="btn btn-primary" style={{ alignSelf: 'center', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            VIEW ALL PRODUCTS <ChevronRight size={16} />
+          <Link to="/products" className="btn btn-primary products-view-btn">
+            VIEW ALL PRODUCTS <ChevronRight size={16} style={{ marginLeft: '4px' }} />
           </Link>
         </div>
 
-        <div className="carousel-container" style={{ position: 'relative', boxSizing: 'border-box', width: '100%' }}>
-          <button className="carousel-btn left" onClick={scrollLeft} aria-label="Previous Products">
+        <div className="carousel-container">
+          <button className="carousel-btn left" onClick={scrollLeft} aria-label="Scroll left">
             <ArrowLeft size={20} />
           </button>
-          <div className="products-grid" ref={carouselRef} style={{ padding: '10px 0' }}>
+          
+          <div className="products-grid" ref={carouselRef}>
             {products.map((p, i) => (
               <motion.div
-                key={i}
+                key={p.id}
                 className="product-card-wrapper"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
               >
-                <Link to={`/product/${p.id}`} className="product-card" style={{ display: 'block', textDecoration: 'none' }}>
-                  <div className="product-img-mock" style={{ overflow: 'hidden', padding: '20px', backgroundColor: 'var(--white)', borderBottom: '1px solid var(--border-color)' }}>
-                    <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Link to={`/product/${p.id}`} className="product-card">
+                  <div className="product-img-mock">
+                    <img src={p.img} alt={p.title} loading="lazy" />
                   </div>
                   <div className="product-info">
+                    <span className="product-card-cat">{p.category}</span>
                     <h4>{p.title}</h4>
                     <p>{p.desc}</p>
-                    <span className="view-details" style={{ display: 'inline-block', marginTop: '15px', color: 'var(--secondary-color)', fontWeight: '600', fontSize: '0.9rem' }}>View details →</span>
+                    <span className="view-details">View specifications →</span>
                   </div>
                 </Link>
               </motion.div>
             ))}
           </div>
-          <button className="carousel-btn right" onClick={scrollRight} aria-label="Next Products">
+
+          <button className="carousel-btn right" onClick={scrollRight} aria-label="Scroll right">
             <ArrowRight size={20} />
           </button>
         </div>
       </section>
 
-      {/* Trusted By Ticker */}
-      <section className="trusted-ticker-section">
-        <p className="ticker-label">Trusted by businesses across industries</p>
+      {/* 4. Trusted By Logo Marquee */}
+      <section className="trusted-ticker-section" aria-label="Trusted partners">
+        <p className="ticker-label">Trusted by leading enterprises pan-India</p>
         <div className="ticker-container">
           <div className="ticker-track">
-            {[...Array(4)].map((_, i) => (
-              <Fragment key={i}>
-                <span className="ticker-item">TechCorp</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">GlobalShipping</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">RetailPlus</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">EcoGoods</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">FreshFoods</span><span className="ticker-dot">•</span>
-                <span className="ticker-item">BuildRight</span><span className="ticker-dot">•</span>
-              </Fragment>
+            {[...Array(5)].map((_, i) => (
+              <span className="ticker-group" key={i} aria-hidden={i > 0}>
+                <span className="ticker-item">TechCorp B2B</span>
+                <span className="ticker-dot">•</span>
+                <span className="ticker-item">GlobalShipping</span>
+                <span className="ticker-dot">•</span>
+                <span className="ticker-item">RetailPlus</span>
+                <span className="ticker-dot">•</span>
+                <span className="ticker-item">EcoGoods India</span>
+                <span className="ticker-dot">•</span>
+                <span className="ticker-item">FreshFoods Group</span>
+                <span className="ticker-dot">•</span>
+                <span className="ticker-item">BuildRight Packaging</span>
+                <span className="ticker-dot">•</span>
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="mobile-only-home">
-        {/* Mobile About Section */}
-        <section className="mobile-about-section">
-          <div className="mobile-about-content">
-            <h4 className="m-about-subtitle">ABOUT US</h4>
-            <h2 className="m-about-title">We <span className="text-blue">Pack.</span><br/>You Relax.</h2>
-            <p className="m-about-text">
-              Reliable packaging solutions<br/>
-              built to protect your products<br/>
-              and strengthen your brand.
-            </p>
-            <Link to="/about" className="btn btn-primary m-about-btn">
-              Learn More <ArrowRight size={16} style={{ marginLeft: '4px' }} />
-            </Link>
-          </div>
-          
-          <div className="mobile-about-visuals">
-             <div className="m-about-dots"></div>
-             <div className="m-about-image-wrapper">
-                <img src="/assets/clean-warehouse.png" alt="Warehouse" />
-                <div className="m-about-blue-curve"></div>
-             </div>
-             <div className="m-about-top-triangle"></div>
-          </div>
-        </section>
-
-        {/* Mobile Industries Section */}
-        <section className="mobile-industries-section">
-          <div className="mobile-section-header">
-            <h4 className="m-ind-subtitle">INDUSTRIES WE SERVE</h4>
-            <h2 className="m-ind-title">Packaging for Every<br/>Sector</h2>
-          </div>
-          <div className="m-ind-grid">
-            {industries.map((ind, i) => (
-              <div key={i} className="m-ind-card">
-                <div className="m-ind-img-wrap">
-                  <img src={ind.img} alt={ind.name} />
-                </div>
-                <span className="m-ind-name">
-                  {ind.name.split('\n').map((part, idx) => (
-                    <span key={idx}>{part}<br /></span>
-                  ))}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Mobile Capabilities Section */}
-        <section className="mobile-capabilities-section">
-          <div className="m-cap-header">
-            <h3 className="m-cap-title">OUR CAPABILITIES</h3>
-            <div className="m-cap-divider"></div>
-          </div>
-          <div className="m-cap-grid">
-            <div className="m-cap-item">
-              <Map size={24} className="m-cap-icon" strokeWidth={1.5} />
-              <span className="m-cap-num">50K+</span>
-              <span className="m-cap-text">Sq.Ft Facility</span>
-            </div>
-            <div className="m-cap-separator"></div>
-            <div className="m-cap-item">
-              <ShieldCheck size={24} className="m-cap-icon" strokeWidth={1.5} />
-              <span className="m-cap-num">ISO 9001</span>
-              <span className="m-cap-text">Certified</span>
-            </div>
-            <div className="m-cap-separator"></div>
-            <div className="m-cap-item">
-              <Trophy size={24} className="m-cap-icon" strokeWidth={1.5} />
-              <span className="m-cap-num">10M+</span>
-              <span className="m-cap-text">Units Monthly</span>
-            </div>
-            <div className="m-cap-separator"></div>
-            <div className="m-cap-item">
-              <CheckCircle size={24} className="m-cap-icon" strokeWidth={1.5} />
-              <span className="m-cap-num">100%</span>
-              <span className="m-cap-text">Quality<br/>Assured</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Mobile Process / How it works */}
-        <section className="mobile-process-section section" ref={processRefMobile}>
-          <div className="container">
-            <div className="dp-header" style={{ marginBottom: '40px', textAlign: 'center' }}>
-              <h4 className="dp-subtitle">HOW IT WORKS</h4>
-              <h2 className="dp-title" style={{ fontSize: '2.2rem' }}>Turning Ideas Into Impact</h2>
-              <p className="dp-desc" style={{ fontSize: '1rem' }}>Our proven process to deliver packaging that performs.</p>
-            </div>
-
-            <div className="process-grid m-process-grid" style={{ '--progress': scrollProgress } as React.CSSProperties}>
-              {processSteps.map((step, i) => {
-                const stepThreshold = i * 0.25;
-                const isActive = scrollProgress > stepThreshold;
-                const Icon = step.icon;
-                return (
-                  <div key={i} className={`process-step ${isActive ? 'active' : ''}`}>
-                    <div className="dp-icon-wrapper" style={{ width: '70px', height: '70px', marginBottom: '15px' }}>
-                      <Icon size={24} strokeWidth={2} />
-                    </div>
-                    <div className="dp-num" style={{ fontSize: '0.9rem', marginBottom: '5px' }}>0{step.num}</div>
-                    <h4 className="dp-step-title" style={{ fontSize: '1.1rem', marginBottom: '5px' }}>{step.title}<br/>{step.desc}</h4>
-                    <p className="dp-step-details" style={{ fontSize: '0.85rem' }}>{step.details}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-        {/* Mobile Testimonials */}
-        <section className="testimonials-section section bg-white">
-          <div className="container">
-            <h4 className="section-subtitle">CLIENT FEEDBACK</h4>
-            <h2>What Our Partners Say</h2>
-
-            <div className="testimonials-grid">
-              {testimonials.map((t, i) => (
-                <div key={i} className="testimonial-card">
-                  <Quote size={24} className="quote-icon" />
-                  <div className="stars">
-                    {'★★★★★'.split('').map((star, idx) => <span key={idx}>{star}</span>)}
-                  </div>
-                  <p className="testimonial-text">"{t.quote}"</p>
-                  <div className="client-info">
-                    <h6>{t.name}</h6>
-                    <span>{t.company}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Mobile CTA */}
-        <section className="mobile-cta-section">
-          <div className="mobile-cta-card">
-             <div className="mcta-icon-wrap">
-               <PackageCheck size={28} color="#ffffff" strokeWidth={1.5} />
-             </div>
-             <div className="mcta-text">
-               <h3>Need Custom Packaging<br/>for Your Business?</h3>
-               <p>Our experts are ready to help.</p>
-               <Link to="/contact" className="btn btn-secondary mcta-btn">
-                 Contact Us <ArrowRight size={16} style={{ marginLeft: '8px' }} />
-               </Link>
-             </div>
-          </div>
-        </section>
-      </div>
-
-      <div className="desktop-only-home">
-      {/* 3. About & Industries Combined */}
+      {/* 5. About & Industries Combined */}
       <section className="about-industries-combined section bg-surface-1">
         <div className="aic-container">
-
-          {/* Left: About Us */}
+          {/* Left Column: About Us */}
           <div className="aic-about-col">
-            <h4 className="section-subtitle">ABOUT US</h4>
+            <h4 className="section-subtitle">WHO WE ARE</h4>
             <h2 className="aic-title">
-              Packaging Solutions<br />That <span style={{ color: 'var(--primary-color)' }}>Protect.</span> Always.
+              We <span className="text-highlight">Pack.</span><br />You Relax.
             </h2>
             <p className="aic-desc">
-              DBPack delivers high-quality, cost-effective, and sustainable packaging solutions to businesses of all sizes.
+              DBPack delivers high-durability, cost-effective, and fully recyclable packaging solutions to support your supply chain and elevate brand presentation.
             </p>
-            <Link to="/about" className="btn btn-primary aic-btn">
-              Learn More<ArrowRight size={18} />
+            <Link to="/about" className="btn btn-secondary aic-btn">
+              OUR JOURNEY <ArrowRight size={18} style={{ marginLeft: '6px' }} />
             </Link>
           </div>
 
-          {/* Center: Slanted Image */}
+          {/* Middle Column: Slanted Facility Image */}
           <div className="aic-image-col">
             <div className="aic-slanted-wrapper">
               <div className="aic-image-inner">
-                <img src="/assets/clean-warehouse.png" alt="Warehouse Facility" className="aic-image" />
+                <img src="/facility.png" alt="DBPack manufacturing facility" className="aic-image" loading="lazy" />
               </div>
             </div>
           </div>
 
-          {/* Right: Industries */}
+          {/* Right Column: Industries We Serve */}
           <div className="aic-industries-col">
-            <h4 className="section-subtitle" style={{ textAlign: 'left' }}>INDUSTRIES WE SERVE</h4>
-            <h2 className="aic-title-small" style={{ textAlign: 'left' }}>Packaging for Every Sector</h2>
-
+            <h4 className="section-subtitle">INDUSTRIES WE SERVE</h4>
+            <h2 className="aic-title-small">Custom Solutions per Sector</h2>
             <div className="aic-icons-row">
               {industries.map((ind, i) => (
                 <div key={i} className="aic-icon-item">
                   <div className="aic-icon-box">
-                    <img src={ind.img} alt={ind.name} className="ind-img" />
+                    <img src={ind.img} alt={ind.name.replace('\n', ' ')} className="ind-img" loading="lazy" />
                   </div>
                   <span className="aic-icon-text">
                     {ind.name.split('\n').map((part, idx) => (
@@ -435,123 +304,117 @@ const Home = () => {
               ))}
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="cta-banner-section">
+      {/* 6. CTA Banner Section */}
+      <section className="cta-banner-section" aria-label="Call to action banner">
         <div className="cta-banner-bg">
-          <img src="/assets/clean-warehouse.png" alt="Warehouse Background" />
+          <img src="/facility.png" alt="Warehouse backdrop" loading="lazy" />
           <div className="cta-banner-overlay"></div>
         </div>
-
         <div className="cta-banner-content">
-          <h2>Schedule A Call Back Now!</h2>
-          <p>Let's find the right packaging solution for your business.</p>
+          <h2>Ready to Transform Your Packaging?</h2>
+          <p>Get in touch with our design experts and optimize your logistics today.</p>
           <Link to="/contact" className="btn btn-primary cta-btn">
-            SEND REQUEST <MousePointerClick size={16} />
+            TALK TO AN EXPERT <MousePointerClick size={16} style={{ marginLeft: '4px' }} />
           </Link>
         </div>
       </section>
 
-
-      {/* 5. Capabilities / Quality */}
+      {/* 7. Capabilities Section */}
       <section className="capabilities-section section bg-white">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h4 className="section-subtitle" style={{ color: 'var(--primary-color)' }}>OUR CAPABILITIES</h4>
-            <h2 style={{ color: 'var(--text-color)' }}>Scale & Quality You Can Trust</h2>
+          <div className="section-header-centered">
+            <h4 className="section-subtitle">OUR CAPACITY</h4>
+            <h2>Scale &amp; Quality Assured</h2>
+            <div className="header-divider centered"></div>
           </div>
 
           <div className="capabilities-stats-grid">
-            <div className="cap-stat-item">
-              <div className="cap-stat-icon-wrap">
-                <Factory size={36} strokeWidth={1.5} />
-              </div>
-              <h3 className="cap-stat-number">50,000+</h3>
-              <p className="cap-stat-label">Sq.Ft Manufacturing<br />Facility</p>
-            </div>
-
-            <div className="cap-stat-divider"></div>
-
-            <div className="cap-stat-item">
-              <div className="cap-stat-icon-wrap">
-                <ShieldCheck size={36} strokeWidth={1.5} />
-              </div>
-              <h3 className="cap-stat-number">ISO 9001</h3>
-              <p className="cap-stat-label">Certified for Quality<br />Management</p>
-            </div>
-
-            <div className="cap-stat-divider"></div>
-
-            <div className="cap-stat-item">
-              <div className="cap-stat-icon-wrap">
-                <Trophy size={36} strokeWidth={1.5} />
-              </div>
-              <h3 className="cap-stat-number">10M+</h3>
-              <p className="cap-stat-label">Units Produced<br />Monthly</p>
-            </div>
-
-            <div className="cap-stat-divider"></div>
-
-            <div className="cap-stat-item">
-              <div className="cap-stat-icon-wrap">
-                <CheckCircle size={36} strokeWidth={1.5} />
-              </div>
-              <h3 className="cap-stat-number">100%</h3>
-              <p className="cap-stat-label">Quality inspected</p>
-            </div>
+            <StatCounter value="50000" label="Sq.Ft Facility">
+              <Factory size={36} strokeWidth={1.5} />
+            </StatCounter>
+            <div className="cap-stat-divider" role="separator"></div>
+            <StatCounter value="9001" label="ISO certified">
+              <ShieldCheck size={36} strokeWidth={1.5} />
+            </StatCounter>
+            <div className="cap-stat-divider" role="separator"></div>
+            <StatCounter value="10000000" label="Units Monthly">
+              <Trophy size={36} strokeWidth={1.5} />
+            </StatCounter>
+            <div className="cap-stat-divider" role="separator"></div>
+            <StatCounter value="100" label="Quality Inspected">
+              <CheckCircle size={36} strokeWidth={1.5} />
+            </StatCounter>
           </div>
         </div>
       </section>
 
-      {/* 6. Desktop Process / How it works (Matches Dark Theme Mockup) */}
-      <section className="desktop-process-section section" ref={processRefDesktop}>
+      {/* 8. Process Section */}
+      <section className="process-section section bg-surface-3" ref={processRef}>
         <div className="container">
           <div className="dp-header">
-            <h4 className="dp-subtitle">HOW IT WORKS</h4>
+            <h4 className="dp-subtitle">OUR PROCESS</h4>
             <h2 className="dp-title">Turning Ideas Into Impact</h2>
-            <p className="dp-desc">Our proven process to deliver packaging that performs.</p>
+            <p className="dp-desc">Our proven, step-by-step workflow to deliver high-performance B2B packaging.</p>
+            <div className="header-divider centered"></div>
           </div>
 
-          <div className="desktop-process-grid">
-            {processSteps.map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <div key={i} className="desktop-process-step">
-                  <div className="dp-icon-wrapper">
-                    <Icon size={32} strokeWidth={2} />
+          {/* Responsive Process Flow */}
+          <div className="process-flow-container">
+            {/* Desktop Connector Line SVG */}
+            <svg className="process-line-svg" viewBox="0 0 1000 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M 50 50 Q 175 0 300 50 T 550 50 T 800 50 T 950 50" stroke="#cbd5e1" strokeWidth="3" strokeDasharray="6,6" />
+              <path d="M 50 50 Q 175 0 300 50 T 550 50 T 800 50 T 950 50" stroke="var(--primary-color)" strokeWidth="3" strokeDasharray="6,6" strokeDashoffset={1000 - (scrollProgress * 1000)} />
+            </svg>
+
+            <div className="process-steps-grid">
+              {processSteps.map((step, i) => {
+                const Icon = step.icon;
+                const stepThreshold = i * 0.25;
+                const isActive = scrollProgress > stepThreshold;
+                return (
+                  <div key={i} className={`process-step-block ${isActive ? 'active' : ''}`}>
+                    <div className="dp-icon-wrapper">
+                      <Icon size={30} strokeWidth={2} />
+                    </div>
+                    <div className="dp-num">0{step.num}</div>
+                    <h4 className="dp-step-title">{step.title}<br />{step.desc}</h4>
+                    <p className="dp-step-details">{step.details}</p>
                   </div>
-                  <div className="dp-num">0{step.num}</div>
-                  <h4 className="dp-step-title">
-                    {step.title}<br/>{step.desc}
-                  </h4>
-                  <p className="dp-step-details">{step.details}</p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Testimonials */}
+      {/* 9. Testimonials */}
       <section className="testimonials-section section bg-white">
         <div className="container">
-          <h4 className="section-subtitle">CLIENT FEEDBACK</h4>
-          <h2>What Our Partners Say</h2>
+          <div className="section-header-centered">
+            <h4 className="section-subtitle">PARTNER FEEDBACK</h4>
+            <h2>What Our Clients Say</h2>
+            <div className="header-divider centered"></div>
+          </div>
 
           <div className="testimonials-grid">
             {testimonials.map((t, i) => (
               <div key={i} className="testimonial-card">
-                <Quote size={24} className="quote-icon" />
-                <div className="stars">
-                  {'★★★★★'.split('').map((star, idx) => <span key={idx}>{star}</span>)}
+                <Quote size={32} className="quote-icon" />
+                <div className="stars" aria-label="5 star rating">
+                  {[...Array(5)].map((_, idx) => (
+                    <span key={idx} className="star-icon">★</span>
+                  ))}
                 </div>
                 <p className="testimonial-text">"{t.quote}"</p>
-                <div className="client-info">
-                  <h6>{t.name}</h6>
-                  <span>{t.company}</span>
+                <div className="client-info-row">
+                  <div className="client-avatar">{t.initial}</div>
+                  <div>
+                    <h6>{t.name}</h6>
+                    <span>{t.company}</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -559,32 +422,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 8. FAQ Section */}
+      {/* 10. FAQ Section */}
       <section className="faq-section section bg-surface-1">
         <div className="container">
           <div className="faq-header">
-            <h4 className="section-subtitle" style={{ color: 'var(--primary-color)' }}>FAQ</h4>
-            <h2 style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Common Questions</h2>
-            <div className="faq-title-underline"></div>
+            <h4 className="section-subtitle">FAQ</h4>
+            <h2>Common Questions</h2>
+            <div className="header-divider centered"></div>
           </div>
 
           <div className="faq-container">
             <div className="faq-list">
               {faqs.map((faq, i) => (
-                <div
-                  key={i}
-                  className={`faq-item ${openFaq === i ? 'open' : ''}`}
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                >
-                  <div className="faq-question">
+                <div key={i} className="faq-item">
+                  <button
+                    className={`faq-question-btn ${openFaq === i ? 'open' : ''}`}
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                  >
                     <h5>{faq.q}</h5>
                     <div className="faq-icon-wrapper">
-                      {openFaq === i ? <Minus size={16} strokeWidth={3} /> : <Plus size={16} strokeWidth={3} />}
+                      {openFaq === i ? <Minus size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
                     </div>
-                  </div>
-                  <div className="faq-answer">
-                    <p>{faq.a}</p>
-                  </div>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaq === i && (
+                      <motion.div
+                        className="faq-answer-wrapper"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      >
+                        <div className="faq-answer-content">
+                          <p>{faq.a}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
@@ -594,30 +469,30 @@ const Home = () => {
                 <Headset size={28} />
               </div>
               <div className="faq-cta-text">
-                <p>Can't find what you're looking for?</p>
-                <Link to="/contact" className="faq-cta-link">Talk to our expert &rarr;</Link>
+                <p>Can't find what you are looking for?</p>
+                <Link to="/contact" className="faq-cta-link">Talk to our packaging expert &rarr;</Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. CTA Section */}
-      <section className="cta-section">
-        <div className="container cta-content">
-          <div className="cta-text">
-            <h2>Need a Custom Packaging Solution?</h2>
-            <p>Request a quote or send us your requirements.</p>
-            <Link to="/quote" className="btn btn-secondary cta-btn">REQUEST A QUOTE</Link>
+      {/* 11. Bottom CTA */}
+      <section className="cta-section-bottom">
+        <div className="container cta-bottom-card">
+          <div className="cta-bottom-text">
+            <h2>Optimize Your Packaging Today</h2>
+            <p>Get wholesale B2B pricing and customizable design solutions for your bulk shipments.</p>
+            <Link to="/quote" className="btn btn-secondary cta-bottom-btn">
+              GET A FREE QUOTE
+            </Link>
           </div>
-          <div className="cta-graphics">
-            <div className="mock-clipboard">📋</div>
-            <div className="mock-box-small">📦</div>
+          <div className="cta-graphics-wrap" aria-hidden="true">
+            <div className="glow-circle"></div>
+            <div className="floating-box-graphic">📦</div>
           </div>
         </div>
       </section>
-
-      </div>
     </div>
   );
 };

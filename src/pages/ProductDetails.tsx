@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Check, Package, ShieldCheck, Truck } from 'lucide-react';
-import { getProductById } from '../data/products';
+import { Check, Package, ShieldCheck, Truck, ArrowLeft, ZoomIn, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { getProductById, products } from '../data/products';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
@@ -9,114 +10,255 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState(id ? getProductById(id) : undefined);
   const [activeImage, setActiveImage] = useState<string>('');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     if (id) {
       const found = getProductById(id);
       if (found) {
         setProduct(found);
         setActiveImage(found.img);
       } else {
-        // Redirect to products if not found
         navigate('/products');
       }
     }
+    // Simulate page load for skeleton shimmer effect
+    const timer = setTimeout(() => setLoading(false), 400);
+    return () => clearTimeout(timer);
   }, [id, navigate]);
 
   if (!product) {
     return <div className="page-container" style={{ padding: '100px', textAlign: 'center' }}>Loading...</div>;
   }
 
+  // Get related products from same category or different
+  const relatedProducts = products
+    .filter((p) => p.id !== product.id && (p.category === product.category || p.category === 'Boxes'))
+    .slice(0, 3);
+
+  // JSON-LD Structured SEO Schema Markup
+  const schemaMarkup = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.title,
+    "image": `https://dbpack.com${product.img}`,
+    "description": product.fullDesc,
+    "brand": {
+      "@type": "Brand",
+      "name": "DBPack"
+    },
+    "category": product.category,
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "INR",
+      "lowPrice": "Contact for bulk wholesale B2B pricing",
+      "price": "B2B wholesale pricing upon inquiry",
+      "priceCurrencySign": "₹",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "DBPack"
+      }
+    }
+  };
+
   return (
-    <div className="page-container product-details-page">
+    <div className="page-container product-details-page-container">
+      {/* Inject JSON-LD to Head dynamically */}
+      <script type="application/ld+json">
+        {JSON.stringify(schemaMarkup)}
+      </script>
+
       <div className="container">
-        
-        {/* Breadcrumb Navigation */}
-        <div className="breadcrumb">
-          <Link to="/">Home</Link>
-          <span className="breadcrumb-separator">›</span>
-          <Link to="/products">Products</Link>
-          <span className="breadcrumb-separator">›</span>
-          <span style={{ color: 'var(--text-color)' }}>{product.title}</span>
+        {/* Back and Breadcrumb Links */}
+        <div className="product-breadcrumb-wrap">
+          <div className="breadcrumb-nav">
+            <Link to="/">Home</Link>
+            <span className="breadcrumb-separator">›</span>
+            <Link to="/products">Products</Link>
+            <span className="breadcrumb-separator">›</span>
+            <span className="breadcrumb-current">{product.title}</span>
+          </div>
+          <Link to="/products" className="back-catalog-link">
+            <ArrowLeft size={16} /> Back to Catalog
+          </Link>
         </div>
 
-        {/* Top Section: Gallery, Info, Buy Box */}
-        <div className="product-top-section">
-          
-          {/* Left: Image Gallery */}
-          <div className="product-gallery">
-            <div className="main-image-container">
-              <img src={activeImage} alt={product.title} />
+        {loading ? (
+          /* Shimmer Skeleton Screen Loader */
+          <div className="product-skeleton-screen">
+            <div className="skeleton-image-gallery"></div>
+            <div className="skeleton-info-block">
+              <div className="skeleton-line title"></div>
+              <div className="skeleton-line tag"></div>
+              <div className="skeleton-line text"></div>
+              <div className="skeleton-line text"></div>
+              <div className="skeleton-line button"></div>
             </div>
-            {product.gallery && product.gallery.length > 1 && (
-              <div className="thumbnail-list">
-                {product.gallery.map((img, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`thumbnail ${activeImage === img ? 'active' : ''}`}
-                    onClick={() => setActiveImage(img)}
-                  >
-                    <img src={img} alt={`${product.title} view ${idx + 1}`} />
-                  </div>
-                ))}
+          </div>
+        ) : (
+          /* Top Product Info block */
+          <div className="product-top-section">
+            {/* Left Column: Interactive Image Gallery */}
+            <div className="product-gallery-block">
+              <div className="main-image-container-wrap">
+                <img src={activeImage} alt={product.title} className="product-main-img" />
+                <button 
+                  className="lightbox-zoom-btn"
+                  onClick={() => setIsLightboxOpen(true)}
+                  aria-label="Zoom image"
+                >
+                  <ZoomIn size={18} />
+                </button>
               </div>
-            )}
+              
+              {product.gallery && product.gallery.length > 0 && (
+                <div className="thumbnail-list-row">
+                  {/* Keep main image as first thumbnail if not already present */}
+                  <button 
+                    className={`thumbnail-item-btn ${activeImage === product.img ? 'active' : ''}`}
+                    onClick={() => setActiveImage(product.img)}
+                    aria-label={`View primary image`}
+                  >
+                    <img src={product.img} alt={`${product.title} main thumbnail`} />
+                  </button>
+                  {product.gallery.map((img, idx) => {
+                    // Skip if thumbnail matches main image to avoid duplicates
+                    if (img === product.img) return null;
+                    return (
+                      <button 
+                        key={idx} 
+                        className={`thumbnail-item-btn ${activeImage === img ? 'active' : ''}`}
+                        onClick={() => setActiveImage(img)}
+                        aria-label={`View details image ${idx + 1}`}
+                      >
+                        <img src={img} alt={`${product.title} thumbnail ${idx + 1}`} />
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Middle Column: Technical and Marketing Info */}
+            <div className="product-info-column-wrap">
+              <span className="product-cat-badge">{product.category}</span>
+              <h1>{product.title}</h1>
+              <p className="product-short-desc-text">{product.desc}</p>
+              
+              <div className="features-list-box">
+                <h4>Core Packaging Features</h4>
+                <ul className="product-features-check-list">
+                  {product.features.map((feature, idx) => (
+                    <li key={idx}>
+                      <span className="check-bullet">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column: B2B Call to Action Box */}
+            <div className="product-cta-sidebar-box">
+              <div className="cta-price-mock-tag">Wholesale B2B Pricing</div>
+              <div className="cta-stock-badge">Bulk Orders Available</div>
+              <p className="cta-box-desc-text">
+                We manufacture to your custom size requirements. Get factory wholesale rates on your bulk ordering.
+              </p>
+              
+              <Link to="/quote" className="btn btn-primary btn-quote-full-width">
+                Get a Bulk Quote
+              </Link>
+              <Link to="/contact" className="btn btn-secondary btn-sample-request-width" style={{ marginTop: '10px', width: '100%' }}>
+                Request Sample
+              </Link>
+
+              <ul className="cta-benefits-list">
+                <li><Check size={16} className="benefit-icon" /> ISO 9001 quality check</li>
+                <li><Truck size={16} className="benefit-icon" /> Timely delivery across India</li>
+                <li><Package size={16} className="benefit-icon" /> Factory direct wholesale</li>
+                <li><ShieldCheck size={16} className="benefit-icon" /> Custom branding option</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Bottom Details Section: Full description & specifications */}
+        <div className="product-bottom-specifications-section">
+          <div className="description-section">
+            <h2>Product Overview</h2>
+            <p className="product-full-desc-para">{product.fullDesc}</p>
           </div>
 
-          {/* Middle: Product Info */}
-          <div className="product-info-column">
-            <h1>{product.title}</h1>
-            <span className="product-category">{product.category}</span>
-            <p className="product-short-desc">{product.desc}</p>
-            
-            <h3 style={{ fontSize: '1.1rem', marginBottom: '10px' }}>Key Features</h3>
-            <ul className="product-features">
-              {product.features.map((feature, idx) => (
-                <li key={idx}>{feature}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Right: CTA Box (Amazon Style) */}
-          <div className="product-cta-box">
-            <div className="cta-price-mock">Custom Pricing</div>
-            <div className="cta-stock">Available for bulk order</div>
-            <p className="cta-box-desc">
-              Get specialized B2B pricing tailored to your volume and customization needs.
-            </p>
-            
-            <Link to="/quote" className="btn btn-primary btn-quote-full">
-              Get a Custom Quote
-            </Link>
-
-            <ul className="cta-benefits">
-              <li><Check size={16} /> Secure Payment Processing</li>
-              <li><Truck size={16} /> Fast Pan-India Delivery</li>
-              <li><Package size={16} /> MOQ Applies</li>
-              <li><ShieldCheck size={16} /> DBPack Quality Guarantee</li>
-            </ul>
+          <div className="specifications-section">
+            <h2>Technical Specifications</h2>
+            <table className="specs-table-striped">
+              <tbody>
+                {Object.entries(product.specifications).map(([key, value], idx) => (
+                  <tr key={idx}>
+                    <th>{key}</th>
+                    <td>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
-        {/* Bottom Section: Details and Specs */}
-        <div className="product-bottom-section">
-          <h2>Product Description</h2>
-          <p className="product-full-desc">{product.fullDesc}</p>
-
-          <h2>Technical Specifications</h2>
-          <table className="specs-table">
-            <tbody>
-              {Object.entries(product.specifications).map(([key, value], idx) => (
-                <tr key={idx}>
-                  <th>{key}</th>
-                  <td>{value}</td>
-                </tr>
+        {/* Related Products Section */}
+        {relatedProducts.length > 0 && (
+          <div className="related-products-section">
+            <h2 className="related-title">Related Packaging Products</h2>
+            <div className="related-products-grid">
+              {relatedProducts.map((p) => (
+                <Link to={`/product/${p.id}`} className="related-product-card" key={p.id}>
+                  <div className="related-img-wrap">
+                    <img src={p.img} alt={p.title} loading="lazy" />
+                  </div>
+                  <div className="related-info">
+                    <h4>{p.title}</h4>
+                    <span className="related-details-link">View details &rarr;</span>
+                  </div>
+                </Link>
               ))}
-            </tbody>
-          </table>
-        </div>
-
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* Full Screen Image Lightbox Modal */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div 
+            className="lightbox-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            <button 
+              className="lightbox-close-btn"
+              onClick={() => setIsLightboxOpen(false)}
+              aria-label="Close zoom"
+            >
+              <X size={24} />
+            </button>
+            <motion.div 
+              className="lightbox-img-container"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+            >
+              <img src={activeImage} alt={product.title} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

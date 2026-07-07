@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowUp, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MessageCircle, ArrowUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { SITE_CONFIG } from '../config/site';
 import './FloatingWidgets.css';
 
-const WhatsAppIcon = ({ size = 24, color = "currentColor" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+const WhatsAppIcon = ({ size = 22 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
   </svg>
 );
@@ -29,7 +30,7 @@ const FloatingWidgets = () => {
         }
         scrollTimeout.current = setTimeout(() => {
           setIsScrolling(false);
-        }, 600); // Reveal buttons 600ms after scrolling stops
+        }, 800); // Collapse contact buttons 800ms after scrolling stops
       } else {
         setIsScrolling(false);
       }
@@ -46,55 +47,77 @@ const FloatingWidgets = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Safe phone parsing for multiple values
+  const phoneArray = SITE_CONFIG.contact.phone.split(',');
+  const primaryPhoneRaw = phoneArray[0].trim();
+  const primaryPhoneDialable = primaryPhoneRaw.replace(/[^0-9+]/g, '');
+  const primaryPhoneWhatsapp = primaryPhoneRaw.replace(/[^0-9]/g, '');
+
   return (
     <div className="floating-widgets-container">
-      {/* 3. Scroll to Top (Now first in DOM for column-reverse so it's at the bottom) */}
-      <button 
-        className={`floating-btn scroll-top-btn ${showScrollTop ? 'visible' : ''}`}
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-      >
-        <ArrowUp size={24} color="#ffffff" />
-      </button>
+      {/* Scroll to Top Widget */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button 
+            className="floating-btn scroll-top-btn"
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ArrowUp size={24} color="#ffffff" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <div className="contact-slot">
-        {/* 1. Main FAB Inquiry Button (Only visible while scrolling) */}
-        <div 
-          className={`floating-btn fab-btn ${isScrolling ? 'visible' : ''}`}
-          aria-label="Inquiry"
-        >
-          <MessageCircle size={24} color="#ffffff" />
-        </div>
+        {/* Main Floating Inquiry FAB */}
+        <AnimatePresence>
+          {isScrolling && (
+            <motion.div 
+              className="floating-btn fab-btn"
+              aria-label="Inquiry options active"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+            >
+              <MessageCircle size={24} color="#ffffff" />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* 2. Contact Buttons Group */}
+        {/* Collapsible Contact Action Group */}
         <div className={`contact-widgets-group ${isScrolling ? 'collapsed' : ''}`}>
-          {/* Phone */}
+          {/* Call Widget */}
           <a 
-            href={`tel:${SITE_CONFIG.contact.phone.replace(/[^0-9+]/g, '')}`} 
+            href={`tel:${primaryPhoneDialable}`} 
             className="floating-btn phone-btn" 
             aria-label="Call Us"
           >
-            <Phone size={22} color="#ffffff" />
+            <Phone size={20} color="#ffffff" />
           </a>
 
-          {/* Email */}
+          {/* Email Widget */}
           <a 
             href={`mailto:${SITE_CONFIG.contact.email}`} 
             className="floating-btn email-btn" 
-            aria-label="Email"
+            aria-label="Email Us"
           >
-            <Mail size={22} color="#ffffff" />
+            <Mail size={20} color="#ffffff" />
           </a>
           
-          {/* WhatsApp */}
+          {/* WhatsApp Chat Widget */}
           <a 
-            href={`https://wa.me/${SITE_CONFIG.contact.phone.replace(/[^0-9]/g, '')}`} 
+            href={`https://wa.me/${primaryPhoneWhatsapp}`} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="floating-btn whatsapp-btn" 
-            aria-label="WhatsApp"
+            aria-label="WhatsApp chat"
           >
-            <WhatsAppIcon size={22} color="#ffffff" />
+            <WhatsAppIcon size={20} />
           </a>
         </div>
       </div>

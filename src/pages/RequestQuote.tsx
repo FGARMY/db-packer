@@ -1,135 +1,371 @@
-import './RequestQuote.css';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Factory, Calendar, Settings } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import './RequestQuote.css';
 
 const RequestQuote = () => {
+  const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    company: '',
+    industry: 'E-Commerce / Retail',
+    email: '',
+    phone: '',
+    product: '',
+    quantity: '',
+    dimensions: '',
+    customPrinting: 'Yes, custom logo/design',
+    additionalInfo: ''
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateStep1 = () => {
+    const errs: Record<string, string> = {};
+    if (!formData.firstName.trim()) errs.firstName = 'First name is required';
+    if (!formData.lastName.trim()) errs.lastName = 'Last name is required';
+    if (!formData.company.trim()) errs.company = 'Company is required';
+    if (!formData.email.trim()) {
+      errs.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errs.email = 'Invalid email';
+    }
+    if (!formData.phone.trim()) {
+      errs.phone = 'Phone is required';
+    } else if (!/^\+?[0-9\s-]{10,15}$/.test(formData.phone.replace(/[^0-9+]/g, ''))) {
+      errs.phone = 'Invalid phone number';
+    }
+    return errs;
+  };
+
+  const validateStep2 = () => {
+    const errs: Record<string, string> = {};
+    if (!formData.product) errs.product = 'Please select a product';
+    if (!formData.quantity) errs.quantity = 'Please select quantity';
+    return errs;
+  };
+
+  const handleNext = () => {
+    const step1Errors = validateStep1();
+    if (Object.keys(step1Errors).length > 0) {
+      setErrors(step1Errors);
+      return;
+    }
+    setErrors({});
+    setStep(2);
+  };
+
+  const handleBack = () => {
+    setErrors({});
+    setStep(1);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const step2Errors = validateStep2();
+    if (Object.keys(step2Errors).length > 0) {
+      setErrors(step2Errors);
+      return;
+    }
+    
+    setErrors({});
+    setIsSubmitting(true);
+
+    // Simulate API quote post call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 1500);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const copy = { ...prev };
+        delete copy[name];
+        return copy;
+      });
+    }
+  };
+
   return (
     <div className="quote-page-wrapper">
       
-      {/* Sidebar Graphics Section */}
+      {/* Left Column: Premium Graphics Sidebar */}
       <div className="quote-sidebar">
         <div className="quote-sidebar-overlay"></div>
         <div className="quote-sidebar-content">
-          <h2>Let's Build Something Great Together</h2>
+          <h2>Premium B2B Packaging Quotes</h2>
           <p>
-            Whether you need sturdy corrugated boxes for shipping, or premium luxury packaging for retail, 
-            our team is ready to design the perfect solution for your business.
+            Engage with our industrial manufacturing team. We supply ISO 9001 certified mono cartons, custom corrugated shippers, blisters, and pouches direct-from-factory.
           </p>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Custom Dimensions & Materials
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> High-Quality Branding & Printing
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Wholesale Bulk Discounts
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: '#60a5fa', fontSize: '1.2rem' }}>✓</span> Reliable Fast Turnaround
-            </li>
+          <ul className="sidebar-benefits-list">
+            <li><ShieldCheck size={18} className="sidebar-icon" /> ISO 9001 Certified Quality Standards</li>
+            <li><Factory size={18} className="sidebar-icon" /> High-volume automated capacity</li>
+            <li><Calendar size={18} className="sidebar-icon" /> Fast design and sample turnarounds</li>
+            <li><Settings size={18} className="sidebar-icon" /> Engineered product specs</li>
           </ul>
         </div>
       </div>
 
-      {/* Form Section */}
+      {/* Right Column: Multi-step Form Wizard Area */}
       <div className="quote-form-area">
-        <div className="page-breadcrumb" style={{ marginBottom: '40px' }}>
-          <Link to="/" style={{ color: '#6b7280', textDecoration: 'none' }}>DB Packer</Link> <span style={{ margin: '0 8px', color: '#9ca3af' }}>&bull;</span> <span style={{ color: '#111827', fontWeight: '500' }}>Request A Quote</span>
+        <div className="page-breadcrumb">
+          <Link to="/">Home</Link>
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">Request A Quote</span>
         </div>
         
-        <div style={{ marginBottom: '30px' }}>
-          <h1 style={{ fontSize: '2.5rem', marginBottom: '10px', color: '#111827' }}>Request a Detailed Quote</h1>
-          <p style={{ color: '#6b7280', fontSize: '1.1rem' }}>Please fill in the details below to help us understand your packaging needs accurately.</p>
+        <div className="quote-form-header">
+          <h1>Request a Custom Quote</h1>
+          <p>Provide details below and our packaging engineer will contact you with bulk wholesale estimates.</p>
         </div>
 
-        <form className="detailed-quote-form">
-          <h3 className="form-section-title">1. Your Information</h3>
-          <div className="dq-row">
-            <div className="dq-group">
-              <label>First Name *</label>
-              <input type="text" className="dq-input" required />
-            </div>
-            <div className="dq-group">
-              <label>Last Name *</label>
-              <input type="text" className="dq-input" required />
-            </div>
+        {/* Step Indicator Bar */}
+        {!isSubmitted && (
+          <div className="quote-step-indicator-bar" aria-label="Form progress">
+            <div className={`step-dot ${step >= 1 ? 'active' : ''}`}>1</div>
+            <div className="step-line-fill" style={{ width: step === 2 ? '100%' : '0%' }}></div>
+            <div className={`step-dot ${step === 2 ? 'active' : ''}`}>2</div>
+            <span className="step-label">Step {step} of 2</span>
           </div>
-          <div className="dq-row">
-            <div className="dq-group">
-              <label>Company Name *</label>
-              <input type="text" className="dq-input" required />
-            </div>
-            <div className="dq-group">
-              <label>Industry</label>
-              <select className="dq-select">
-                <option>E-Commerce / Retail</option>
-                <option>Food & Beverage</option>
-                <option>Manufacturing / Industrial</option>
-                <option>Healthcare / Pharma</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div className="dq-row">
-            <div className="dq-group">
-              <label>Email Address *</label>
-              <input type="email" className="dq-input" required />
-            </div>
-            <div className="dq-group">
-              <label>Phone Number *</label>
-              <input type="tel" className="dq-input" required />
-            </div>
-          </div>
+        )}
 
-          <h3 className="form-section-title">2. Project Details</h3>
-          <div className="dq-row">
-            <div className="dq-group">
-              <label>Primary Product of Interest *</label>
-              <select className="dq-select" required defaultValue="">
-                <option value="" disabled>Select a product...</option>
-                <option>Corrugated Boxes</option>
-                <option>Mono Cartons</option>
-                <option>Rigid Boxes</option>
-                <option>Self Adhesive Labels</option>
-                <option>Blister Packaging</option>
-                <option>Pouches</option>
-                <option>Tapes & Films</option>
-                <option>Other / Not Sure</option>
-              </select>
-            </div>
-            <div className="dq-group">
-              <label>Estimated Quantity *</label>
-              <select className="dq-select" required defaultValue="">
-                <option value="" disabled>Select quantity...</option>
-                <option>Under 1,000 units</option>
-                <option>1,000 - 5,000 units</option>
-                <option>5,000 - 20,000 units</option>
-                <option>20,000+ units</option>
-              </select>
-            </div>
-          </div>
-          <div className="dq-row">
-            <div className="dq-group">
-              <label>Approximate Dimensions (L x W x H)</label>
-              <input type="text" className="dq-input" placeholder="e.g. 10x10x10 inches" />
-            </div>
-            <div className="dq-group">
-              <label>Do you need custom printing?</label>
-              <select className="dq-select">
-                <option>Yes, custom logo/design</option>
-                <option>No, plain packaging</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-          </div>
-          
-          <div className="dq-group">
-            <label>Additional Information & Requirements</label>
-            <textarea className="dq-textarea" rows={5} placeholder="Tell us about the weight of your product, specific material requests, timeline, or any other details..."></textarea>
-          </div>
+        <AnimatePresence mode="wait">
+          {isSubmitted ? (
+            /* Success Feedback Box */
+            <motion.div 
+              className="quote-success-block"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+            >
+              <CheckCircle2 size={56} className="success-icon" />
+              <h2>Quote Request Received!</h2>
+              <p>Our sales engineer is already working on your packaging layout specifications. You will receive a detailed wholesale pricing catalog via email within 2-4 business hours.</p>
+              <Link to="/products" className="btn btn-primary">Browse Packaging Catalog</Link>
+            </motion.div>
+          ) : (
+            <motion.form 
+              onSubmit={handleSubmit}
+              className="detailed-quote-form"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {step === 1 ? (
+                /* STEP 1: Personal / Company Contact Info */
+                <div className="form-step-section">
+                  <h3 className="form-section-title">1. Business Information</h3>
+                  
+                  <div className="dq-row">
+                    <div className="dq-group">
+                      <label htmlFor="quote-fname">First Name *</label>
+                      <input 
+                        type="text" 
+                        id="quote-fname"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        className={`dq-input ${errors.firstName ? 'error' : ''}`} 
+                        required 
+                      />
+                      {errors.firstName && <span className="dq-error">{errors.firstName}</span>}
+                    </div>
+                    <div className="dq-group">
+                      <label htmlFor="quote-lname">Last Name *</label>
+                      <input 
+                        type="text" 
+                        id="quote-lname"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        className={`dq-input ${errors.lastName ? 'error' : ''}`} 
+                        required 
+                      />
+                      {errors.lastName && <span className="dq-error">{errors.lastName}</span>}
+                    </div>
+                  </div>
 
-          <button type="submit" className="dq-submit">Submit Request For Quote</button>
-        </form>
+                  <div className="dq-row">
+                    <div className="dq-group">
+                      <label htmlFor="quote-company">Company Name *</label>
+                      <input 
+                        type="text" 
+                        id="quote-company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        className={`dq-input ${errors.company ? 'error' : ''}`} 
+                        required 
+                      />
+                      {errors.company && <span className="dq-error">{errors.company}</span>}
+                    </div>
+                    <div className="dq-group">
+                      <label htmlFor="quote-industry">Industry</label>
+                      <select 
+                        id="quote-industry"
+                        name="industry"
+                        value={formData.industry}
+                        onChange={handleInputChange}
+                        className="dq-select"
+                      >
+                        <option>E-Commerce / Retail</option>
+                        <option>Food &amp; Beverage</option>
+                        <option>Manufacturing / Industrial</option>
+                        <option>Healthcare / Pharma</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="dq-row">
+                    <div className="dq-group">
+                      <label htmlFor="quote-email">Email Address *</label>
+                      <input 
+                        type="email" 
+                        id="quote-email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className={`dq-input ${errors.email ? 'error' : ''}`} 
+                        required 
+                      />
+                      {errors.email && <span className="dq-error">{errors.email}</span>}
+                    </div>
+                    <div className="dq-group">
+                      <label htmlFor="quote-phone">Phone Number *</label>
+                      <input 
+                        type="tel" 
+                        id="quote-phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className={`dq-input ${errors.phone ? 'error' : ''}`} 
+                        placeholder="+91 Phone number"
+                        required 
+                      />
+                      {errors.phone && <span className="dq-error">{errors.phone}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-navigation-actions" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '30px' }}>
+                    <button type="button" onClick={handleNext} className="btn btn-primary btn-next-step">
+                      Next Step <ArrowRight size={18} style={{ marginLeft: '6px' }} />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* STEP 2: Packaging Specifications */
+                <div className="form-step-section">
+                  <h3 className="form-section-title">2. Packaging Specifications</h3>
+
+                  <div className="dq-row">
+                    <div className="dq-group">
+                      <label htmlFor="quote-product">Packaging Type *</label>
+                      <select 
+                        id="quote-product"
+                        name="product"
+                        value={formData.product}
+                        onChange={handleInputChange}
+                        className={`dq-select ${errors.product ? 'error' : ''}`}
+                        required
+                      >
+                        <option value="" disabled>Select product type...</option>
+                        <option value="Boxes">Corrugated Shippers</option>
+                        <option value="Cartons">Mono Cartons</option>
+                        <option value="Boxes">Rigid Luxury Boxes</option>
+                        <option value="Labels">Self Adhesive Labels</option>
+                        <option value="Blisters">Blister Packaging</option>
+                        <option value="Pouches">Flexible Pouches</option>
+                        <option value="Tapes">Promotional Tapes</option>
+                        <option value="Other">Other Custom Packaging</option>
+                      </select>
+                      {errors.product && <span className="dq-error">{errors.product}</span>}
+                    </div>
+                    <div className="dq-group">
+                      <label htmlFor="quote-quantity">Estimated Order Volume *</label>
+                      <select 
+                        id="quote-quantity"
+                        name="quantity"
+                        value={formData.quantity}
+                        onChange={handleInputChange}
+                        className={`dq-select ${errors.quantity ? 'error' : ''}`}
+                        required
+                      >
+                        <option value="" disabled>Select quantity...</option>
+                        <option>Under 1,000 units</option>
+                        <option>1,000 - 5,000 units</option>
+                        <option>5,000 - 20,000 units</option>
+                        <option>20,000+ units (Wholesale discount)</option>
+                      </select>
+                      {errors.quantity && <span className="dq-error">{errors.quantity}</span>}
+                    </div>
+                  </div>
+
+                  <div className="dq-row">
+                    <div className="dq-group">
+                      <label htmlFor="quote-dimensions">Approximate Dimensions (L x W x H)</label>
+                      <input 
+                        type="text" 
+                        id="quote-dimensions"
+                        name="dimensions"
+                        value={formData.dimensions}
+                        onChange={handleInputChange}
+                        className="dq-input" 
+                        placeholder="e.g. 12 x 10 x 6 inches" 
+                      />
+                    </div>
+                    <div className="dq-group">
+                      <label htmlFor="quote-printing">Do you need custom printing?</label>
+                      <select 
+                        id="quote-printing"
+                        name="customPrinting"
+                        value={formData.customPrinting}
+                        onChange={handleInputChange}
+                        className="dq-select"
+                      >
+                        <option>Yes, custom logo/design</option>
+                        <option>No, plain packaging</option>
+                        <option>Not sure yet</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="dq-group">
+                    <label htmlFor="quote-info">Additional Requirements</label>
+                    <textarea 
+                      id="quote-info"
+                      name="additionalInfo"
+                      value={formData.additionalInfo}
+                      onChange={handleInputChange}
+                      className="dq-textarea" 
+                      rows={4} 
+                      placeholder="Specify material grades (e.g. kraft GSM, fluting profiles), timeline constraints, shipping requirements..."
+                    ></textarea>
+                  </div>
+
+                  <div className="form-navigation-actions" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
+                    <button type="button" onClick={handleBack} className="btn btn-secondary btn-back-step" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <ArrowLeft size={18} /> Back
+                    </button>
+                    <button type="submit" disabled={isSubmitting} className="btn btn-primary btn-submit-dq">
+                      {isSubmitting ? 'Sending Request...' : 'Submit Quote Request'}
+                    </button>
+                  </div>
+                </div>
+              )}
+            </motion.form>
+          )}
+        </AnimatePresence>
       </div>
 
     </div>

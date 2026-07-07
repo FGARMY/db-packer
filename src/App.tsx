@@ -14,8 +14,9 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <a href="#main-content" className="skip-link">Skip to Content</a>
       <Navbar />
-      <main className="main-content">
+      <main id="main-content" className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
