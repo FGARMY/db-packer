@@ -1686,7 +1686,7 @@
 @media (max-width: 768px) {
   /* Spacing system and container padding */
   .section {
-    padding: 48px 20px !important;
+    padding: 64px 24px !important;
   }
 
   .container {
@@ -1721,9 +1721,9 @@
   }
 
   .hero-text p {
-    font-size: 0.9rem !important;
-    margin-bottom: 24px !important;
-    line-height: 1.4 !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 32px !important;
+    line-height: 1.6 !important;
     margin-left: auto !important;
     margin-right: auto !important;
     max-width: 100% !important;
@@ -1815,7 +1815,7 @@
   }
 
   .product-card-wrapper {
-    flex: 0 0 220px !important;
+    flex: 0 0 230px !important;
     scroll-snap-align: start !important;
     transform: none !important;
     opacity: 1 !important;
@@ -1824,21 +1824,21 @@
   .product-card {
     display: flex !important;
     flex-direction: column !important;
-    width: 220px !important;
+    width: 230px !important;
     height: 100% !important;
     background-color: var(--white) !important;
     border-radius: var(--radius) !important;
-    border: 1px solid var(--border-color) !important;
+    border: none !important;
     overflow: hidden !important;
-    box-shadow: var(--shadow-sm) !important;
+    box-shadow: var(--shadow-md) !important;
   }
 
   .product-img-mock {
     width: 100% !important;
-    height: 160px !important;
-    min-height: 160px !important;
-    border-bottom: 1px solid var(--border-color) !important;
-    padding: 16px !important;
+    height: 180px !important;
+    min-height: 180px !important;
+    border-bottom: none !important;
+    padding: 24px !important;
     background-color: #ffffff !important;
   }
 
@@ -1917,11 +1917,13 @@
   .aic-slanted-wrapper {
     height: 220px !important;
     max-width: 100% !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
   }
 
   .aic-slanted-wrapper::before,
   .aic-slanted-wrapper::after {
-    border-radius: var(--radius) !important;
+    display: none !important;
   }
 
   .aic-industries-col {
@@ -1937,8 +1939,8 @@
 
   .aic-icons-row {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 8px !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
     width: 100% !important;
     overflow: visible !important;
   }
@@ -1949,9 +1951,9 @@
   }
 
   .aic-icon-box {
-    width: 60px !important;
-    height: 60px !important;
-    margin-bottom: 8px !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin-bottom: 12px !important;
   }
 
   .aic-icon-text {
@@ -1962,7 +1964,7 @@
   /* 5. CTA Banner Section */
   .cta-banner-section {
     min-height: 240px !important;
-    padding: 40px 20px !important;
+    padding: 80px 24px !important;
   }
 
   .cta-banner-content {
@@ -2000,7 +2002,7 @@
   .capabilities-stats-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
+    gap: 20px !important;
     padding: 0 !important;
     flex-direction: unset !important;
     flex-wrap: unset !important;
@@ -2010,8 +2012,9 @@
 
   .cap-stat-item {
     background: var(--surface-1) !important;
-    border: 1px solid var(--border-color) !important;
-    padding: 16px 12px !important;
+    border: none !important;
+    box-shadow: var(--shadow-sm) !important;
+    padding: 24px 16px !important;
     border-radius: var(--radius) !important;
     display: flex !important;
     flex-direction: column !important;
@@ -2067,7 +2070,7 @@
 
   .process-steps-grid {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    gap: 48px !important;
   }
 
   .process-steps-grid::before {
@@ -2126,17 +2129,17 @@
 
   /* 8. Testimonials Section */
   .testimonials-section {
-    padding: 48px 20px !important;
+    padding: 64px 20px !important;
   }
 
   .testimonials-section h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
   }
 
   .testimonials-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 16px !important;
+    gap: 32px !important;
     overflow-x: visible !important;
     padding: 0 !important;
     flex-wrap: unset !important;
@@ -2147,8 +2150,12 @@
     width: 100% !important;
     min-width: 100% !important;
     flex: unset !important;
-    padding: 20px !important;
-    box-shadow: var(--shadow-sm) !important;
+    padding: 16px 0 32px 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
   }
 
   .testimonial-card:nth-child(n+3) {
@@ -2156,9 +2163,10 @@
   }
 
   .testimonial-text {
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 16px !important;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 24px !important;
+    font-style: italic !important;
   }
 
   .client-info-row h6 {
@@ -2193,7 +2201,7 @@
 
   /* 10. Bottom CTA Section */
   .cta-section-bottom {
-    padding: 32px 20px !important;
+    padding: 64px 20px 80px 20px !important;
   }
 
   .cta-bottom-card {
