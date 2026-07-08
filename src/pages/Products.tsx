@@ -8,6 +8,7 @@ import './Products.css';
 const Products = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   // Available categories based on actual product data
   const categories = ['All', 'Boxes', 'Cartons', 'Blisters', 'Pouches', 'Tapes', 'Labels'];
@@ -49,29 +50,39 @@ const Products = () => {
           {/* Search & Category Filter Controls */}
           <div className="catalog-controls-container">
             {/* Search input wrapper */}
-            <div className="search-bar-wrapper">
-              <Search className="search-icon" size={20} />
-              <input 
-                type="text" 
-                placeholder="Search products, materials, boxes..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-                aria-label="Search catalog"
-              />
-              {searchQuery && (
-                <button 
-                  className="clear-search-btn"
-                  onClick={() => setSearchQuery('')}
-                  aria-label="Clear search"
-                >
-                  &times;
-                </button>
-              )}
+            <div className="search-and-toggle-wrapper">
+              <div className="search-bar-wrapper">
+                <Search className="search-icon" size={20} />
+                <input 
+                  type="text" 
+                  placeholder="Search products, materials, boxes..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                  aria-label="Search catalog"
+                />
+                {searchQuery && (
+                  <button 
+                    className="clear-search-btn"
+                    onClick={() => setSearchQuery('')}
+                    aria-label="Clear search"
+                  >
+                    &times;
+                  </button>
+                )}
+              </div>
+              <button 
+                className="mobile-filter-toggle-btn" 
+                onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+                aria-label="Toggle Filters"
+              >
+                <SlidersHorizontal size={20} />
+                <span>Filters</span>
+              </button>
             </div>
 
             {/* Category Filter Tabs */}
-            <div className="filter-tabs-wrapper" role="tablist" aria-label="Product categories">
+            <div className={`filter-tabs-wrapper ${isMobileFilterOpen ? 'mobile-open' : ''}`} role="tablist" aria-label="Product categories">
               <div className="filter-label-icon">
                 <SlidersHorizontal size={16} />
                 <span>Filters:</span>
@@ -83,7 +94,10 @@ const Products = () => {
                     role="tab"
                     aria-selected={selectedCategory === cat}
                     className={`filter-tab-btn ${selectedCategory === cat ? 'active' : ''}`}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setIsMobileFilterOpen(false); // Close on selection on mobile
+                    }}
                   >
                     {cat}
                   </button>

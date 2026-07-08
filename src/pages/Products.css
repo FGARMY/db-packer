@@ -68,11 +68,42 @@
   }
 }
 
+.search-and-toggle-wrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.mobile-filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface-2);
+  border: 1.5px solid var(--border-color);
+  border-radius: 50px;
+  padding: 0 15px;
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.mobile-filter-toggle-btn:hover {
+  background-color: var(--border-color);
+}
+
+@media (min-width: 992px) {
+  .mobile-filter-toggle-btn {
+    display: none;
+  }
+}
+
 .search-bar-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
+  flex-grow: 1;
 }
 
 .search-icon {
@@ -117,10 +148,20 @@
 }
 
 .filter-tabs-wrapper {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
+}
+
+.filter-tabs-wrapper.mobile-open {
+  display: flex;
+}
+
+@media (min-width: 992px) {
+  .filter-tabs-wrapper {
+    display: flex;
+  }
 }
 
 .filter-label-icon {
@@ -173,8 +214,15 @@
 /* Large Grid */
 .premium-products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .premium-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+  }
 }
 
 .premium-product-card {
@@ -202,7 +250,7 @@
 }
 
 .premium-product-img-wrapper {
-  height: 250px;
+  height: 150px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -210,6 +258,12 @@
   background-color: var(--surface-1);
   border-bottom: 1px solid var(--border-color);
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .premium-product-img-wrapper {
+    height: 250px;
+  }
 }
 
 .premium-product-img-wrapper img {
@@ -224,10 +278,16 @@
 }
 
 .premium-product-info {
-  padding: 25px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  .premium-product-info {
+    padding: 25px;
+  }
 }
 
 .premium-product-cat {
@@ -255,17 +315,37 @@
 }
 
 .premium-product-title {
-  font-size: 1.25rem;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  margin-bottom: 8px;
   color: var(--text-color);
+}
+
+@media (min-width: 768px) {
+  .premium-product-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
 }
 
 .premium-product-desc {
   color: var(--text-light);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  margin-bottom: 25px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
   flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .premium-product-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    display: block;
+  }
 }
 
 .premium-product-btn {
@@ -356,16 +436,60 @@
   background-color: var(--accent-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  /* A. Slight edge gap — not edge-to-edge, but tighter than 20px */
+  .products-main-section .container {
+    padding: 0 12px;
+  }
+
+  /* B. Compact controls bar */
+  .catalog-controls-container {
+    padding: 12px;
+    gap: 12px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  /* C. Smaller hero */
   .products-hero {
     min-height: auto;
-    padding: 120px 20px 60px 20px;
+    padding: 100px 15px 40px 15px;
   }
-  .products-main-section {
-    padding: 40px 0;
-  }
+
+  /* D. Tighter grid gap and card radius */
   .premium-products-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 10px;
+  }
+  .premium-product-card {
+    border-radius: 8px;
+  }
+
+  /* E. Compact CTA button */
+  .premium-product-btn {
+    font-size: 0.78rem;
+    padding: 8px;
+  }
+
+  /* F. Compact category badge */
+  .premium-product-cat {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+  }
+
+  /* Compact section padding */
+  .products-main-section {
+    padding: 30px 0 40px 0;
+  }
+
+  /* Compact CTA section */
+  .products-cta-section {
+    padding: 50px 15px;
+  }
+  .products-cta-content h2 {
+    font-size: 1.5rem;
+  }
+  .products-cta-content p {
+    font-size: 0.95rem;
   }
 }
