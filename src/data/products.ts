@@ -1,3 +1,9 @@
+export interface ShowcaseFeature {
+  title: string;
+  description: string;
+  highlights: string[];
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -8,6 +14,8 @@ export interface Product {
   gallery: string[];
   features: string[];
   specifications: Record<string, string>;
+  showcaseImages?: [string, string, string];
+  showcaseFeatures?: [ShowcaseFeature, ShowcaseFeature, ShowcaseFeature];
 }
 
 export const products: Product[] = [
@@ -19,10 +27,10 @@ export const products: Product[] = [
     fullDesc: "High-quality cartons with precise folds, crisp edges, and high-definition print clarity. Perfect for cosmetics, FMCG, and pharmaceuticals.",
     img: "/assets/mono-carton-1.png",
     gallery: [
-      "/assets/mono-carton-1.png",
-      "/assets/mono-carton-2.png",
-      "/assets/mono-carton-3.png",
-      "/assets/mono-carton-4.png"
+      "/assets/adb_mono_1.png",
+      "/assets/adb_mono_2.png",
+      "/assets/adb_mono_3.png",
+      "/assets/adb_mono_4.png"
     ],
     features: [
       "High-quality offset printing",
@@ -47,7 +55,12 @@ export const products: Product[] = [
     desc: "Premium, rigid-structure boxes made for a luxurious unboxing experience.",
     fullDesc: "Premium, rigid-structure boxes made for a luxurious unboxing experience. Perfect for high-end products, gifting, corporate gifting, and luxury D2C brands.",
     img: "/assets/adb-rigid-box.png",
-    gallery: ["/assets/adb-rigid-box.png", "/assets/adb-rigid-box.png"],
+    gallery: [
+      "/assets/adb_rigid_1.png", 
+      "/assets/adb_rigid_2.png", 
+      "/assets/adb_rigid_3.png", 
+      "/assets/adb_rigid_4.png"
+    ],
     features: [
       "Luxurious look and premium feel",
       "Extremely durable and structural integrity",
@@ -70,7 +83,12 @@ export const products: Product[] = [
     desc: "Custom printed stickers and labels for product branding and identification.",
     fullDesc: "High-quality self-adhesive labels available in rolls and sheets. We offer a wide range of face materials and adhesives suitable for various applications, including food packaging, cosmetics, logistics, and industrial use.",
     img: "/assets/self-adhesive-labels.png",
-    gallery: ["/assets/self-adhesive-labels.png", "/assets/self-adhesive-labels-mockup.png"],
+    gallery: [
+      "/assets/adb_label_1.png", 
+      "/assets/adb_label_2.png", 
+      "/assets/adb_label_3.png", 
+      "/assets/adb_label_4.png"
+    ],
     features: [
       "Vibrant, high-resolution printing",
       "Various shapes and sizes",
@@ -95,7 +113,12 @@ export const products: Product[] = [
     desc: "Pressure-sensitive blister cards designed for heat-free sealing.",
     fullDesc: "Pressure-sensitive blister cards designed for heat-free sealing. Perfect for pharmaceuticals, confectionery, and delicate FMCG products.",
     img: "/assets/cold-seal-blisters.png",
-    gallery: ["/assets/cold-seal-blisters.png", "/assets/cold-seal-blisters-mockup.png"],
+    gallery: [
+      "/assets/adb_coldblister_1.png", 
+      "/assets/adb_coldblister_2.png", 
+      "/assets/adb_coldblister_3.png", 
+      "/assets/cold-seal-blisters-mockup.png"
+    ],
     features: [
       "No heat required for sealing",
       "Protects heat-sensitive items",
@@ -164,7 +187,25 @@ export const products: Product[] = [
     desc: "Cylindrical composite cans for premium packaging of tea, coffee, and gifts.",
     fullDesc: "Composite canister boxes (paper tubes) offer a unique and premium packaging alternative to traditional square boxes. Ideal for dry foods, cosmetics, and promotional items, providing a distinct shelf appeal.",
     img: "/assets/adb-canister.png",
-    gallery: ["/assets/adb-canister.png", "/assets/adb-canister.png"],
+    gallery: ["/assets/adb-canister.png", "/assets/canister_gallery_1.png", "/assets/canister_gallery_2.png"],
+    showcaseImages: ["/assets/canister-feature-1.png", "/assets/canister-feature-2.png", "/assets/canister-feature-3.png"],
+    showcaseFeatures: [
+      {
+        title: "Premium Cylindrical Design",
+        description: "Stand out on the shelf with unique paper tube canister packaging. Perfect for premium teas, coffees, cosmetics, and luxury gifts.",
+        highlights: ["Distinctive shelf appeal", "Sturdy paper construction", "Food-safe inner linings"]
+      },
+      {
+        title: "Airtight & Secure",
+        description: "Designed to keep your products fresh. Our canisters can be fitted with aluminum foils, easy-peel lids, and secure caps for maximum protection.",
+        highlights: ["Moisture and odor barriers", "Metal or plastic caps", "Tamper-evident sealing"]
+      },
+      {
+        title: "Bespoke Branding",
+        description: "Wrap your brand around a 360-degree canvas. We provide high-quality label wrapping and direct printing with luxury finishes.",
+        highlights: ["360-degree printable surface", "Foil stamping and embossing", "Matte and gloss lamination"]
+      }
+    ],
     features: [
       "Unique cylindrical shape",
       "Eco-friendly paper construction",
