@@ -132,10 +132,10 @@ const Home = () => {
   ];
 
   const industries = [
-    { name: "E-commerce\n& Retail", icon: ShoppingCart, img: "/assets/ind-ecommerce.png" },
-    { name: "Food &\nBeverage", icon: Coffee, img: "/assets/ind-food.png" },
-    { name: "Industrial\nManufacturing", icon: Factory, img: "/assets/ind-manufacturing.png" },
-    { name: "Logistics &\nHealthcare", icon: HeartPulse, img: "/assets/ind-logistics.png" }
+    { name: "Cosmetics &\nHealthcare", img: "/assets/ind-cosmetics.png" },
+    { name: "Fitness Supplements", img: "/assets/ind-fitness.png" },
+    { name: "FMCG &\nLiquors", img: "/assets/ind-fmcg.png" },
+    { name: "Logistics & Pharmaceuticals", img: "/assets/ind-logistics.png" }
   ];
 
   const faqs = [
@@ -261,11 +261,11 @@ const Home = () => {
             {[...Array(2)].map((_, i) => (
               <span className="ticker-group" key={i} aria-hidden={i > 0}>
                 {clientLogos.map((logo, idx) => (
-                  <img 
-                    key={idx} 
-                    src={logo.src} 
-                    alt={`${logo.name} logo`} 
-                    className="ticker-logo-img" 
+                  <img
+                    key={idx}
+                    src={logo.src}
+                    alt={`${logo.name} logo`}
+                    className="ticker-logo-img"
                   />
                 ))}
               </span>

@@ -15,10 +15,15 @@ export const products: Product[] = [
     id: "mono-cartons",
     title: "Mono Cartons",
     category: "Cartons",
-    desc: "High-quality printed folding cartons for retail and product packaging.",
-    fullDesc: "Our mono cartons are crafted from premium paperboard, offering exceptional printability and structural integrity. Ideal for pharmaceuticals, cosmetics, food, and FMCG products, providing an attractive retail presence.",
-    img: "/assets/mono-cartons.png",
-    gallery: ["/assets/mono-cartons.png", "/assets/mono-cartons-mockup.png"],
+    desc: "High-quality cartons with precise folds, crisp edges, and high-definition print clarity.",
+    fullDesc: "High-quality cartons with precise folds, crisp edges, and high-definition print clarity. Perfect for cosmetics, FMCG, and pharmaceuticals.",
+    img: "/assets/mono-carton-1.png",
+    gallery: [
+      "/assets/mono-carton-1.png",
+      "/assets/mono-carton-2.png",
+      "/assets/mono-carton-3.png",
+      "/assets/mono-carton-4.png"
+    ],
     features: [
       "High-quality offset printing",
       "Various finishes (Gloss, Matte, UV, Embossing)",
@@ -27,10 +32,11 @@ export const products: Product[] = [
       "Eco-friendly and recyclable"
     ],
     specifications: {
-      "Material": "SBS / FBB / Greyback Paperboard",
-      "Thickness": "200 - 450 GSM",
-      "Printing": "Up to 8 colors + coating",
-      "Finishing": "Lamination, Foiling, Spot UV"
+      "MOQ": "2000 Sheets",
+      "Paper Quality": "SBS, Duplex, Kraft",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination, Velvet Lamination, Holographic Lamination",
+      "Value-adding Finishes": "Spot UV, Foil Stamping, Embossing, Debossing, PVC Window",
+      "Technical Finishes": "Drip-off, Matt and Gloss, Metallic, Online UV, Aqueous coating"
     }
   },
 
@@ -38,10 +44,10 @@ export const products: Product[] = [
     id: "rigid-boxes",
     title: "Rigid Boxes",
     category: "Boxes",
-    desc: "Premium, sturdy packaging for luxury items and gifts.",
-    fullDesc: "Elevate your brand with our luxury rigid boxes. Made from thick, high-density board wrapped in premium paper, these boxes offer a superior unboxing experience. Perfect for jewelry, electronics, cosmetics, and premium gifting.",
-    img: "/assets/rigid-boxes.png",
-    gallery: ["/assets/rigid-boxes.png", "/assets/rigid-boxes-mockup.png"],
+    desc: "Premium, rigid-structure boxes made for a luxurious unboxing experience.",
+    fullDesc: "Premium, rigid-structure boxes made for a luxurious unboxing experience. Perfect for high-end products, gifting, corporate gifting, and luxury D2C brands.",
+    img: "/assets/adb-rigid-box.png",
+    gallery: ["/assets/adb-rigid-box.png", "/assets/adb-rigid-box.png"],
     features: [
       "Luxurious look and premium feel",
       "Extremely durable and structural integrity",
@@ -50,9 +56,11 @@ export const products: Product[] = [
       "High-end finishing options"
     ],
     specifications: {
-      "Material": "High-density rigid board (1-3mm)",
-      "Wrapping": "Art paper, textured paper, leatherette",
-      "Finishing": "Hot stamping, debossing, spot UV"
+      "MOQ": "1000 Boxes",
+      "Paper Quality": "Art Paper, Textured Papers",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination, Velvet Lamination, Holographic Lamination",
+      "Value-adding Finishes": "Spot UV, Foil Stamping, Embossing, PVC Window",
+      "Technical Finishes": "Metallic, Online UV, Matt and Gloss"
     }
   },
   {
@@ -71,7 +79,11 @@ export const products: Product[] = [
       "Available on rolls for auto-dispensing"
     ],
     specifications: {
-      "Material": "Paper, BOPP, PE, PET",
+      "MOQ": "5000 Labels",
+      "Material Quality": "Chromo Paper, BOPP, PE, PET",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination",
+      "Value-adding Finishes": "Foil Stamping, Spot UV, Embossing",
+      "Technical Finishes": "Online UV, Aqueous coating",
       "Adhesive": "Hot-melt, Acrylic, Removable",
       "Format": "Rolls or Sheets"
     }
@@ -80,8 +92,8 @@ export const products: Product[] = [
     id: "cold-seal-blisters",
     title: "Cold Seal Blisters",
     category: "Blisters",
-    desc: "Innovative blister packaging sealing without heat, protecting sensitive products.",
-    fullDesc: "Cold seal blister packaging uses a cohesive coating that only sticks to itself under pressure, eliminating the need for heat during the sealing process. This is ideal for heat-sensitive products like chocolates, medical devices, and specific cosmetics.",
+    desc: "Pressure-sensitive blister cards designed for heat-free sealing.",
+    fullDesc: "Pressure-sensitive blister cards designed for heat-free sealing. Perfect for pharmaceuticals, confectionery, and delicate FMCG products.",
     img: "/assets/cold-seal-blisters.png",
     gallery: ["/assets/cold-seal-blisters.png", "/assets/cold-seal-blisters-mockup.png"],
     features: [
@@ -92,9 +104,11 @@ export const products: Product[] = [
       "Tamper-evident packaging"
     ],
     specifications: {
-      "Material": "PVC, PET with Cold Seal Coating",
-      "Sealing Method": "Pressure only",
-      "Application": "Food, Pharma, Consumer Goods"
+      "MOQ": "3000-5000 Sheets",
+      "Paper Quality": "SBS, Duplex",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination, Velvet Lamination, Holographic Lamination",
+      "Value-adding Finishes": "Spot UV, Foil Stamping, Embossing",
+      "Technical Finishes": "Drip-off, Matt and Gloss, Metallic, Online UV, Aqueous coating"
     }
   },
   {
@@ -113,9 +127,10 @@ export const products: Product[] = [
       "Peg hole options for retail hanging"
     ],
     specifications: {
-      "Blister Material": "PVC, PET, HIPS",
-      "Backing": "Blister coated duplex board",
-      "Sealing Method": "Heat and Pressure"
+      "Paper Quality": "SBS, Duplex",
+      "Standard Finishes": "Gloss Lamination",
+      "Value-adding Finishes": "Foil Stamping, Embossing",
+      "Technical Finishes": "Online UV, Aqueous coating"
     }
   },
   {
@@ -124,8 +139,8 @@ export const products: Product[] = [
     category: "Pouches",
     desc: "Versatile flexible packaging solutions including stand-up and flat pouches.",
     fullDesc: "Our flexible packaging pouches are available in various formats such as stand-up pouches, flat pouches, and spout pouches. They offer excellent barrier properties to preserve freshness and extend the shelf life of food and non-food products.",
-    img: "/assets/pouches-new.png",
-    gallery: ["/assets/pouches-new.png", "/assets/pouches-new-mockup.png"],
+    img: "/assets/adb-pouches.png",
+    gallery: ["/assets/adb-pouches.png", "/assets/adb-pouches.png"],
     features: [
       "Excellent moisture and oxygen barrier",
       "Lightweight and space-saving",
@@ -134,8 +149,11 @@ export const products: Product[] = [
       "Available in multi-layer laminates"
     ],
     specifications: {
+      "MOQ": "5000 Pouches",
       "Material": "PET/PE, BOPP/PE, Aluminum Foil laminates",
-      "Types": "Stand-up, Three-side seal, Center seal",
+      "Standard Finishes": "Matt Finish, Gloss Finish, Holographic",
+      "Value-adding Finishes": "Spot UV, Foil Stamping, Clear Window",
+      "Types": "Stand-up, Three-side seal, Center seal, Spout Pouches",
       "Printing": "Rotogravure up to 9 colors"
     }
   },
@@ -145,8 +163,8 @@ export const products: Product[] = [
     category: "Boxes",
     desc: "Cylindrical composite cans for premium packaging of tea, coffee, and gifts.",
     fullDesc: "Composite canister boxes (paper tubes) offer a unique and premium packaging alternative to traditional square boxes. Ideal for dry foods, cosmetics, and promotional items, providing a distinct shelf appeal.",
-    img: "/assets/canister-boxes.png",
-    gallery: ["/assets/canister-boxes.png", "/assets/canister-boxes-mockup.png"],
+    img: "/assets/adb-canister.png",
+    gallery: ["/assets/adb-canister.png", "/assets/adb-canister.png"],
     features: [
       "Unique cylindrical shape",
       "Eco-friendly paper construction",
@@ -155,7 +173,10 @@ export const products: Product[] = [
       "Metal, plastic, or paper lid options"
     ],
     specifications: {
-      "Material": "Kraft paper tube with art paper wrap",
+      "MOQ": "2000 Canisters",
+      "Paper Quality": "Kraft Board, Art Paper Wrap, Textured Paper",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination, Velvet Lamination",
+      "Value-adding Finishes": "Foil Stamping, Spot UV, Embossing, Debossing",
       "Diameter": "Customizable (50mm - 150mm)",
       "Lid Type": "Tinplate, Plastic, Paper cap"
     }
@@ -176,20 +197,22 @@ export const products: Product[] = [
       "Available in various widths"
     ],
     specifications: {
+      "MOQ": "500 Rolls",
       "Material": "BOPP with Acrylic/Hot-melt adhesive",
+      "Standard Finishes": "Gloss Finish, Matt Finish",
       "Width": "48mm, 72mm",
       "Length": "65m or custom",
-      "Printing": "Custom brand logo/text"
+      "Printing": "Custom brand logo up to 3 colors"
     }
   },
   {
     id: "corrugated-boxes",
     title: "Corrugated Boxes",
     category: "Boxes",
-    desc: "Strong, durable & customizable boxes for safe packaging of goods of all sizes.",
-    fullDesc: "Our heavy-duty corrugated boxes are engineered to provide maximum protection for your products during transit, storage, and handling. Manufactured from high-quality kraft paper, these boxes offer superior stacking strength and crush resistance.",
-    img: "/assets/corrugated-boxes.png",
-    gallery: ["/assets/corrugated-boxes.png", "/assets/corrugated-boxes-mockup.png"],
+    desc: "Structurally strong, high-impact, printable E-flute boxes built to protect, ship, and impress.",
+    fullDesc: "Structurally strong, high-impact, printable E-flute boxes built to protect, ship, and impress. Perfect for e-commerce, B2B logistics, and heavy retail products.",
+    img: "/assets/adb-corrugated.png",
+    gallery: ["/assets/adb-corrugated.png", "/assets/adb-corrugated.png"],
     features: [
       "High crush resistance and stacking strength",
       "100% recyclable and eco-friendly",
@@ -198,9 +221,11 @@ export const products: Product[] = [
       "Shipped flat to save storage space"
     ],
     specifications: {
-      "Material": "Kraft Paper / Fluting Medium",
-      "Flute Types": "A, B, C, E, or Double-wall",
-      "Bursting Strength": "10 - 45 kg/cm²"
+      "MOQ": "2000 Sheets",
+      "Structure": "3 Ply, 4 Ply, 5 Ply",
+      "Standard Finishes": "Matt Lamination, Gloss Lamination, Velvet Lamination, Holographic Lamination",
+      "Value-adding Finishes": "Spot UV, Foil Stamping, Embossing, PVC Window",
+      "Technical Finishes": "Drip-off, Matt and Gloss, Metallic, Aqueous coating, Online UV"
     }
   }
 ];

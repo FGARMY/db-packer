@@ -209,6 +209,60 @@ const ProductDetails = () => {
           </div>
         </div>
 
+        {/* Product Feature Showcase 1 */}
+        <div className="product-feature-showcase">
+          <div className="feature-image-col">
+            <img src="/assets/product-feature.png" alt="Premium Printing Quality" className="feature-showcase-img" loading="lazy" />
+          </div>
+          <div className="feature-text-col">
+            <h2>Unmatched Print Quality</h2>
+            <p>
+              Experience packaging that truly stands out. We ensure crisp edges, flawless folds, and high-definition color reproduction that elevates your brand identity.
+            </p>
+            <ul className="feature-highlights">
+              <li><Check size={16} className="highlight-icon" /> High-definition offset and digital printing</li>
+              <li><Check size={16} className="highlight-icon" /> Precise die-cutting and structural folds</li>
+              <li><Check size={16} className="highlight-icon" /> Premium value-adding finishes</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Product Feature Showcase 2 (Reversed) */}
+        <div className="product-feature-showcase reverse">
+          <div className="feature-image-col">
+            <img src="/assets/product-feature-2.png" alt="Structural Strength and Durability" className="feature-showcase-img" loading="lazy" />
+          </div>
+          <div className="feature-text-col">
+            <h2>Strength & Durability</h2>
+            <p>
+              Protect your products with confidence. We utilize premium-grade materials engineered for maximum burst strength and crush resistance during transit.
+            </p>
+            <ul className="feature-highlights">
+              <li><Check size={16} className="highlight-icon" /> 3-Ply, 4-Ply, and 5-Ply rigid configurations</li>
+              <li><Check size={16} className="highlight-icon" /> High-impact resistance for B2B logistics</li>
+              <li><Check size={16} className="highlight-icon" /> Eco-friendly and 100% recyclable materials</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Product Feature Showcase 3 */}
+        <div className="product-feature-showcase">
+          <div className="feature-image-col">
+            <img src="/assets/product-feature-3.png" alt="Custom Branding Solutions" className="feature-showcase-img" loading="lazy" />
+          </div>
+          <div className="feature-text-col">
+            <h2>Custom Crafted for You</h2>
+            <p>
+              Your packaging is your silent ambassador. We offer end-to-end customization, tailoring dimensions, structures, and finishes perfectly to your unique brand requirements.
+            </p>
+            <ul className="feature-highlights">
+              <li><Check size={16} className="highlight-icon" /> Bespoke sizes and structural engineering</li>
+              <li><Check size={16} className="highlight-icon" /> Advanced technical coatings (Matt, Gloss, Metallic)</li>
+              <li><Check size={16} className="highlight-icon" /> Dedicated B2B support and rapid prototyping</li>
+            </ul>
+          </div>
+        </div>
+
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
           <div className="related-products-section">
