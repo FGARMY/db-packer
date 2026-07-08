@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { ArrowRight, Search, SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import MobileImageSlider from '../components/MobileImageSlider';
 import './Products.css';
 
 const Products = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Available categories based on actual product data
   const categories = ['All', 'Boxes', 'Cartons', 'Blisters', 'Pouches', 'Tapes', 'Labels'];
@@ -128,7 +136,11 @@ const Products = () => {
                   >
                     <Link to={`/product/${p.id}`} className="premium-product-card">
                       <div className="premium-product-img-wrapper">
-                        <img src={p.img} alt={p.title} loading="lazy" />
+                        {isMobile && p.gallery.length > 1 ? (
+                          <MobileImageSlider images={p.gallery} alt={p.title} />
+                        ) : (
+                          <img src={p.img} alt={p.title} loading="lazy" />
+                        )}
                       </div>
                       <div className="premium-product-info">
                         <span className={`premium-product-cat cat-${p.category.toLowerCase()}`}>
