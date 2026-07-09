@@ -1,6 +1,7 @@
 import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import founderImg from '../assets/latika1.jpeg';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -65,7 +66,7 @@ const AboutUs = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="founder-img-wrap">
-              <img src="src\assets\latika1.jpeg" alt="Latika Upadhyay, Founder &amp; CEO" />
+              <img src={founderImg} alt="Latika Upadhyay, Founder &amp; CEO" />
             </div>
             <div>
               <h4 className="section-subtitle">LEADERSHIP</h4>
