@@ -195,7 +195,7 @@ export const products: Product[] = [
     desc: "Traditional heat-sealed blister packs for secure and visible product display.",
     fullDesc: "Hot seal blister packaging is a widely used and reliable method for retail products. A thermoformed plastic blister is heat-sealed to a specially coated backing card, providing a secure, tamper-evident package that showcases the product.",
     img: "/assets/hot-seal-blisters.png",
-    gallery: ["/assets/hot-seal-blisters.png", "/assets/hot-seal-blisters-mockup.png"],
+    gallery: ["/assets/hot-seal-blisters.png", "/assets/hot-seal-blisters-mockup.png", "/assets/hot-gallery-3.png", "/assets/hot-gallery-4.png"],
     showcaseImages: ["/assets/hot-feature-1.png", "/assets/hot-feature-2.png", "/assets/hot-feature-3.png"],
     showcaseFeatures: [
       {
@@ -235,7 +235,7 @@ export const products: Product[] = [
     desc: "Versatile flexible packaging solutions including stand-up and flat pouches.",
     fullDesc: "Our flexible packaging pouches are available in various formats such as stand-up pouches, flat pouches, and spout pouches. They offer excellent barrier properties to preserve freshness and extend the shelf life of food and non-food products.",
     img: "/assets/adb-pouches.png",
-    gallery: ["/assets/adb-pouches.png", "/assets/adb-pouches.png"],
+    gallery: ["/assets/adb-pouches.png", "/assets/pouch-feature-1.png", "/assets/pouch-gallery-3.png", "/assets/pouch-gallery-4.png"],
     showcaseImages: ["/assets/pouch-feature-1.png", "/assets/pouch-feature-2.png", "/assets/pouch-feature-3.png"],
     showcaseFeatures: [
       {
@@ -277,7 +277,7 @@ export const products: Product[] = [
     desc: "Cylindrical composite cans for premium packaging of tea, coffee, and gifts.",
     fullDesc: "Composite canister boxes (paper tubes) offer a unique and premium packaging alternative to traditional square boxes. Ideal for dry foods, cosmetics, and promotional items, providing a distinct shelf appeal.",
     img: "/assets/adb-canister.png",
-    gallery: ["/assets/adb-canister.png", "/assets/canister_gallery_1.png", "/assets/canister_gallery_2.png"],
+    gallery: ["/assets/adb-canister.png", "/assets/canister_gallery_1.png", "/assets/canister_gallery_2.png", "/assets/canister-gallery-4.png"],
     showcaseImages: ["/assets/canister-feature-1.png", "/assets/canister-feature-2.png", "/assets/canister-feature-3.png"],
     showcaseFeatures: [
       {
@@ -319,7 +319,7 @@ export const products: Product[] = [
     desc: "Custom printed packaging tape to boost brand visibility on every shipment.",
     fullDesc: "Turn your shipping cartons into a marketing tool with our custom printed promotional tape. High-quality BOPP tape printed with your company logo, handling instructions, or promotional messages ensures secure sealing and brand recognition.",
     img: "/assets/promotional-tape-roll.png",
-    gallery: ["/assets/promotional-tape-roll.png", "/assets/promotional-tape-roll-mockup.png"],
+    gallery: ["/assets/promotional-tape-roll.png", "/assets/promotional-tape-roll-mockup.png", "/assets/tape-gallery-3.png", "/assets/tape-gallery-4.png"],
     showcaseImages: ["/assets/tape-feature-1.png", "/assets/tape-feature-2.png", "/assets/promotional-tape-roll-mockup.png"],
     showcaseFeatures: [
       {
@@ -361,7 +361,7 @@ export const products: Product[] = [
     desc: "Structurally strong, high-impact, printable E-flute boxes built to protect, ship, and impress.",
     fullDesc: "Structurally strong, high-impact, printable E-flute boxes built to protect, ship, and impress. Perfect for e-commerce, B2B logistics, and heavy retail products.",
     img: "/assets/adb-corrugated.png",
-    gallery: ["/assets/adb-corrugated.png", "/assets/adb-corrugated.png"],
+    gallery: ["/assets/adb-corrugated.png", "/assets/corrugated-feature-1.png", "/assets/corrugated-gallery-3.png", "/assets/corrugated-gallery-4.png"],
     showcaseImages: ["/assets/corrugated-feature-1.png", "/assets/corrugated-feature-2.png", "/assets/corrugated-feature-3.png"],
     showcaseFeatures: [
       {
