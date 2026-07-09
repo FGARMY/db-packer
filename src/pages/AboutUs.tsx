@@ -2,6 +2,7 @@ import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import founderImg from '../assets/latika1.jpeg';
+import SEOHead from '../components/SEOHead';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -14,12 +15,18 @@ const AboutUs = () => {
 
   return (
     <div className="page-container about-page-container">
+      <SEOHead
+        title="About ADBPack — ISO 9001:2015 Certified Packaging Manufacturer, Delhi India"
+        description="Learn about ADBPack, India's trusted ISO 9001:2015 certified packaging manufacturer. Founded in 2018, we operate a 50,000 sq.ft facility producing 10M+ units monthly. Led by founder Latika Upadhyay."
+        canonicalPath="/about"
+        keywords="packaging company Delhi, ISO certified packaging manufacturer, about ADBPack, packaging manufacturer India, Latika Upadhyay ADBPack"
+      />
       <div className="page-breadcrumb">
         <Link to="/">Home</Link> &bull; About Us
       </div>
 
       <div className="minimal-page-header">
-        <h1>About ADBPack</h1>
+        <h1>About ADBPack — India's Trusted Packaging Manufacturer Since 2018</h1>
         <p>Excellence, Quality, and Innovation in Packaging Solutions</p>
       </div>
 

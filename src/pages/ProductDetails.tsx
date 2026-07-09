@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Check, Package, ShieldCheck, Truck, ArrowLeft, ZoomIn, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getProductById, products } from '../data/products';
+import { productSEO } from '../config/productSEO';
+import SEOHead from '../components/SEOHead';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
@@ -43,34 +45,62 @@ const ProductDetails = () => {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.title,
-    "image": `https://adbpack.com${product.img}`,
+    "image": product.gallery.map(img => `https://adbpack.com${img}`),
     "description": product.fullDesc,
     "brand": {
       "@type": "Brand",
       "name": "ADBPack"
     },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "ADBPack",
+      "url": "https://adbpack.com"
+    },
     "category": product.category,
     "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "INR",
-      "lowPrice": "Contact for bulk wholesale B2B pricing",
-      "price": "B2B wholesale pricing upon inquiry",
-      "priceCurrencySign": "₹",
-      "itemCondition": "https://schema.org/NewCondition",
+      "@type": "Offer",
       "availability": "https://schema.org/InStock",
+      "priceCurrency": "INR",
       "seller": {
         "@type": "Organization",
         "name": "ADBPack"
       }
-    }
+    },
+    "additionalProperty": Object.entries(product.specifications).map(([name, value]) => ({
+      "@type": "PropertyValue",
+      "name": name,
+      "value": value
+    }))
+  };
+
+  // BreadcrumbList schema for product navigation
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://adbpack.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://adbpack.com/products" },
+      { "@type": "ListItem", "position": 3, "name": product.title, "item": `https://adbpack.com/product/${product.id}` }
+    ]
+  };
+
+  // Get SEO metadata for this product (falls back to generic if not configured)
+  const seo = productSEO[product.id] || {
+    title: `${product.title} — Custom Packaging | ADBPack`,
+    description: product.fullDesc,
+    keywords: `${product.title}, ${product.category}, packaging, ADBPack`
   };
 
   return (
     <div className="page-container product-details-page-container">
-      {/* Inject JSON-LD to Head dynamically */}
-      <script type="application/ld+json">
-        {JSON.stringify(schemaMarkup)}
-      </script>
+      <SEOHead
+        title={seo.title}
+        description={seo.description}
+        canonicalPath={`/product/${product.id}`}
+        ogImage={`https://adbpack.com${product.img}`}
+        keywords={seo.keywords}
+        schema={[schemaMarkup, breadcrumbSchema]}
+      />
 
       <div className="container">
         {/* Back and Breadcrumb Links */}

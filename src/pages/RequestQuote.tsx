@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ShieldCheck, CheckCircle2, Factory, Calendar, Settings, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../utils/supabaseClient';
+import SEOHead from '../components/SEOHead';
 import './RequestQuote.css';
 
 const RequestQuote = () => {
@@ -123,6 +124,12 @@ const RequestQuote = () => {
 
   return (
     <div className="quote-page-wrapper">
+      <SEOHead
+        title="Request a Free Packaging Quote — Custom Boxes & Cartons | ADBPack"
+        description="Get a free custom packaging quote from ADBPack. ISO 9001:2015 certified. Wholesale B2B pricing on corrugated boxes, mono cartons, rigid boxes, pouches, blister packaging & more."
+        canonicalPath="/quote"
+        keywords="packaging quote, custom packaging price, bulk packaging order, wholesale packaging quote India, B2B packaging pricing, custom box quote"
+      />
       
       {/* Left Column: Premium Graphics Sidebar */}
       <div className="quote-sidebar">

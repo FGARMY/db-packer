@@ -4,6 +4,7 @@ import { products } from '../data/products';
 import { ArrowRight, Search, SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileImageSlider from '../components/MobileImageSlider';
+import SEOHead from '../components/SEOHead';
 import './Products.css';
 
 const Products = () => {
@@ -32,6 +33,12 @@ const Products = () => {
 
   return (
     <div className="products-page-container">
+      <SEOHead
+        title="All Packaging Products — Boxes, Cartons, Pouches, Labels & More | ADBPack"
+        description="Browse ADBPack's complete packaging catalog. Custom corrugated boxes, mono cartons, rigid boxes, pouches, blister packaging, self-adhesive labels, canister boxes & branded tape. Wholesale B2B pricing."
+        canonicalPath="/products"
+        keywords="packaging products India, wholesale packaging, custom packaging boxes, B2B packaging catalog, packaging manufacturer products, corrugated boxes, mono cartons, rigid boxes, pouches, blister packaging"
+      />
       {/* Hero Banner */}
       <section className="products-hero" aria-label="Catalog Hero">
         <div className="products-hero-overlay"></div>
@@ -41,7 +48,7 @@ const Products = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Our Packaging Catalog</h1>
+          <h1>Custom Packaging Products Catalog — Boxes, Cartons, Pouches & More</h1>
           <p>Explore our premium range of industrial and retail B2B packaging solutions, engineered for maximum durability, security, and branding appeal.</p>
         </motion.div>
       </section>

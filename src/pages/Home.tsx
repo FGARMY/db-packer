@@ -4,6 +4,7 @@ import { ChevronRight, ArrowLeft, ArrowRight, Quote, Plus, Minus, CheckCircle, F
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { products } from '../data/products';
 import { SITE_CONFIG } from '../config/site';
+import SEOHead from '../components/SEOHead';
 import './Home.css';
 
 import delbrukLogo from '../assets/client-logo/Delbruk.png';
@@ -148,6 +149,107 @@ const Home = () => {
 
   return (
     <div className="home-page">
+      <SEOHead
+        title="ADBPack — Custom Packaging Solutions Manufacturer in India | ISO 9001:2015 Certified"
+        description="ADBPack is India's trusted ISO 9001:2015 certified packaging manufacturer. Custom corrugated boxes, mono cartons, rigid boxes, pouches & blister packaging. Get a free B2B quote today."
+        canonicalPath="/"
+        keywords="packaging solutions India, custom packaging manufacturer, corrugated boxes, mono cartons, rigid boxes, blister packaging, pouches, B2B packaging supplier, packaging company Delhi, wholesale packaging India"
+        schema={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "ADBPack",
+            "url": "https://adbpack.com",
+            "logo": "https://adbpack.com/fevicon.png",
+            "description": "ISO 9001:2015 certified B2B packaging manufacturer in India specializing in corrugated boxes, mono cartons, rigid boxes, pouches, blister packaging, self-adhesive labels, canister boxes, and promotional tape.",
+            "foundingDate": "2018",
+            "founder": {
+              "@type": "Person",
+              "name": "Latika Upadhyay"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Trilokpuri",
+              "addressLocality": "New Delhi",
+              "addressRegion": "Delhi",
+              "postalCode": "110091",
+              "addressCountry": "IN"
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-7982194994",
+                "contactType": "sales",
+                "availableLanguage": ["English", "Hindi"]
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-8882567498",
+                "contactType": "customer service",
+                "availableLanguage": ["English", "Hindi"]
+              }
+            ],
+            "email": "info@adbpack.com",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": 50
+            },
+            "areaServed": "IN",
+            "knowsAbout": [
+              "Corrugated Box Manufacturing",
+              "Mono Carton Printing",
+              "Rigid Box Packaging",
+              "Flexible Pouch Packaging",
+              "Blister Packaging",
+              "Self Adhesive Labels",
+              "Custom Packaging Solutions"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "ADBPack - Custom Packaging Manufacturer",
+            "image": "https://adbpack.com/facility.png",
+            "@id": "https://adbpack.com/#localbusiness",
+            "url": "https://adbpack.com",
+            "telephone": "+91-7982194994",
+            "email": "info@adbpack.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Trilokpuri",
+              "addressLocality": "New Delhi",
+              "addressRegion": "Delhi",
+              "postalCode": "110091",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 28.6282,
+              "longitude": 77.2973
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            "priceRange": "$$",
+            "description": "ISO 9001:2015 certified packaging manufacturer in New Delhi, India. Custom corrugated boxes, mono cartons, rigid boxes, pouches, blister packaging, labels and tapes for B2B clients."
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+              }
+            }))
+          }
+        ]}
+      />
       {/* 1. Unified Hero Section */}
       <section className="hero-section" aria-label="Welcome Banner">
         <div className="hero-slides-container">
@@ -172,7 +274,10 @@ const Home = () => {
               <ShieldCheck size={16} className="badge-icon" />
               <span>ISO 9001:2015 Certified Company</span>
             </div>
-            <h1>SMART PACKAGING.<br />STRONGER FUTURE.</h1>
+            <h1>
+              <span className="sr-only">Custom Packaging Solutions Manufacturer in India — </span>
+              SMART PACKAGING.<br />STRONGER FUTURE.
+            </h1>
             <p>Reliable. Sustainable. Custom packaging solutions engineered for every industry.</p>
             <div className="hero-actions">
               <Link to="/quote" className="btn btn-primary hero-btn">

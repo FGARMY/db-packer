@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Clock, CheckCircle2, AlertCircle } from 'lucide-re
 import { motion, AnimatePresence } from 'framer-motion';
 import { SITE_CONFIG } from '../config/site';
 import { supabase } from '../utils/supabaseClient';
+import SEOHead from '../components/SEOHead';
 import './ContactUs.css';
 
 const ContactUs = () => {
@@ -92,12 +93,18 @@ const ContactUs = () => {
 
   return (
     <div className="contact-page-container">
+      <SEOHead
+        title="Contact ADBPack — Get a Custom Packaging Quote | Delhi, India"
+        description="Contact ADBPack for custom packaging solutions. Get a free B2B quote for corrugated boxes, mono cartons, rigid boxes, pouches & more. Call +91 7982194994 or email info@adbpack.com."
+        canonicalPath="/contact"
+        keywords="contact packaging manufacturer, packaging quote Delhi, custom packaging inquiry, ADBPack contact, packaging manufacturer phone number"
+      />
       <div className="page-breadcrumb">
         <Link to="/">Home</Link> &bull; Contact Us
       </div>
 
       <div className="minimal-page-header">
-        <h1>Contact Us</h1>
+        <h1>Contact ADBPack for Custom Packaging Solutions</h1>
         <p>Get in touch and ask us anything. Whether you need custom packaging solutions, want to check our manufacturing capacity, or just have a general question — we answer it all.</p>
       </div>
 
