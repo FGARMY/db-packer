@@ -95,7 +95,7 @@ const ContactUs = () => {
     <div className="contact-page-container">
       <SEOHead
         title="Contact ADBPack — Get a Custom Packaging Quote | Delhi, India"
-        description="Contact ADBPack for custom packaging solutions. Get a free B2B quote for corrugated boxes, mono cartons, rigid boxes, pouches & more. Call +91 7982194994 or email info@adbpack.com."
+        description="Contact ADBPack for custom packaging solutions. Get a free B2B quote for corrugated boxes, mono cartons, rigid boxes, pouches & more. Call +91 9711492120 or email info@adbpack.com."
         canonicalPath="/contact"
         keywords="contact packaging manufacturer, packaging quote Delhi, custom packaging inquiry, ADBPack contact, packaging manufacturer phone number"
       />

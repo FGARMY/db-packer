@@ -180,13 +180,13 @@ const Home = () => {
             "contactPoint": [
               {
                 "@type": "ContactPoint",
-                "telephone": "+91-7982194994",
+                "telephone": "+91-9711492120",
                 "contactType": "sales",
                 "availableLanguage": ["English", "Hindi"]
               },
               {
                 "@type": "ContactPoint",
-                "telephone": "+91-8882567498",
+                "telephone": "+91-9711492120",
                 "contactType": "customer service",
                 "availableLanguage": ["English", "Hindi"]
               }
@@ -214,7 +214,7 @@ const Home = () => {
             "image": "https://adbpack.com/facility.png",
             "@id": "https://adbpack.com/#localbusiness",
             "url": "https://adbpack.com",
-            "telephone": "+91-7982194994",
+            "telephone": "+91-9711492120",
             "email": "info@adbpack.com",
             "address": {
               "@type": "PostalAddress",
